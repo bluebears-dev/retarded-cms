@@ -37,20 +37,9 @@ class LoginController extends Controller
         return view('rcms.login.index');
     }
 
-    protected function redirectWithErrors(Request $request, $errors)
+    protected function createResponse($data, $code)
     {
-        if ($request->ajax()) {
-            return response()->json($errors);
-        }
-        return redirect()->back()->withErrors($errors);
-    }
-
-    protected function redirectAuthorizedUser(Request $request)
-    {
-        if ($request->ajax()) {
-            return response()->json(['redirect' => route('rcms')]);
-        }
-        return redirect()->intended(route('rcms'));
+        return response()->json($data)->setStatusCode($code, Response::$statusTexts[$code]);
     }
 
     public function login(Request $request)
@@ -58,15 +47,15 @@ class LoginController extends Controller
         $validator = Validator::make($request->all(), $this->rules);
 
         if ($validator->fails())
-            return $this->redirectWithErrors($request, $validator->messages());
+            return $this->createResponse($validator->messages(), Response::HTTP_BAD_REQUEST);
 
         $credentials = $request->only('login', 'password');
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return $this->redirectAuthorizedUser($request);
+            return $this->createResponse(['redirect' => route('rcms')], Response::HTTP_OK);
         }
-        return $this->redirectWithErrors($request, ['authorization' => [Lang::get('auth.failed')]]);
+        return $this->createResponse(['authorization' => [Lang::get('auth.failed')]], Response::HTTP_FORBIDDEN);
     }
 
     public function logout(Request $request)

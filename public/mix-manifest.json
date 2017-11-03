@@ -1,9 +1,8 @@
 {
-    "/js/login.js": "/js/login.js",
-    "/js/app.js": "/js/app.js",
+    "/js/dashboard.js": "/js/dashboard.js",
     "/css/app.css": "/css/app.css",
     "/css/login.css": "/css/login.css",
     "/css/dashboard.css": "/css/dashboard.css",
-    "/js/bootstrap.js": "/js/bootstrap.js",
-    "/js/fetch.js": "/js/fetch.js"
+    "/js/login.js": "/js/login.js",
+    "/js/bootstrap.js": "/js/bootstrap.js"
 }

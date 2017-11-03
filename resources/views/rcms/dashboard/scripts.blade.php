@@ -7,3 +7,6 @@
 ?>
 @extends('rcms.main.scripts')
 
+@push('scripts')
+    <script src="/js/dashboard.js"></script>
+@endpush

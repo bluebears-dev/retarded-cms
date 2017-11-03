@@ -10,19 +10,19 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Support\Facades\Lang;
 
 class ThrottleStandardRequests extends ThrottleRequests
 {
-    static $lockoutTime = [];
-
     protected function handleRedirection(Request $request, $headers, $retryAfter)
     {
         $message = ['throttle' => [Lang::get('auth.throttle', ['seconds' => $retryAfter])]];
 
         $response = response()->json($message);
         $response->headers->add($headers);
+        $response->setStatusCode(Response::HTTP_TOO_MANY_REQUESTS, Response::$statusTexts[Response::HTTP_TOO_MANY_REQUESTS]);
         return $response;
     }
 
@@ -34,7 +34,6 @@ class ThrottleStandardRequests extends ThrottleRequests
 
         if ($this->limiter->tooManyAttempts($key, $maxAttempts, $decayMinutes)) {
             $retryAfter = $this->getTimeUntilNextRetry($key);
-            ThrottleStandardRequests::$lockoutTime[$key] = $retryAfter;
 
             $headers = $this->getHeaders(
                 $maxAttempts,
@@ -45,7 +44,6 @@ class ThrottleStandardRequests extends ThrottleRequests
             return $this->handleRedirection($request, $headers, $retryAfter);
         }
 
-        ThrottleStandardRequests::$lockoutTime[$key] = 0;
         $this->limiter->hit($key, $decayMinutes);
 
         $response = $next($request);
@@ -70,12 +68,5 @@ class ThrottleStandardRequests extends ThrottleRequests
         throw new RuntimeException(
             'Unable to generate the request signature. Route unavailable.'
         );
-    }
-
-    public static function getRemainingLockoutTime($request)
-    {
-        $key = ThrottleStandardRequests::createRequestSignature($request);
-
-        return ThrottleStandardRequests::$lockoutTime[$key];
     }
 }

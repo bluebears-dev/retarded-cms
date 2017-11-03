@@ -55,8 +55,8 @@
                 }).then(response => {
                     if ('redirect' in response.data)
                         window.location.replace(response.data.redirect.match(/\w\/{1}(.*)/)[1]); // redirect to relative url
-                    else
-                        this.$data.errors = response.data
+                }).catch(error => {
+                    this.$data.errors = error.response.data
                 })
             }
         }

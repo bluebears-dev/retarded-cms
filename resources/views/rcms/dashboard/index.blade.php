@@ -10,13 +10,9 @@
 <body>
     <div class="rcms-wrapper">
         <nav class="nav rcms-side-menu">
-            <ul class="nav flex-column">
-                <li><a href=""></a>ab</li>
-                <li><a href=""></a>ab</li>
-                <li><a href=""></a>ab</li>
-            </ul>
+            <div id="menu"></div>
         </nav>
-        <div class="placeholder">
+        <div id="content">
         </div>
     </div>
 </body>
