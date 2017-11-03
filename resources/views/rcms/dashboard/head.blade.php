@@ -5,12 +5,12 @@
  * Time: 23:18
  */
 ?>
-@extends('panel.main.head')
+@extends('rcms.main.head')
 
 @section('title')
     {{--{{ Auth::user() }}--}}
 @endsection
 
 @push('css')
-    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="{{ asset('/css/dashboard.css') }}">
 @endpush

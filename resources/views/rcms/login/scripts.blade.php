@@ -5,7 +5,7 @@
  * Time: 23:04
  */
 ?>
-@extends('panel.main.scripts')
+@extends('rcms.main.scripts')
 
 @push('scripts')
     <script src="/js/login.js"></script>

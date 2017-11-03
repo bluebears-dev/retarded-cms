@@ -5,5 +5,5 @@
  * Time: 23:21
  */
 ?>
-@extends('panel.main.scripts')
+@extends('rcms.main.scripts')
 

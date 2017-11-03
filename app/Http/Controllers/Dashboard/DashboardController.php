@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Dashboard;
 
 use Auth;
 use Illuminate\Http\Request;
@@ -11,6 +11,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('panel.dashboard.index');
+        return view('rcms.dashboard.index');
     }
 }

@@ -15742,7 +15742,7 @@ if (token) {
      * // Use the `sourceURL` option to specify a custom sourceURL for the template.
      * var compiled = _.template('hello <%= user %>!', { 'sourceURL': '/basic/greeting.jst' });
      * compiled(data);
-     * // => Find the source of "greeting.jst" under the Sources tab or Resources panel of the web inspector.
+     * // => Find the source of "greeting.jst" under the Sources tab or Resources rcms of the web inspector.
      *
      * // Use the `variable` option to ensure a with-statement isn't used in the compiled template.
      * var compiled = _.template('hi <%= data.user %>!', { 'variable': 'data' });
@@ -28986,7 +28986,7 @@ if (typeof jQuery === 'undefined') {
     if (this.transitioning || this.$element.hasClass('in')) return
 
     var activesData
-    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+    var actives = this.$parent && this.$parent.children('.rcms').children('.in, .collapsing')
 
     if (actives && actives.length) {
       activesData = actives.data('bs.collapse')
@@ -31183,7 +31183,7 @@ module.exports = (
     var originURL;
 
     /**
-    * Parse a URL to discover it's app
+    * Parse a URL to discover it's components
     *
     * @param {String} url The URL to be parsed
     * @returns {Object}

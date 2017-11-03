@@ -1,11 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Middleware\ThrottleStandardRequests;
-use App\User;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
@@ -13,7 +10,6 @@ use Validator;
 use Auth;
 use Lang;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -38,7 +34,7 @@ class LoginController extends Controller
 
     public function showForms()
     {
-        return view('panel.login.index');
+        return view('rcms.login.index');
     }
 
     protected function redirectWithErrors(Request $request, $errors)
@@ -52,9 +48,9 @@ class LoginController extends Controller
     protected function redirectAuthorizedUser(Request $request)
     {
         if ($request->ajax()) {
-            return response()->json(['redirect' => route('panel')]);
+            return response()->json(['redirect' => route('rcms')]);
         }
-        return redirect()->intended(route('panel'));
+        return redirect()->intended(route('rcms'));
     }
 
     public function login(Request $request)

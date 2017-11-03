@@ -5,7 +5,7 @@
  * Time: 22:36
  */
 ?>
-@extends('panel.main.head')
+@extends('rcms.main.head')
 
 @section('title')
     rCMS Login

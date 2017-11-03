@@ -1,0 +1,10 @@
+.rcms-wrapper {
+  height: 100%;
+  display: flex;
+}
+
+.rcms-side-menu {
+  background: $menu_color;
+  border-bottom: 2px solid $menu_separator_color;
+  display: inline-block;
+}

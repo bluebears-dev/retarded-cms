@@ -6,9 +6,9 @@
  */
 ?>
 <html lang="en">
-@include('panel.login.head')
+@include('rcms.login.head')
 <body>
     <div id="login"></div>
 </body>
-@include('panel.login.scripts')
+@include('rcms.login.scripts')
 </html>

@@ -21,13 +21,9 @@ class ThrottleStandardRequests extends ThrottleRequests
     {
         $message = ['throttle' => [Lang::get('auth.throttle', ['seconds' => $retryAfter])]];
 
-        if ($request->ajax()) {
-            $response = response()->json($message);
-            $response->headers->add($headers);
-            return $response;
-        }
-
-        return back(301, $headers)->withErrors($message);
+        $response = response()->json($message);
+        $response->headers->add($headers);
+        return $response;
     }
 
     public function handle($request, Closure $next, $maxAttempts = 3, $decayMinutes = 1)

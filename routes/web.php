@@ -18,8 +18,8 @@ Route::get('/logout', 'Panel\LoginController@logout')->name('logout');
 
 Route::group(['middleware' => 'auth'], function()
 {
-    Route::get('/panel', 'Panel\DashboardController@index')->name('panel');
-    Route::get('/panel/user', 'Panel\DashboardController@user');
+    Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
+    Route::resource('/api/users', 'Dashboard\UserController')->middleware('throttle:10');
 });
 
 
