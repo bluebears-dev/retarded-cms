@@ -7,6 +7,7 @@ php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece38
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 ( cd .. ; php ./docker/composer.phar install )
+
 echo -e "\nCleaning up..."
 echo "-----------------------------------------------"
 rm composer.phar
@@ -18,4 +19,4 @@ sudo docker-compose up -d
 
 echo -e "\nSetting up migrations..."
 echo "-----------------------------------------------"
-sudo docker-compose exec app php artisan migrate --seed
+sudo docker-compose exec app php artisan migrate:refresh --seed
