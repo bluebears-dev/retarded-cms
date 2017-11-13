@@ -8,13 +8,8 @@
 <html lang="en">
 @include('rcms.dashboard.head')
 <body>
-    <div class="rcms-wrapper">
-        <nav class="nav rcms-side-menu">
-            <div id="menu"></div>
-        </nav>
-        <div id="content">
-        </div>
-    </div>
+    <div id="menu"></div>
+    <div id="content"></div>
 </body>
 </html>
 @include('rcms.dashboard.scripts')

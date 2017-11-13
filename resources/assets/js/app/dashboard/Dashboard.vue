@@ -1,7 +1,7 @@
 <template>
-    <section id="content" class="" style="width: 100px;">
+    <section id="content" class="rcms-view">
         <p>{{ currentComponent }}</p>
-        <div  :is="currentComponent">
+        <div :is="currentComponent">
 
         </div>
     </section>
@@ -13,15 +13,24 @@
 
     export default {
         components: {
-            UsersList, Red
+            UsersList
         },
         data: function () {
             return window.store
         },
-        method: {
-            show: function () {
-                console.log(this.$data.currentComponent)
-            }
+        mounted: function () {
+            axios({
+                method: 'get',
+                url: '/api/user/current',
+            })
+            .then(response => {
+                console.log(response)
+                if ('currentUser' in response.data)
+                    this.$data.currentUser.data = response.data.currentUser;
+            })
+            .catch(error => {
+
+            })
         }
     };
 </script>

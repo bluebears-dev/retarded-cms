@@ -19,10 +19,10 @@ class RolesAndPermissionsSeeder extends Seeder
         $levels = [
             [
                 'delete users',
-            ],
-            [
                 'create_users',
                 'edit users',
+            ],
+            [
                 'delete websites',
             ],
             [

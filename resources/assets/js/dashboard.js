@@ -6,7 +6,17 @@ import DashboardMenu from './app/dashboard/DashboardMenu.vue'
 
 
 window.store = {
-    currentComponent: null
+    currentComponent: null,
+    menuEntries: {
+        'Users': 'UsersList',
+        'TMP': 'Red',
+    },
+    currentUser: {
+        data: null,
+        role_name: function () {
+            return this.data.roles[0].name
+        }
+    }
 };
 
 const app = new Vue({

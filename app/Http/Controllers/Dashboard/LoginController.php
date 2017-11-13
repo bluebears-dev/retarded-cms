@@ -9,9 +9,8 @@ use Illuminate\Support\Facades\Cache;
 use Validator;
 use Auth;
 use Lang;
-use App\Http\Controllers\Controller;
 
-class LoginController extends Controller
+class LoginController extends RCMSController
 {
     /**
      * Handle an authentication attempt.
@@ -37,11 +36,6 @@ class LoginController extends Controller
         return view('rcms.login.index');
     }
 
-    protected function createResponse($data, $code)
-    {
-        return response()->json($data)->setStatusCode($code, Response::$statusTexts[$code]);
-    }
-
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), $this->rules);
@@ -53,12 +47,12 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return $this->createResponse(['redirect' => route('rcms')], Response::HTTP_OK);
+            return $this->createResponse(['redirect' => route('dashboard')], Response::HTTP_OK);
         }
         return $this->createResponse(['authorization' => [Lang::get('auth.failed')]], Response::HTTP_FORBIDDEN);
     }
 
-    public function logout(Request $request)
+    public static function logout(Request $request)
     {
         Auth::logout();
         $request->session()->flush();

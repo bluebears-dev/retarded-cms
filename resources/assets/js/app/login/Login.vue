@@ -56,9 +56,13 @@
                     if ('redirect' in response.data)
                         window.location.replace(response.data.redirect.match(/\w\/{1}(.*)/)[1]); // redirect to relative url
                 }).catch(error => {
-                    this.$data.errors = error.response.data
+                    if ('exception' in error.response.data) {
+                        this.$data.errors = {error: ["Unexpected error"]};
+                        console.error(error.response.data);
+                    } else
+                        this.$data.errors = error.response.data
                 })
-            }
+            },
         }
     };
 </script>

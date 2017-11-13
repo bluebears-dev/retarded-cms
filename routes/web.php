@@ -19,5 +19,8 @@ Route::get('/logout', 'Dashboard\LoginController@logout')->name('logout');
 Route::group(['middleware' => 'auth'], function()
 {
     Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
-    Route::resource('/api/users', 'Dashboard\UserController')->middleware('throttle:10');
+
+    Route::get('/api/user/current', 'Dashboard\UserController@current')->middleware('throttle:50');
+    Route::resource('/api/user', 'Dashboard\UserController',
+        ['except' => ['create']])->middleware('throttle:50');
 });

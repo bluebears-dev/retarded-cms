@@ -1,9 +1,16 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600|Flamenco|Megrim");
+
+// Ionic Icons
+@import url("http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css");
 
 // Variables
 @import "variables";
 
 // Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~bootstrap/dist/css/bootstrap";
+
+body {
+  margin: 0;
+}

@@ -1,13 +1,141 @@
 .rcms-wrapper {
   height: 100%;
+}
+
+.rcms-menu {
+  background: #005e92;
+  border-bottom: 2px solid #003771;
+  padding: 0;
+}
+
+.rcms-menu .navbar-toggler {
+  border: none;
+  padding: 0;
+  margin-right: 20px;
+}
+
+.rcms-menu .navbar-toggler .navbar-toggler-icon {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
+  -webkit-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  cursor: pointer;
+  background: white;
 }
 
-.rcms-side-menu {
-  background: #005e92;
-  border-bottom: 2px solid #003771;
-  display: inline-block;
+.rcms-logo {
+  font-family: 'Megrim', cursive;
+  font-weight: 600;
+  color: #005e92;
+  font-size: 40px;
+  border-right: 5px solid #003771;
+  border-radius: 0 50% 50% 0;
+  padding: 0 25px 0 15px;
+  background: whitesmoke;
+}
+
+.rcms-users-list {
+  list-style: none;
+  width: 100%;
+  padding: 20px;
+}
+
+.rcms-users-list > .rcms-user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  margin: 15px;
+  height: 50px;
+}
+
+.rcms-users-list > .rcms-user div {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.rcms-users-list > .rcms-user .rcms-username {
+  color: #666;
+  background: #fff;
+  border-radius: 24px;
+  -webkit-box-shadow: 2px 2px 5px #bebebe;
+          box-shadow: 2px 2px 5px #bebebe;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.rcms-users-list > .rcms-user button {
+  border: none;
+  color: #fff;
+  height: 100%;
+  width: 50px;
+  border-radius: 50%;
+  -webkit-box-shadow: 2px 2px 5px #bebebe;
+          box-shadow: 2px 2px 5px #bebebe;
+  -webkit-transition: -webkit-filter 0.5s;
+  transition: -webkit-filter 0.5s;
+  transition: filter 0.5s;
+  transition: filter 0.5s, -webkit-filter 0.5s;
+}
+
+.rcms-users-list > .rcms-user button:hover {
+  -webkit-filter: brightness(0.7);
+          filter: brightness(0.7);
+}
+
+.rcms-users-list > .rcms-user .rcms-role {
+  width: 50%;
+  border-radius: 24px;
+  text-align: center;
+  background: #b3b3b3;
+}
+
+.rcms-users-list > .rcms-user .rcms-role:hover {
+  -webkit-filter: none;
+          filter: none;
+}
+
+.rcms-users-list > .rcms-user .rcms-wrapper {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  height: 100%;
+  position: relative;
+}
+
+.rcms-users-list > .rcms-user .rcms-delete {
+  background: #d40d00;
+}
+
+.rcms-users-list > .rcms-user .rcms-edit {
+  background: #009ce6;
+}
+
+.rcms-view {
+  width: 100%;
+  padding: 10px;
+  background: whitesmoke;
 }
 

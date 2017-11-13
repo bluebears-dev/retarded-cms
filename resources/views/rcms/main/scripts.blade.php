@@ -5,5 +5,4 @@
  * Time: 00:22
  */
 ?>
-<script src="/js/bootstrap.js"></script>
 @stack('scripts')

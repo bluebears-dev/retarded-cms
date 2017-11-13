@@ -8,5 +8,5 @@
 @extends('rcms.main.scripts')
 
 @push('scripts')
-    <script src="/js/login.js"></script>
+    <script src={{ url('/js/login.js') }}></script>
 @endpush
