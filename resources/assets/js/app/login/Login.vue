@@ -1,34 +1,29 @@
 <template>
-    <div id="login" class="container-fluid rcms-login-background">
-        <div class="rcms-form-wrapper">
-            <form-title v-bind:title="title"></form-title>
-            <form method="POST" v-bind:action="post_url" @submit.prevent="post">
-                <div class="form-group">
-                    <form-input content="login" v-model="login"></form-input>
-                </div>
-                <div class="form-group">
-                    <form-input content="password" type="password" v-model="password"></form-input>
-                </div>
-                <div class="rcms-form-error-field">
-                    <small v-for="error in errors" class="rcms-error">{{ error.join(' ') }}</small>
-                </div>
-                <button type="submit" class="btn rcms-login-button">Login</button>
-            </form>
+    <form method="POST" v-bind:action="post_url" @submit.prevent="post">
+        <div class="form-group">
+            <form-input content="login" v-model="login"></form-input>
         </div>
-    </div>
+        <div class="form-group">
+            <form-input content="password" type="password" v-model="password"></form-input>
+        </div>
+        <div class="rcms-error-field">
+            <small v-for="error in errors">{{ error.join(' ') }}</small>
+        </div>
+        <button type="submit" class="rcms-login-button">
+            <span>Enter</span>
+        </button>
+    </form>
 </template>
 
 <script>
     import FormInput from './components/FormInput.vue'
-    import FormTitle from './components/FormTitle.vue'
 
     export default {
         components: {
-            FormTitle, FormInput
+            FormInput
         },
         data: function () {
             return {
-                'title': 'rCMS Login',
                 'login': '',
                 'password': '',
                 'post_url': '/login',

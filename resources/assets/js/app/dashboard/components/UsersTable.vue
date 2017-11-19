@@ -1,37 +1,38 @@
 <template>
-    <div>
-        <ul class="rcms-users-list">
-            <li class="rcms-user" v-for="user in users">
-                <div class="rcms-username">{{ user.login }}</div>
-                <div class="rcms-wrapper">
-                    <button class="rcms-role" disabled>{{ user.roles[0].name }}</button>
-                    <button v-on:click="editUser(user.id)" v-if="canModify(user.roles[0].name)" title="Edit user"
-                            class="rcms-edit">
-                        <span class="ion-edit"></span>
-                    </button>
-                    <button v-on:click="selected_user = user.id" data-toggle="modal" data-target="#deleteUser"
-                            v-if="canModify(user.roles[0].name)" title="Remove user" class="rcms-delete">
-                        <span class="ion-trash-a"></span>
-                    </button>
-                </div>
-            </li>
-        </ul>
-        <popup v-on:delete-user="removeUser(selected_user)"
-               message="Are you sure you want to delete this user?"
-               id="deleteUser"
-               title="User removal"
-               button="Remove">
-        </popup>
-        <p v-for="error in errors">{{ error.join(' ') }}</p>
-    </div>
+    <table class="rcms-table">
+        <thead>
+            <tr>
+                <td>Selected</td>
+                <td>Username</td>
+                <td>Role</td>
+                <td colspan="2">Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="user in users">
+                <td><input class="rcms-select" type="radio" name="selected" :value="user.id"></td>
+                <td><div class="rcms-data">{{user.login}}</div></td>
+                <td><div class="rcms-data">{{user.roles[0].name}}</div></td>
+                <td><a class="rcms-button">E</a></td>
+                <td><a class="rcms-button">R</a></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5"></td>
+            </tr>
+        </tfoot>
+    </table>
 </template>
 
 <script>
     import Popup from './Popup.vue';
+    import DeleteMessage from './DeleteMessage.vue';
+    import EditMessage from './EditMessage.vue';
 
     export default {
         components: {
-            Popup
+            Popup, DeleteMessage, EditMessage
         },
         data: function () {
             return {
@@ -63,14 +64,28 @@
                 })
             },
             editUser: function (user) {
-                axios({
-                    method: 'get',
-                    url: '/api/user/' + user + "/edit",
-                }).then(response => {
+                let old_pass = $('#old-password').val(),
+                    new_pass = $('#new-password').val(),
+                    repeat_pass = $('#repeat-password').val();
+                if (old_pass !== repeat_pass) {
 
-                }).catch(error => {
-                    console.log(error);
-                })
+                } else if (new_pass === old_pass) {
+                    window.store.errors.form['new_equals_old'] = "New password is the same as old"
+                } else {
+                    axios({
+                        method: 'put',
+                        url: '/api/user/' + user,
+                        data: {
+                            new_password: $('#new-password').val(),
+                            old_password: $('#old-password').val()
+                        }
+                    }).then(response => {
+                        console.log(response);
+                        $('#edit-user').modal('toggle');
+                    }).catch(error => {
+                        console.log(error);
+                    })
+                }
             },
             addUser: function (user) {
                 axios({
@@ -82,7 +97,6 @@
                         _token: this.token
                     }
                 }).then(response => {
-
                 }).catch(error => {
                     console.log(error);
                 })
@@ -93,6 +107,7 @@
                     url: '/api/user/' + user,
                 }).then(response => {
                     this.$data.users.pop(response.data.id);
+                    $('#delete-user').modal('toggle');
                 }).catch(error => {
                     console.log(error);
                 })
@@ -103,11 +118,6 @@
         },
         mounted: function () {
             this.getUsers()
-        },
-        events: {
-            deleteUser: function () {
-
-            }
         }
     };
 </script>

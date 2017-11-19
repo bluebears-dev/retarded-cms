@@ -1,0 +1,81 @@
+.rcms-menu {
+  background: $rcms_dark;
+  padding: 0;
+  display: block;
+  height: 100%;
+  flex: 0 1 20%;
+  min-width: 200px;
+  box-shadow: 1px 0px 10px $rcms_darkpurple;
+
+  .nav-item {
+    color: $rcms_white;
+  }
+
+  .nav-link {
+    @include centering;
+    flex-direction: row;
+    justify-content: space-around;
+    cursor: pointer;
+    transition: background 0.2s $rcms_easing,
+                border-color 0.3s $rcms_easing_click;
+    border-bottom: 2px solid transparent;
+
+    .icon {
+      font-size: 1.7rem;
+      transition: color 0.3s $rcms_easing_click;
+    }
+
+    span {
+      flex: 0 1 50%;
+      transition: color 0.3s $rcms_easing_click;
+    }
+
+    &:hover {
+      background: $rcms_darkpurple;
+    }
+  }
+}
+
+.rcms-logo {
+  @include horizontal-centering;
+  @include logo_font;
+  padding: 0 25px;
+  font-size: 4rem;
+  color: $rcms_white;
+  text-align: center;
+  cursor: default;
+}
+
+.navbar-nav {
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.rcms-submenu {
+  max-height: 0;
+  opacity: 0;
+  transition: opacity 0.5s $rcms_easing,
+              max-height 0.2s ease-out;
+  font-size: 0.75rem;
+
+  .nav-link {
+    padding: 3px 0 3px 20%;
+    background: $rcms_darkpurple;
+
+    &:hover {
+      background: $rcms_lightpurple;
+    }
+  }
+}
+
+.active {
+  & > .nav-link div, & > .nav-link span {
+    color: $rcms_yellow;
+  }
+
+  .rcms-submenu {
+    max-height: 50vh;
+    opacity: 1;
+  }
+}

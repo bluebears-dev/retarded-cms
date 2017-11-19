@@ -1,106 +1,24 @@
-@import "variables";
+@import "mixins";
+@import "import/variables";
+@import "import/viewport";
+@import "import/login/wrapper";
+@import "import/login/form";
 
-@mixin horizontal-centering() {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.rcms-viewport {
+  background: linear-gradient(45deg, $rcms_darkpurple , $rcms_lightpurple 50%, $rcms_lightpurple 60%, $rcms_darkpurple);
+  padding: 0;
 }
 
-@mixin centering() {
+.rcms-screen {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-// BOOTSTRAP OVERRIDE
-
-.rcms-login-background {
-  background: $gradient_color1;
-  background: linear-gradient(top left, $gradient_color1 0%, $gradient_color2 50%, $gradient_color2 60%, $gradient_color1 100%);
   height: 100%;
+
+  .rcms-viewport {
+    flex: 1 1 auto;
+  }
+}
+
+.center {
   @include centering();
-}
-
-.rcms-form-wrapper {
-  @include horizontal-centering();
-  width: $circle_size;
-  height: $circle_size;
-  padding: 100px $circle_size / 6;
-
-  background: $box_color;
-  box-shadow: 0 0 40px $blue_shadow_color;
-  border-radius: 50%;
-}
-
-.rcms-form-title {
-  @include centering();
-  margin: $error_field_size * 1.5 0;
-}
-
-.rcms-login-input {
-  border: 0;
-  border-bottom: 2px solid $input_color;
-  box-shadow: 0 0 0;
-  border-radius: 0;
-  color: $text_color;
-  background: transparent;
-  transition: border-color 0.2s;
-
-  &:focus {
-    box-shadow: 0 0 0;
-    border-color: $valid_color;
-  }
-
-  &:invalid {
-    box-shadow: 0 0 0;
-    border-color: $invalid_color;
-  }
-}
-
-.rcms-login-button {
-  margin: 20px 50% - $button_size / 2;
-  border: 0;
-  width: $button_size;
-  box-shadow: 0 0 0;
-  background: transparent;
-  border-radius: 0;
-  color: $text_color;
-  padding: 10px 5px;
-  position: relative;
-
-  &:hover {
-    background: transparent;
-  }
-
-  &:focus {
-    box-shadow: 0 0 0;
-  }
-
-  &::before {
-    width: 0;
-    left: 50%;
-    height: 2px;
-    content: ' ';
-    display: block;
-    position: absolute;
-    bottom: 0;
-    background: $valid_color;
-    transition: width 0.2s, left 0.2s;
-  }
-
-  &:hover::before {
-    width: 100%;
-    left: 0;
-  }
-}
-
-.rcms-form-error-field {
-  width: 100%;
-  height: $error_field_size;
-}
-
-.rcms-error {
-  color: $invalid_color;
-  display: block;
 }

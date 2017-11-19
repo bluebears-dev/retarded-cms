@@ -8,7 +8,17 @@
 <html lang="en">
 @include('rcms.login.head')
 <body>
-    <div id="login"></div>
+    <div class="rcms-screen">
+        <section class="container-fluid rcms-viewport center">
+            <div class="rcms-wrapper">
+                <div class="rcms-logo">
+                    R
+                </div>
+                <h1 class="rcms-form-title">Login</h1>
+                <form id="login"></form>
+            </div>
+        </section>
+    </div>
 </body>
 @include('rcms.login.scripts')
 </html>

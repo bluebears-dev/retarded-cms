@@ -16,6 +16,15 @@ use Lang;
 
 class UserController extends RCMSController
 {
+    private $rules = null;
+
+    public function __construct(Guard $auth)
+    {
+        $this->rules = [
+            'login' => 'required:users.login,,unique:users.login',
+            'password' => 'required:users.password,min:8'
+        ];
+    }
     public function index() {
         $users = User::all();
 
@@ -36,12 +45,8 @@ class UserController extends RCMSController
 
     }
 
-    public function edit(Request $request, $user) {
-        return $this->createResponse(['user' => $user], Response::HTTP_OK);
-    }
-
     public function update(Request $request, $user) {
-
+        return [$request->all(), $user];
     }
 
     public function destroy(Request $request, $user) {

@@ -1,6 +1,6 @@
 <template>
     <input class="form-control rcms-login-input" v-bind:type="type" v-bind:aria-describedby="content"
-           v-bind:placeholder="titleCase(content)" :value="content.year" @input="$emit('input', $event.target.value)" required>
+           v-bind:placeholder="titleCase(content)" @input="$emit('input', $event.target.value)" required>
 </template>
 
 <script>

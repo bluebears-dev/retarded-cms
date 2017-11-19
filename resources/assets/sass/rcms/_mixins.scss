@@ -1,0 +1,55 @@
+@mixin block($color) {
+  position: absolute;
+  width: 55%;
+  z-index: 2;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: $color;
+    display: block;
+    content: " ";
+    height: 100%;
+    z-index: -1;
+    box-shadow: 5px 5px 5px #666;
+  }
+}
+
+@mixin left_block($color) {
+  @include block($color);
+  right: 50%;
+  text-align: right;
+
+  &::before {
+    right: 0;
+  }
+}
+
+@mixin right_block($color) {
+  @include block($color);
+  left: 50%;
+  text-align: left;
+
+  &::before {
+    left: 0;
+  }
+}
+
+@mixin horizontal-centering() {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@mixin centering() {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin logo_font() {
+  font-family: 'Megrim', cursive;
+  font-weight: bold;
+}

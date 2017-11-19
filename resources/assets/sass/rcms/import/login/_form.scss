@@ -1,0 +1,48 @@
+.rcms-login-input {
+  border: 0;
+  border-bottom: 2px solid $input_color;
+  box-shadow: 0 0 0;
+  border-radius: 0;
+  color: $text_color;
+  background: transparent;
+  width: 100%;
+  text-align: center;
+  transition: border-color 0.5s $rcms_easing;
+  font-size: 1rem;
+
+  &:focus {
+    box-shadow: 0 0 0;
+    border-color: $rcms_lightpurple;
+  }
+
+  &:invalid {
+    box-shadow: 0 0 0;
+    border-color: $rcms_orange;
+  }
+}
+
+.rcms-login-button {
+  font-size: 1.2rem;
+  color: $rcms_white;
+  padding: 10px 25px;
+  width: 100%;
+  background: $rcms_darkpurple;
+  transition: background 0.5s $rcms_easing;
+
+  &:hover {
+    background: $rcms_lightpurple;
+  }
+}
+
+.rcms-error-field {
+  height: 25%;
+  max-height: 70px;
+
+  small {
+    color: $rcms_orange;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    font-size: 0.85em;
+  }
+}

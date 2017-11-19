@@ -21,7 +21,6 @@ class LoginController extends RCMSController
     private $rules = null;
 
     public function __construct(Guard $auth)
-
     {
         $this->rules = [
             'login' => 'required:users.login',

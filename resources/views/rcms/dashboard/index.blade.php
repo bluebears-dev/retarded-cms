@@ -8,8 +8,7 @@
 <html lang="en">
 @include('rcms.dashboard.head')
 <body>
-    <div id="menu"></div>
-    <div id="content"></div>
+    <main id="app"></main>
 </body>
 </html>
 @include('rcms.dashboard.scripts')

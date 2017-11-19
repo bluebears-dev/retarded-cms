@@ -9,11 +9,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ message }}
+                    <div :is="message"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button v-on:click="$emit('delete-user')" type="button" class="btn btn-primary" data-dismiss="modal">{{ button }}</button>
+                    <button v-on:click="$emit(event)" type="button" class="btn btn-primary">{{ button }}</button>
                 </div>
             </div>
         </div>
@@ -21,12 +21,18 @@
 </template>
 
 <script>
+    import DeleteMessage from './DeleteMessage.vue';
+    import EditMessage from './EditMessage.vue';
+
     export default {
+        components: {
+            DeleteMessage, EditMessage
+        },
         data: function () {
             return {
 
             }
         },
-        props: ['title', 'message', 'id', 'button']
+        props: ['title', 'message', 'id', 'button', 'event']
     };
 </script>

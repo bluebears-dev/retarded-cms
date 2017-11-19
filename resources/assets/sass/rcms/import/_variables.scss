@@ -1,11 +1,24 @@
-// Login
+// Colors
+$rcms_white: #fefefe;
+
+$rcms_lightpurple: rgba(68, 53, 91, 1);
+$rcms_darkpurple: rgba(49, 38, 62, 1);
+$rcms_dark: rgba(34, 30, 34, 1);
+$rcms_yellow: rgba(236, 167, 44, 1);
+$rcms_orange: rgba(238, 86, 34, 1);
+$rcms_gray: rgb(235, 235, 235);
+$rcms_dimpurple: rgba(68, 53, 91, 0.1);
+
+$rcms_easing: cubic-bezier(.84,1.01,0,.97);
+$rcms_easing_click: cubic-bezier(.85,2.07,.73,.91);
+
 $text_color: #666;
 $input_color: #ccc;
 $valid_color: #009ce6;
 $invalid_color: #d40d00;
 $invalid_color_hover: #940a00;
-$gradient_color1: #003771;
-$gradient_color2: #009ce6;
+$gradient_color1: #f3f3f3;
+$gradient_color2: #e0e0e0;
 $blue_shadow_color: #bfdbe6;
 $shadow_color: #bebebe;
 $box_color: #fff;

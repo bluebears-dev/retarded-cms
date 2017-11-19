@@ -22,5 +22,5 @@ Route::group(['middleware' => 'auth'], function()
 
     Route::get('/api/user/current', 'Dashboard\UserController@current')->middleware('throttle:50');
     Route::resource('/api/user', 'Dashboard\UserController',
-        ['except' => ['create']])->middleware('throttle:50');
+        ['except' => ['create', 'edit']])->middleware('throttle:50');
 });

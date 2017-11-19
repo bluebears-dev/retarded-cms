@@ -1,9 +1,20 @@
-@import "variables";
-@import "topbar";
-@import "userlist";
+@import "mixins";
+@import "import/variables";
+@import "import/viewport";
+@import "import/dashboard/menu";
+@import "import/dashboard/usertable";
+@import "import/dashboard/topbar";
 
-.rcms-view {
-  width: 100%;
-  padding: 10px;
-  background: $view_color;
+.rcms-body {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
 }
+
+.rcms-screen {
+  width: 100%;
+  background: $view_color;
+  display: flex;
+  flex-direction: column;
+}
+
