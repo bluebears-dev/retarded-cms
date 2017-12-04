@@ -22,7 +22,7 @@
         components: {
             FormInput
         },
-        data: function () {
+        data () {
             return {
                 'login': '',
                 'password': '',
@@ -30,7 +30,6 @@
                 'errors': []
             }
         },
-        watch: {},
         computed: {
             token: function () {
                 let element = document.querySelector("meta[name=csrf-token]");

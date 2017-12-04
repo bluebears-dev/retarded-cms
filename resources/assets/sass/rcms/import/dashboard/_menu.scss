@@ -5,25 +5,14 @@
   height: 100%;
   flex: 0 1 20%;
   min-width: 200px;
-  box-shadow: 1px 0px 10px $rcms_darkpurple;
-
-  .nav-item {
-    color: $rcms_white;
-  }
 
   .nav-link {
-    @include centering;
-    flex-direction: row;
-    justify-content: space-around;
     cursor: pointer;
     transition: background 0.2s $rcms_easing,
                 border-color 0.3s $rcms_easing_click;
-    border-bottom: 2px solid transparent;
-
-    .icon {
-      font-size: 1.7rem;
-      transition: color 0.3s $rcms_easing_click;
-    }
+    border-left: 7px solid transparent;
+    color: $rcms_white;
+    padding-left: 20px;
 
     span {
       flex: 0 1 50%;
@@ -32,6 +21,14 @@
 
     &:hover {
       background: $rcms_darkpurple;
+    }
+
+    &.router-link-active {
+      border-left: 7px solid $rcms_yellow;
+
+      & > div, & > span {
+        color: $rcms_yellow;
+      }
     }
   }
 }
@@ -46,36 +43,42 @@
   cursor: default;
 }
 
-.navbar-nav {
-  flex-direction: column;
+.rcms-menu-bottom {
   width: 100%;
-  height: 100%;
+  height: 30%;
+  position: absolute;
+  bottom: 0;
+  min-height: 120px;
+
+
+  h1, h2, h3, h4, h5 {
+    border-bottom: 1px solid $rcms_darkpurple;
+    margin: 0;
+    padding-bottom: 5px;
+    color: $rcms_white;
+    text-align: center;
+  }
 }
 
 .rcms-submenu {
-  max-height: 0;
-  opacity: 0;
-  transition: opacity 0.5s $rcms_easing,
-              max-height 0.2s ease-out;
-  font-size: 0.75rem;
+  font-size: 0.6rem;
+  color: $rcms_white;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: absolute;
+  width: 100%;
 
   .nav-link {
-    padding: 3px 0 3px 20%;
-    background: $rcms_darkpurple;
+    @include centering;
+    border: 0;
+    padding: 10px;
+    flex: 1 0 33%;
+    text-align: center;
+    transition: all 0.5s;
 
     &:hover {
-      background: $rcms_lightpurple;
+      background: $rcms_darkpurple;
     }
-  }
-}
-
-.active {
-  & > .nav-link div, & > .nav-link span {
-    color: $rcms_yellow;
-  }
-
-  .rcms-submenu {
-    max-height: 50vh;
-    opacity: 1;
   }
 }

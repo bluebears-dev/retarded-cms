@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -10,7 +11,7 @@ use Validator;
 use Auth;
 use Lang;
 
-class LoginController extends RCMSController
+class LoginController extends Controller
 {
     /**
      * Handle an authentication attempt.

@@ -24,14 +24,15 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
             'login' => 'admin',
             'password' => bcrypt('secret'),
+            'theme' => 'default',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         $this->assingRole(1, User::where('login', 'admin')->first()->id);
-        factory(App\User::class, 2)->create()->each(function($u) {
+        factory(App\User::class, 5)->create()->each(function($u) {
             $this->assingRole(2, $u->id);
         });
-        factory(App\User::class, 3)->create()->each(function($u) {
+        factory(App\User::class, 5)->create()->each(function($u) {
             $this->assingRole(3, $u->id);
         });
     }

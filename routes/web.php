@@ -20,7 +20,8 @@ Route::group(['middleware' => 'auth'], function()
 {
     Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
 
-    Route::get('/api/user/current', 'Dashboard\UserController@current')->middleware('throttle:50');
+    Route::get('/api/user/current', 'Dashboard\UserController@current')->middleware('throttle:100');
+    Route::get('/api/user/roles', 'Dashboard\UserController@roles')->middleware('throttle:100');
     Route::resource('/api/user', 'Dashboard\UserController',
         ['except' => ['create', 'edit']])->middleware('throttle:50');
 });

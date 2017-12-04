@@ -22,11 +22,11 @@
 
 <script>
     import DeleteMessage from './DeleteMessage.vue';
-    import EditMessage from './EditMessage.vue';
+    import UserEdit from './user/AddUserView.vue';
 
     export default {
         components: {
-            DeleteMessage, EditMessage
+            DeleteMessage, UserEdit
         },
         data: function () {
             return {

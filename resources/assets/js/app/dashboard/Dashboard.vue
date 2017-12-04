@@ -1,33 +1,26 @@
 <template>
     <main id="app" class="rcms-body">
-        <nav class="navbar rcms-menu" id="mainMenu">
-            <div class="rcms-logo">R</div>
-            <div>
-                <MainMenu></MainMenu>
-            </div>
-        </nav>
+        <MainMenu></MainMenu>
         <section class="rcms-screen">
-            <Topbar :componentTitle="currentComponent.title"></Topbar>
+            <Topbar></Topbar>
             <section id="content" class="rcms-viewport">
-                <div :is="currentComponent.component">
-
-                </div>
+                <transition name="carousel" duration="1000">
+                    <router-view></router-view>
+                </transition>
             </section>
         </section>
+        <Popup id="rcms-popup" :message="this.$store.currentPopup"></Popup>
     </main>
 </template>
 
 <script>
-    import UsersTable from './components/UsersTable.vue'
-    import MainMenu from './components/MainMenu.vue'
+    import UsersTable from './components/user/UsersTable.vue'
+    import MainMenu from './components/menu/MainMenu.vue'
     import Topbar from './components/Topbar.vue'
 
     export default {
         components: {
             UsersTable, MainMenu, Topbar
-        },
-        data: function () {
-            return window.store
         },
         mounted: function () {
             axios({
@@ -36,10 +29,10 @@
             })
             .then(response => {
                 if ('currentUser' in response.data)
-                    this.$data.currentUser.data = response.data.currentUser;
+                    this.$store.commit('user', response.data.currentUser);
             })
             .catch(error => {
-
+                console.log(error)
             })
         }
     };

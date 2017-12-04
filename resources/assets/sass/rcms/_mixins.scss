@@ -53,3 +53,12 @@
   font-family: 'Megrim', cursive;
   font-weight: bold;
 }
+
+@mixin select-clearstyle() {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}

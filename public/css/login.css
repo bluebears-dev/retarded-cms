@@ -4,6 +4,10 @@
   position: relative;
   -webkit-box-shadow: inset 0 0 10px #31263e;
           box-shadow: inset 0 0 10px #31263e;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-transition: all 0.5s cubic-bezier(0.84, 1.01, 0, 0.97);
+  transition: all 0.5s cubic-bezier(0.84, 1.01, 0, 0.97);
 }
 
 .rcms-wrapper {

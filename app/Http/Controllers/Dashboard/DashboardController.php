@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-
 
 class DashboardController extends Controller
 {

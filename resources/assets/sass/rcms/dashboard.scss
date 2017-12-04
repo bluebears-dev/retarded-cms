@@ -3,6 +3,7 @@
 @import "import/viewport";
 @import "import/dashboard/menu";
 @import "import/dashboard/usertable";
+@import "import/dashboard/adduserview";
 @import "import/dashboard/topbar";
 
 .rcms-body {
@@ -18,3 +19,115 @@
   flex-direction: column;
 }
 
+.icon {
+  cursor: pointer;
+  font-size: 1.6rem;
+  transition: color 0.3s $rcms_easing_click;
+}
+
+.carousel {
+  &-enter-active, &-leave-active {
+    transform: translateX(1500px);
+    transition: transform 0.8s ease;
+  }
+  &-enter-to {
+    transform: translateX(0px);
+  }
+  &-leave-to {
+    position: absolute;
+    transform: translateX(-1500px);
+  }
+}
+
+.fade {
+  &-enter-active, &-leave-active {
+    opacity: 0;
+    transition: opacity 0.8s $rcms_easing;
+    & * {
+      opacity: 0;
+      transition: opacity 0.8s $rcms_easing;
+    }
+  }
+}
+
+.rcms-form-dropdown {
+  position: relative;
+
+  &::after {
+    content: "\f35f";
+    display: inline-block;
+    position: absolute;
+    font-family: "Ionicons";
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    pointer-events: none;
+
+    font-size: 2rem;
+    top: 0.2rem;
+    right: 0.5rem;
+    transition: all 0.5s $rcms_easing;
+  }
+
+  &:hover {
+    &::after {
+      color: $rcms_lightpurple;
+    }
+  }
+
+  select {
+    @include select-clearstyle;
+    padding: 5px;
+    position: relative;
+    border-bottom: 2px solid $input_color;
+    text-align: center;
+
+    &:focus {
+      @include select-clearstyle;
+      border-bottom: 2px solid $rcms_darkpurple;
+    }
+
+    &:invalid {
+      @include select-clearstyle;
+      border-bottom: 2px solid $rcms_orange;
+    }
+  }
+}
+
+.rcms-input {
+  border: 0;
+  border-bottom: 2px solid $input_color;
+  box-shadow: 0 0 0;
+  border-radius: 0;
+  color: $text_color;
+  background: transparent;
+  width: 100%;
+  text-align: center;
+  transition: border-color 0.5s $rcms_easing;
+  font-size: 1rem;
+
+  &:focus {
+    box-shadow: 0 0 0;
+    border-color: $rcms_lightpurple;
+    background: transparent;
+  }
+
+  &:invalid {
+    box-shadow: 0 0 0;
+    border-color: $rcms_orange;
+    background: transparent;
+  }
+}
+
+.rcms-button {
+  font-size: 1.2rem;
+  color: $rcms_white;
+  padding: 10px 25px;
+  width: 100%;
+}

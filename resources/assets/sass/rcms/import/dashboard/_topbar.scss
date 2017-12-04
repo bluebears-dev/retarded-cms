@@ -1,18 +1,20 @@
 .rcms-topbar {
   background: $rcms_white;
-  height: 50px;
-  padding: 15px 0;
+  padding: 15px 20px;
   box-sizing: content-box;
 
   .rcms-title {
-    height: 100%;
+    @include centering;
+    transition: all 0.5s $rcms_easing;
+    margin: 0;
   }
 
   .nav {
     display: flex;
     flex-direction: row-reverse;
-    height: 100%;
-    padding: 0 20px;
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
   }
 
   .nav-link {

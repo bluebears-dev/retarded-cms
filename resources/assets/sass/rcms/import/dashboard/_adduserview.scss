@@ -1,0 +1,23 @@
+.rcms-adduser-form {
+  height: 100%;
+  box-sizing: padding-box;
+  display: flex;
+  @include centering;
+
+  form {
+    width: 75%;
+  }
+
+  label {
+    font-size: 1.2rem;
+  }
+  button {
+    margin-top: 30px;
+    background: $rcms_darkpurple;
+    transition: background 0.5s $rcms_easing;
+
+    &:hover {
+      background: $rcms_lightpurple;
+    }
+  }
+}

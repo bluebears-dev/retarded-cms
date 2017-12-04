@@ -1,8 +1,10 @@
 <template>
     <header class="navbar rcms-topbar">
-        <h2 class="rcms-title">{{componentTitle}}</h2>
+        <transition name="fade">
+            <router-view :key="title" class="rcms-title" name="title"></router-view>
+        </transition>
         <nav class="nav">
-            <a v-for="entry in topbarEntries" class="nav-link" :href="entry.route">
+            <a v-for="entry in topbar" class="nav-link" :href="entry.route">
                 <span class="icon" :class="entry.icon"></span>
             </a>
         </nav>
@@ -11,9 +13,11 @@
 
 <script>
     export default {
-        data: function () {
-            return window.store
+        computed: {
+            topbar: function () {
+                return this.$store.getters.topbar;
+            }
         },
-        props: ['componentTitle']
+        props: ['title']
     }
 </script>
