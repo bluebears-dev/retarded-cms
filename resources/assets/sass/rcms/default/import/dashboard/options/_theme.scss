@@ -1,0 +1,65 @@
+.rcms-options-view {
+  @include centering;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.rcms-options-entry {
+  @include centering;
+  flex: 0 1 200px;
+  height: 200px;
+  margin: 20px;
+  background: $rcms_main;
+  color: $rcms_white;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.5s $rcms_easing;
+
+  &:hover {
+    background: $rcms_primary;
+  }
+
+  &:active {
+    background: $rcms_detail;
+  }
+}
+
+.rcms-themes-view {
+  @include centering;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .rcms-options-entry {
+    flex: 0 1 100%;
+    height: 70px;
+    margin: 5px;
+    border: 1px solid $rcms_main;
+    color: $rcms_white;
+    cursor: pointer;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    transition: background 0.5s $rcms_easing;
+
+    & > div {
+      height: 100%;
+      width: 5%;
+      background: transparent;
+    }
+
+    span {
+      width: 100%;
+      text-align: center;
+    }
+
+    &:hover {
+      background: $rcms_gray;
+    }
+
+    &:active {
+      background: $rcms_detail;
+    }
+  }
+}

@@ -2,9 +2,10 @@
 @import "import/variables";
 @import "import/viewport";
 @import "import/dashboard/menu";
-@import "import/dashboard/usertable";
-@import "import/dashboard/adduserview";
+@import "import/dashboard/user/usertable";
+@import "import/dashboard/user/adduserview";
 @import "import/dashboard/topbar";
+@import "import/dashboard/options/theme";
 
 .rcms-body {
   display: flex;
@@ -22,12 +23,12 @@
 .icon {
   cursor: pointer;
   font-size: 1.6rem;
-  transition: color 0.3s $rcms_easing_click;
+  transition: color 0.3s $rcms_easing;
 }
 
 .carousel {
   &-enter-active, &-leave-active {
-    transform: translateX(1500px);
+    transform: translateX(100%);
     transition: transform 0.8s ease;
   }
   &-enter-to {
@@ -35,7 +36,7 @@
   }
   &-leave-to {
     position: absolute;
-    transform: translateX(-1500px);
+    transform: translateX(-100%);
   }
 }
 
@@ -43,10 +44,6 @@
   &-enter-active, &-leave-active {
     opacity: 0;
     transition: opacity 0.8s $rcms_easing;
-    & * {
-      opacity: 0;
-      transition: opacity 0.8s $rcms_easing;
-    }
   }
 }
 
@@ -77,7 +74,7 @@
 
   &:hover {
     &::after {
-      color: $rcms_lightpurple;
+      color: $rcms_primary;
     }
   }
 
@@ -85,24 +82,24 @@
     @include select-clearstyle;
     padding: 5px;
     position: relative;
-    border-bottom: 2px solid $input_color;
+    border-bottom: 2px solid $rcms_input_color;
     text-align: center;
 
     &:focus {
       @include select-clearstyle;
-      border-bottom: 2px solid $rcms_darkpurple;
+      border-bottom: 2px solid $rcms_main;
     }
 
     &:invalid {
       @include select-clearstyle;
-      border-bottom: 2px solid $rcms_orange;
+      border-bottom: 2px solid $rcms_error;
     }
   }
 }
 
 .rcms-input {
   border: 0;
-  border-bottom: 2px solid $input_color;
+  border-bottom: 2px solid $rcms_input_color;
   box-shadow: 0 0 0;
   border-radius: 0;
   color: $text_color;
@@ -114,13 +111,13 @@
 
   &:focus {
     box-shadow: 0 0 0;
-    border-color: $rcms_lightpurple;
+    border-color: $rcms_secondary;
     background: transparent;
   }
 
   &:invalid {
     box-shadow: 0 0 0;
-    border-color: $rcms_orange;
+    border-color: $rcms_error;
     background: transparent;
   }
 }

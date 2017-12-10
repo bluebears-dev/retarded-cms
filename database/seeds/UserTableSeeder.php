@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
             'login' => 'admin',
             'password' => bcrypt('secret'),
-            'theme' => 'default',
+            'theme' => '/css/default',
             'created_at' => now(),
             'updated_at' => now()
         ]);

@@ -1,6 +1,6 @@
 .rcms-login-input {
   border: 0;
-  border-bottom: 2px solid $input_color;
+  border-bottom: 2px solid $rcms_input_color;
   box-shadow: 0 0 0;
   border-radius: 0;
   color: $text_color;
@@ -12,12 +12,12 @@
 
   &:focus {
     box-shadow: 0 0 0;
-    border-color: $rcms_lightpurple;
+    border-color: $rcms_secondary;
   }
 
   &:invalid {
     box-shadow: 0 0 0;
-    border-color: $rcms_orange;
+    border-color: $rcms_error;
   }
 }
 
@@ -26,11 +26,11 @@
   color: $rcms_white;
   padding: 10px 25px;
   width: 100%;
-  background: $rcms_darkpurple;
+  background: $rcms_primary;
   transition: background 0.5s $rcms_easing;
 
   &:hover {
-    background: $rcms_lightpurple;
+    background: $rcms_secondary;
   }
 }
 
@@ -39,7 +39,7 @@
   max-height: 70px;
 
   small {
-    color: $rcms_orange;
+    color: $rcms_error;
     text-align: center;
     display: inline-block;
     width: 100%;

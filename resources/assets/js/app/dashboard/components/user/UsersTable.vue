@@ -42,7 +42,9 @@
         </transition-group>
         <tfoot>
         <tr>
-            <td colspan="5"><a class="rcms-button"><span class="icon ion-plus"></span></a></td>
+            <td colspan="5">
+                <router-link :to="{ name: 'addUserView'}" class="rcms-button"><span class="icon ion-plus"></span></router-link>
+            </td>
         </tr>
         </tfoot>
     </table>

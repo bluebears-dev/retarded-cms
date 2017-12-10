@@ -13,11 +13,12 @@
   }
   button {
     margin-top: 30px;
-    background: $rcms_darkpurple;
+    background: $rcms_main;
     transition: background 0.5s $rcms_easing;
+    cursor: pointer;
 
     &:hover {
-      background: $rcms_lightpurple;
+      background: $rcms_primary;
     }
   }
 }

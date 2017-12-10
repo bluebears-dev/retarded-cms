@@ -13,16 +13,17 @@
 
 
   thead td {
-    background: $rcms_dark;
+    background: $rcms_main;
     color: $rcms_white;
   }
 
   tbody tr {
-    border-bottom: 1px solid $rcms_dark;
-    background: $rcms_dimpurple;
+    border-bottom: 1px solid $rcms_main;
+    background: $rcms_dimmed;
+    height: 60px;
 
     &:first-child {
-      border-top: 1px solid $rcms_dark;
+      border-top: 1px solid $rcms_main;
     }
 
     &:nth-child(2n) {
@@ -31,7 +32,7 @@
 
     td:nth-child(1) {
       width: 55px;
-      border-right: 1px solid $rcms_dark;
+      border-right: 1px solid $rcms_main;
     }
 
     td:nth-child(2), td:nth-child(3) {
@@ -48,14 +49,14 @@
   }
 
   .icon {
-    color: $rcms_dark;
+    color: $rcms_main;
 
     &:hover {
-      color: $rcms_lightpurple;
+      color: $rcms_detail;
     }
 
     &:active {
-      color: $rcms_yellow;
+      color: $rcms_secondary;
     }
   }
 }
@@ -66,14 +67,14 @@
   & + label {
     width: 20px;
     height: 20px;
-    border: 2px solid $rcms_dark;
+    border: 2px solid $rcms_main;
     margin: 0;
     position: relative;
     z-index: 1;
   }
 
   &:hover + label:after {
-    background-color: $rcms_lightpurple;
+    background-color: $rcms_main;
   }
 
   & + label:after {
@@ -84,10 +85,10 @@
     height: 14px;
     position: absolute;
     z-index: 0;
-    transition: background-color 0.2s $rcms_easing_click;
+    transition: background-color 0.2s $rcms_easing;
   }
 
   &:checked + label:after {
-    background-color: $rcms_yellow;
+    background-color: $rcms_detail;
   }
 }

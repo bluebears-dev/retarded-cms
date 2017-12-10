@@ -5,8 +5,9 @@
 @import "import/login/form";
 
 .rcms-viewport {
-  background: linear-gradient(45deg, $rcms_darkpurple , $rcms_lightpurple 50%, $rcms_lightpurple 60%, $rcms_darkpurple);
+  background: linear-gradient(45deg, $rcms_primary, $rcms_secondary 50%, $rcms_secondary 60%, $rcms_primary);
   padding: 0;
+  overflow: hidden;
 }
 
 .rcms-screen {

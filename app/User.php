@@ -9,6 +9,17 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use HasRoles;
+    /**
+     *
+     * Default value for attributes.
+     *
+     * @var array
+     *
+     */
+
+    protected $attributes = array(
+        'theme' => '/css/default/'
+    );
 
     /**
      * The attributes that are mass assignable.
@@ -54,5 +65,4 @@ class User extends Authenticatable
             parent::setAttribute($key, $value);
         }
     }
-
 }

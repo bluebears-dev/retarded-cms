@@ -5,12 +5,17 @@ import Dashboard from './app/dashboard/Dashboard.vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 
-import UsersTable from './app/dashboard/components/user/UsersTable.vue';
 import Blank from './app/dashboard/components/Blank.vue';
+
+import UsersTable from './app/dashboard/components/user/UsersTable.vue';
 import AddUserView from './app/dashboard/components/user/AddUserView.vue'
-import UserManagementSubmenu from './app/dashboard/components/menu/submenu/UserManagement.vue'
+
 import BlankSubmenu from './app/dashboard/components/menu/submenu/Blank.vue'
 import BackSubmenu from './app/dashboard/components/menu/submenu/Back.vue'
+import UserManagementSubmenu from './app/dashboard/components/menu/submenu/UserManagement.vue'
+
+import Options from './app/dashboard/components/options/Options.vue';
+import ThemesView from './app/dashboard/components/options/entries/Themes.vue';
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
@@ -164,6 +169,10 @@ const moduleMain = {
         userRole(state) {
             if (state.currentUser.roles)
                 return state.currentUser.roles[0].id;
+        },
+        currentTheme(state) {
+            if (state.currentUser.theme)
+                return state.currentUser.theme;
         }
     }
 };
@@ -217,8 +226,17 @@ const routes = [
         path: '/options',
         name: 'options',
         components: {
-            default: Blank,
+            default: Options,
             title: { template: '<h1>Options</h1>' },
+            submenu: BackSubmenu
+        }
+    },
+    {
+        path: '/options/themes',
+        name: 'themes',
+        components: {
+            default: ThemesView,
+            title: { template: '<h1>Dashboard Themes</h1>' },
             submenu: BackSubmenu
         }
     }

@@ -17,6 +17,7 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'login' => $faker->unique()->firstName,
         'password' => $faker->unique()->password,
+        'theme' => '/css/default',
         'created_at' => now(),
         'updated_at' => now()
     ];

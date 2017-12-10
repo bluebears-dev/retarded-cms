@@ -1,8 +1,10 @@
 {
     "/js/dashboard.js": "/js/dashboard.js",
     "/css/app.css": "/css/app.css",
-    "/css/login.css": "/css/login.css",
-    "/css/dashboard.css": "/css/dashboard.css",
+    "/css/default/login.css": "/css/default/login.css",
+    "/css/default/dashboard.css": "/css/default/dashboard.css",
+    "/css/frozen/login.css": "/css/frozen/login.css",
+    "/css/frozen/dashboard.css": "/css/frozen/dashboard.css",
     "/js/login.js": "/js/login.js",
     "/js/bootstrap.js": "/js/bootstrap.js"
 }

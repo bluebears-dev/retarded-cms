@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Theme;
 use App\User;
 use Auth;
 use Spatie\Permission\Models\Role;
@@ -26,7 +27,9 @@ class UserController extends Controller
             'password' => 'required:users.password|min:8'
         ];
     }
-    public function index() {
+
+    public function index()
+    {
         $users = User::all();
 
         foreach ($users as $user)
@@ -38,7 +41,8 @@ class UserController extends Controller
         return $this->createResponse($response_data, Response::HTTP_OK);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         if (Auth::user()->can('create users')) {
             $validator = Validator::make($request->all(), $this->rules);
 
@@ -54,11 +58,13 @@ class UserController extends Controller
         return $this->createResponse('', Response::HTTP_FORBIDDEN);
     }
 
-    public function show(Request $request, $user) {
+    public function show(Request $request, $user)
+    {
 
     }
 
-    public function update(Request $request, $user) {
+    public function update(Request $request, $user)
+    {
         if (Auth::user()->can('edit users')) {
             $user = User::find($user);
             if ($user)
@@ -66,7 +72,8 @@ class UserController extends Controller
         }
     }
 
-    public function destroy(Request $request, $user) {
+    public function destroy(Request $request, $user)
+    {
         if (Auth::user()->can('delete users')) {
             $user = User::find($user);
             $response_data = null;
@@ -85,14 +92,25 @@ class UserController extends Controller
         return $this->createResponse('', Response::HTTP_FORBIDDEN);
     }
 
-    public function current(Request $request) {
+    public function current(Request $request)
+    {
         $user = Auth::user();
         $user->getRoleNames();
         return $this->createResponse(['currentUser' => $user], Response::HTTP_OK);
     }
 
-    public function roles(Request $request) {
+    public function roles(Request $request)
+    {
         $data = Role::all('name');
         return $this->createResponse(['roles' => $data], Response::HTTP_OK);
+    }
+
+    public function theme(Request $request)
+    {
+        $user = Auth::user();
+        $user->theme = Theme::where('name', $request->only('name'))->pluck('path')[0];
+        $user->save();
+
+        return $this->createResponse('', Response::HTTP_OK);
     }
 }

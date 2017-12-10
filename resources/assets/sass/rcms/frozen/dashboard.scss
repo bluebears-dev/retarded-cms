@@ -1,0 +1,19 @@
+@import "import/variables";
+@import "../default/dashboard";
+
+$rcms_white: #fefefe;
+
+$rcms_secondary: rgba(0, 126, 167, 1);
+$rcms_main: rgba(0, 50, 73, 1);
+$rcms_dark: rgba(34, 30, 34, 1);
+$rcms_detail: rgba(128, 206, 215, 1);
+$rcms_error: rgb(179, 153, 162);
+$rcms_gray: rgba(204, 219, 220, 1);
+$rcms_dimmed: rgba(68, 53, 91, 0.1);
+
+$rcms_easing: cubic-bezier(.84,1.01,0,.97);
+$rcms_easing_click: cubic-bezier(.85,2.07,.73,.91);
+
+$text_color: #666;
+$rcms_input_color: #ccc;
+$view_color: rgb(245, 245, 245);

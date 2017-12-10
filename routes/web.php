@@ -19,7 +19,9 @@ Route::get('/logout', 'Dashboard\LoginController@logout')->name('logout');
 Route::group(['middleware' => 'auth'], function()
 {
     Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
+    Route::get('/api/themes', 'Dashboard\DashboardController@themes')->middleware('throttle:100');
 
+    Route::post('/api/user/theme', 'Dashboard\UserController@theme')->middleware('throttle:100');
     Route::get('/api/user/current', 'Dashboard\UserController@current')->middleware('throttle:100');
     Route::get('/api/user/roles', 'Dashboard\UserController@roles')->middleware('throttle:100');
     Route::resource('/api/user', 'Dashboard\UserController',

@@ -12,5 +12,5 @@
 @endsection
 
 @push('css')
-    <link rel="stylesheet" href="{{ asset('/css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/default/login.css') }}">
 @endpush

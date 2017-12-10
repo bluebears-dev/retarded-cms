@@ -12,5 +12,5 @@
 @endsection
 
 @push('css')
-    <link rel="stylesheet" href="{{ asset('/css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset(Auth::user()->theme . '/dashboard.css') }}">
 @endpush

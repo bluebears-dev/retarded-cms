@@ -21,14 +21,14 @@
     padding: 0 10px;
     @include centering;
     display: inline-flex;
-    color: $rcms_darkpurple;
+    color: $rcms_primary;
 
     &:hover .icon {
-      color: $rcms_yellow;
+      color: $rcms_detail;
     }
 
     .icon {
-      color: $rcms_dark;
+      color: $rcms_primary;
       font-size: 1.5rem;
       transition: color 0.4s $rcms_easing;
     }

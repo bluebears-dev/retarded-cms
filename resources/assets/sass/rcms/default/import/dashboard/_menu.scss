@@ -1,5 +1,5 @@
 .rcms-menu {
-  background: $rcms_dark;
+  background: $rcms_main;
   padding: 0;
   display: block;
   height: 100%;
@@ -20,14 +20,14 @@
     }
 
     &:hover {
-      background: $rcms_darkpurple;
+      background: $rcms_primary;
     }
 
     &.router-link-active {
-      border-left: 7px solid $rcms_yellow;
+      border-left: 7px solid $rcms_detail;
 
       & > div, & > span {
-        color: $rcms_yellow;
+        color: $rcms_detail;
       }
     }
   }
@@ -52,7 +52,7 @@
 
 
   h1, h2, h3, h4, h5 {
-    border-bottom: 1px solid $rcms_darkpurple;
+    border-bottom: 1px solid $rcms_primary;
     margin: 0;
     padding-bottom: 5px;
     color: $rcms_white;
@@ -78,7 +78,7 @@
     transition: all 0.5s;
 
     &:hover {
-      background: $rcms_darkpurple;
+      background: $rcms_primary;
     }
   }
 }
