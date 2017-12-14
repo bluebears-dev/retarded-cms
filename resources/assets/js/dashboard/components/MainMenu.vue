@@ -3,7 +3,6 @@
         <div class="rcms-logo">R</div>
         <nav class="navbar-nav mr-auto">
             <router-link v-for="entry in menu" :key="entry.routeName" class="nav-link" :to="{ name: entry.routeName}">
-                <!--<div class="icon" :class="entry.icon"></div><span>{{ entry.button }}</span>-->
                 <div>{{ entry.button }}</div>
             </router-link>
         </nav>
@@ -18,7 +17,7 @@
     export default {
         computed: {
             menu: function () {
-                return this.$store.getters.menu;
+                return this.$store.getters['ui/menu'];
             }
         }
     }

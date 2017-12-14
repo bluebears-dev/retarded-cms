@@ -1,8 +1,8 @@
 <?php
 /**
  * User: pgorski42
- * Date: 23.10.17
- * Time: 22:36
+ * Date: 11.12.17
+ * Time: 20:13
  */
 ?>
 @extends('rcms.main.head')

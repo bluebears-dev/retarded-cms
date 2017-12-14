@@ -9,13 +9,13 @@
                 </transition>
             </section>
         </section>
-        <Popup id="rcms-popup" :message="this.$store.currentPopup"></Popup>
+        <!--<Popup id="rcms-popup" :message="this.$store.currentPopup"></Popup>-->
     </main>
 </template>
 
 <script>
     import UsersTable from './components/user/UsersTable.vue'
-    import MainMenu from './components/menu/MainMenu.vue'
+    import MainMenu from './components/MainMenu.vue'
     import Topbar from './components/Topbar.vue'
 
     export default {
@@ -29,7 +29,7 @@
             })
             .then(response => {
                 if ('currentUser' in response.data)
-                    this.$store.commit('user', response.data.currentUser);
+                    this.$store.commit('userManagement/currentUser', response.data.currentUser);
             })
             .catch(error => {
                 console.log(error)

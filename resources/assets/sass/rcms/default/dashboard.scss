@@ -1,11 +1,13 @@
 @import "mixins";
+@import '../../../../../node_modules/simplemde/dist/simplemde.min.css';
 @import "import/variables";
 @import "import/viewport";
 @import "import/dashboard/menu";
-@import "import/dashboard/user/usertable";
-@import "import/dashboard/user/adduserview";
+@import "import/dashboard/table";
+@import "import/dashboard/user";
 @import "import/dashboard/topbar";
 @import "import/dashboard/options/theme";
+@import "import/dashboard/pages/pageadd";
 
 .rcms-body {
   display: flex;
@@ -20,7 +22,7 @@
   flex-direction: column;
 }
 
-.icon {
+.fa {
   cursor: pointer;
   font-size: 1.6rem;
   transition: color 0.3s $rcms_easing;
@@ -51,10 +53,10 @@
   position: relative;
 
   &::after {
-    content: "\f35f";
+    content: "\f107";
     display: inline-block;
     position: absolute;
-    font-family: "Ionicons";
+    font-family: "FontAwesome";
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -72,18 +74,16 @@
     transition: all 0.5s $rcms_easing;
   }
 
-  &:hover {
-    &::after {
-      color: $rcms_primary;
-    }
-  }
-
   select {
     @include select-clearstyle;
     padding: 5px;
     position: relative;
     border-bottom: 2px solid $rcms_input_color;
+    transition: all 0.5s $rcms_easing;
     text-align: center;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
 
     &:focus {
       @include select-clearstyle;

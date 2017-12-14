@@ -16,14 +16,21 @@ Route::post('/login', 'Dashboard\LoginController@login')->middleware('throttle:5
 
 Route::get('/logout', 'Dashboard\LoginController@logout')->name('logout');
 
-Route::group(['middleware' => 'auth'], function()
-{
+Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
-    Route::get('/api/themes', 'Dashboard\DashboardController@themes')->middleware('throttle:100');
 
-    Route::post('/api/user/theme', 'Dashboard\UserController@theme')->middleware('throttle:100');
-    Route::get('/api/user/current', 'Dashboard\UserController@current')->middleware('throttle:100');
-    Route::get('/api/user/roles', 'Dashboard\UserController@roles')->middleware('throttle:100');
-    Route::resource('/api/user', 'Dashboard\UserController',
-        ['except' => ['create', 'edit']])->middleware('throttle:50');
+    Route::group(['middleware' => 'throttle:100'], function() {
+        Route::get('/api/themes', 'Dashboard\DashboardController@themes');
+
+        Route::post('/api/user/theme', 'Dashboard\UserController@theme');
+        Route::get('/api/user/current', 'Dashboard\UserController@current');
+        Route::get('/api/user/roles', 'Dashboard\UserController@roles');
+        Route::resource('/api/user', 'Dashboard\UserController',
+            ['except' => ['create', 'edit']]);
+
+        Route::post('/api/page/add', 'PageController@add');
+    });
 });
+
+Route::get('/', 'PageController@index')->name('home');
+Route::get('{slug}', 'PageController@page')->where('slug', '([A-Za-z0-9\-\/]+)');

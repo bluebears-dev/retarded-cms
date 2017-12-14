@@ -12,7 +12,7 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/dashboard.js', 'public/js')
-    .js('resources/assets/js/bootstrap.js', 'public/js')
+    .js('resources/assets/js/app/bootstrap.js', 'public/js')
     .js('resources/assets/js/login.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css')
     .sass('resources/assets/sass/rcms/default/login.scss', 'public/css/default')

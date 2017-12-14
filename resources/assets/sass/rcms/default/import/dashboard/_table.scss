@@ -2,22 +2,18 @@
   list-style: none;
   width: 100%;
 
-  td {
+  .rcms-cell {
     padding: 12px;
     text-align: center;
-
-    &:nth-child(2), &:nth-child(3) {
-      text-align: left;
-    }
   }
 
 
-  thead td {
+  .rcms-table-header .rcms-cell {
     background: $rcms_main;
     color: $rcms_white;
   }
 
-  tbody tr {
+  .rcms-table-body .rcms-row {
     border-bottom: 1px solid $rcms_main;
     background: $rcms_dimmed;
     height: 60px;
@@ -25,30 +21,13 @@
     &:first-child {
       border-top: 1px solid $rcms_main;
     }
-
-    &:nth-child(2n) {
-      background: transparent;
-    }
-
-    td:nth-child(1) {
-      width: 55px;
-      border-right: 1px solid $rcms_main;
-    }
-
-    td:nth-child(2), td:nth-child(3) {
-      text-align: left;
-    }
-
-    td:nth-child(4), td:nth-child(5) {
-      width: 40px;
-    }
   }
 
-  tfoot td {
+  .rcms-table-footer .rcms-cell {
     padding: 10px;
   }
 
-  .icon {
+  .fa {
     color: $rcms_main;
 
     &:hover {

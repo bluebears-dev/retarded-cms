@@ -1,0 +1,90 @@
+.rcms-editor-wrapper {
+  height: 100%;
+}
+
+.editor-toolbar {
+  background: $rcms_main;
+  opacity: 1;
+  border-radius: 0;
+
+  &::before, &::after {
+    background: none;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  i.separator {
+    border-color: $rcms_detail;
+  }
+
+  .fa {
+    border-radius: 0;
+    border: 1px solid transparent;
+    font-size: 1rem;
+
+    &::before, &::after {
+      transition: all 0.5s $rcms_easing;
+      color: $rcms_gray;
+    }
+
+    &::after {
+      font-size: 0.5rem;
+    }
+
+    &:hover, &.active {
+      background: transparent;
+      border: 1px solid transparent;
+    }
+
+    &:hover::before, &:hover::after,
+    &.active::before, &.hover::after {
+      color: $rcms_detail;
+    }
+
+  }
+
+  &.disabled-for-preview {
+    .fa:not(.no-disable), .separator {
+      opacity: 0;
+      position: absolute;
+    }
+  }
+
+}
+.page-toolbar {
+  background: $rcms_main;
+  opacity: 1;
+  border-radius: 0;
+  display: flex;
+  align-content: space-between;
+  justify-content: space-between;
+  padding: 10px;
+
+  .rcms-form-dropdown, .rcms-input {
+    flex: 0 1 49%;
+    height: 35px;
+    color: $rcms_white;
+
+    select {
+      height: 35px;
+    }
+
+    select:hover, &:hover{
+      border-color: $rcms_detail;
+    }
+  }
+}
+
+.CodeMirror {
+  background: $rcms_gray;
+  border-radius: 0;
+  height: calc(100% - 138px);
+}
+
+.editor-statusbar {
+  background: $rcms_main;
+  opacity: 1;
+  border-radius: 0;
+}

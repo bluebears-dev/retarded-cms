@@ -35,7 +35,7 @@
                 </td>
                 <td>
                     <a v-if="canModify" v-on:click="removeUser(user.id)" class="rcms-button">
-                        <span class="icon ion-trash-b"></span>
+                        <span class="fa fa-remove"></span>
                     </a>
                 </td>
             </tr>
@@ -43,7 +43,7 @@
         <tfoot>
         <tr>
             <td colspan="5">
-                <router-link :to="{ name: 'addUserView'}" class="rcms-button"><span class="icon ion-plus"></span></router-link>
+                <router-link :to="{ name: 'addUserView'}" class="rcms-button"><span class="fa fa-plus"></span></router-link>
             </td>
         </tr>
         </tfoot>
@@ -51,43 +51,36 @@
 </template>
 
 <script>
-    import Popup from '../Popup.vue';
-    import DeleteMessage from '../DeleteMessage.vue';
-    import EditMessage from '../EditMessage.vue';
-
     export default {
-        components: {
-            Popup, DeleteMessage, EditMessage
-        },
-        computed: {
-            users: function () {
-                return this.$store.getters['userManagement/users'];
-            },
-            roles: function () {
-                return this.$store.getters['userManagement/roles'];
-            },
-            canModify: function () {
-                return this.$store.getters.userRole === 1;
-            }
-        },
-        methods: {
-            selectUser: function (user) {
-                this.$store.commit('userManagement/select', user);
-            },
-            removeUser: function (user) {
-                this.$store.commit('userManagement/requestUserRemoval', user);
-            },
-            queueToUpdate: function (user) {
-                let newRole = $("#select_" + user.id + " :selected").val();
-                console.log(newRole);
-                if (newRole !== user.roles[0].name)
-                    this.$store.commit('userManagement/stageChange', [user, newRole]);
-                else
-                    this.$store.commit('userManagement/unstageChange', user);
-            }
-        },
-        created () {
-            this.$store.commit('userManagement/requestUserList');
-        }
+        // computed: {
+        //     users: function () {
+        //         return this.$store.getters['userManagement/users'];
+        //     },
+        //     roles: function () {
+        //         return this.$store.getters['userManagement/roles'];
+        //     },
+        //     canModify: function () {
+        //         return this.$store.getters.userRole === 1;
+        //     }
+        // },
+        // methods: {
+        //     selectUser: function (user) {
+        //         this.$store.commit('userManagement/select', user);
+        //     },
+        //     removeUser: function (user) {
+        //         this.$store.commit('userManagement/requestUserRemoval', user);
+        //     },
+        //     queueToUpdate: function (user) {
+        //         let newRole = $("#select_" + user.id + " :selected").val();
+        //         console.log(newRole);
+        //         if (newRole !== user.roles[0].name)
+        //             this.$store.commit('userManagement/stageChange', [user, newRole]);
+        //         else
+        //             this.$store.commit('userManagement/unstageChange', user);
+        //     }
+        // },
+        // created () {
+        //     this.$store.commit('userManagement/requestUserList');
+        // }
     };
 </script>

@@ -2,13 +2,13 @@
     <transition name="fade">
         <nav class="navbar-nav rcms-submenu">
             <a v-if="show()" v-on:click="addUserForm" class="nav-link">
-                <div class="icon ion-plus"></div><span>Add</span>
+                <div class="fa fa-user-plus"></div><span>Add</span>
             </a>
             <a v-if="show()" v-on:click="removeUser" class="nav-link">
-                <div class="icon ion-trash-b"></div><span>Remove</span>
+                <div class="fa fa-remove"></div><span>Remove</span>
             </a>
             <a v-if="show()" v-on:click="saveChanges" class="nav-link">
-                <div class="icon ion-checkmark"></div><span>Save</span>
+                <div class="fa fa-check"></div><span>Save</span>
             </a>
         </nav>
     </transition>

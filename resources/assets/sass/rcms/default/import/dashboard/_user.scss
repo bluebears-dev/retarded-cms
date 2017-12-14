@@ -1,0 +1,50 @@
+.rcms-adduser-form {
+  height: 100%;
+  box-sizing: padding-box;
+  display: flex;
+  @include centering;
+
+  form {
+    width: 75%;
+  }
+
+  label {
+    font-size: 1.2rem;
+  }
+  button {
+    margin-top: 30px;
+    background: $rcms_main;
+    transition: background 0.5s $rcms_easing;
+    cursor: pointer;
+
+    &:hover {
+      background: $rcms_primary;
+    }
+  }
+}
+
+.rcms-table {
+  .rcms-cell &:nth-child(2), .rcms-cell &:nth-child(3) {
+    text-align: left;
+  }
+
+  .rcms-table-header .rcms-cell {
+    background: $rcms_main;
+    color: $rcms_white;
+  }
+
+  .rcms-table-body .rcms-row {
+    .rcms-cell:nth-child(1) {
+      width: 55px;
+      border-right: 1px solid $rcms_main;
+    }
+
+    .rcms-cell:nth-child(2), .rcms-cell:nth-child(3) {
+      text-align: left;
+    }
+
+    .rcms-cell:nth-child(4) {
+      width: 40px;
+    }
+  }
+}

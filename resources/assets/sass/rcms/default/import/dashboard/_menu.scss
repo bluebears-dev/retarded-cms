@@ -77,6 +77,11 @@
     text-align: center;
     transition: all 0.5s;
 
+    .fa {
+      font-size: 1.2rem;
+      padding: 5px;
+    }
+
     &:hover {
       background: $rcms_primary;
     }

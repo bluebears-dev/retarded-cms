@@ -15,7 +15,7 @@
     export default {
         computed: {
             topbar: function () {
-                return this.$store.getters.topbar;
+                return this.$store.getters['ui/topbar'];
             }
         },
         props: ['title']
