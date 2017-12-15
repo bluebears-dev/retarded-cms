@@ -1,0 +1,13 @@
+.rcms-page-table {
+  .rcms-table-header .rcms-cell {
+    background: $rcms_main;
+    color: $rcms_white;
+  }
+  .rcms-cell:nth-child(3) {
+    width: 50px;
+  }
+
+  .rcms-cell:nth-child(5), .rcms-cell:nth-child(6), .rcms-cell:nth-child(7) {
+    width: 50px;
+  }
+}

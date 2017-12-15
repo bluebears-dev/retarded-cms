@@ -38,12 +38,12 @@
               this.simpleMDE.clearAutosavedValue();
               axios({
                   method: 'post',
-                  url: '/api/page/add',
+                  url: '/api/page',
                   data: {
                       content: this.simpleMDE.value(),
                       name: 'page',
-                      parent_page: '/',
-                      active: true,
+                      parent_page: '',
+                      active: false,
                       _token: this.token,
                   }
               }).then(response => {

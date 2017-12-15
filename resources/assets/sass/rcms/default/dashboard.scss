@@ -8,6 +8,7 @@
 @import "import/dashboard/topbar";
 @import "import/dashboard/options/theme";
 @import "import/dashboard/pages/pageadd";
+@import "import/dashboard/pages/pagelist";
 
 .rcms-body {
   display: flex;
@@ -126,5 +127,6 @@
   font-size: 1.2rem;
   color: $rcms_white;
   padding: 10px 25px;
+  box-sizing: padding-box;
   width: 100%;
 }

@@ -23,7 +23,7 @@
   }
 }
 
-.rcms-table {
+.rcms-user-table {
   .rcms-cell &:nth-child(2), .rcms-cell &:nth-child(3) {
     text-align: left;
   }
@@ -43,8 +43,8 @@
       text-align: left;
     }
 
-    .rcms-cell:nth-child(4) {
-      width: 40px;
+    .rcms-cell:last-child {
+      width: 50px;
     }
   }
 }

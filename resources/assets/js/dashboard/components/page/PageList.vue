@@ -1,49 +1,49 @@
 <template>
-    <table class="rcms-table">
-        <thead>
-        <tr>
-            <td>Selected</td>
-            <td>Username</td>
-            <td>Role</td>
-            <td colspan="2">Actions</td>
+    <table class="rcms-table rcms-page-table">
+        <thead class="rcms-table-header">
+        <tr class="rcms-row">
+            <td class="rcms-cell">Name</td>
+            <td class="rcms-cell">Parent page</td>
+            <td class="rcms-cell">Published</td>
+            <td class="rcms-cell">Template</td>
+            <td colspan="3" class="rcms-cell">Actions</td>
         </tr>
         </thead>
-        <transition-group name="fade" tag="tbody">
-            <tr v-for="user in users" :key="user.login + user.id">
-                <td>
-                    <input
-                            :click="selectUser(user)"
-                            class="rcms-select"
-                            type="radio"
-                            name="selected"
-                            :id="user.login + user.id" :value="user.id"
-                            title="Select user">
-                    <label :for="user.login + user.id"></label>
+        <transition-group name="fade" tag="tbody" class="rcms-table-body">
+            <tr v-for="page in pages" :key="page.name" class="rcms-row">
+                <td class="rcms-cell">
+                    {{ page.name }}
                 </td>
-                <td>
-                    <div class="rcms-data">{{user.login}}</div>
+                <td class="rcms-cell">
+                    {{ page.parent_page }}
                 </td>
-                <td>
-                    <div class="rcms-data">
-                        <div v-if="canModify" class="rcms-form-dropdown">
-                            <select class="form-control" :id="'select_' + user.id" name="role" title="Change role" v-on:click="queueToUpdate(user)">
-                                <option v-for="role in roles" :value="role.name" :selected="role.name === user.roles[0].name">{{role.name}}</option>
-                            </select>
-                        </div>
-                        <span v-else>{{user.roles[0].name}}</span>
-                    </div>
+                <td class="rcms-cell">
+                    {{ page.active ? "Yes" : "No"}}
                 </td>
-                <td>
-                    <a v-if="canModify" v-on:click="removeUser(user.id)" class="rcms-button">
+                <td class="rcms-cell">
+                    {{ page.template }}
+                </td>
+                <td class="rcms-cell">
+                    <a :title="page.active ? 'Unpublish page' : 'Publish page'" class="rcms-button">
+                        <span class="fa" :class="page.active ? 'fa-eye-slash' : 'fa-eye'"></span>
+                    </a>
+                </td>
+                <td class="rcms-cell">
+                    <a title="Edit page" class="rcms-button">
+                        <span class="fa fa-pencil"></span>
+                    </a>
+                </td>
+                <td class="rcms-cell">
+                    <a title="Remove page" class="rcms-button">
                         <span class="fa fa-remove"></span>
                     </a>
                 </td>
             </tr>
         </transition-group>
-        <tfoot>
-        <tr>
-            <td colspan="5">
-                <router-link :to="{ name: 'addUserView'}" class="rcms-button"><span class="fa fa-plus"></span></router-link>
+        <tfoot class="rcms-table-footer">
+        <tr class="rcms-row">
+            <td colspan="7" class="rcms-cell">
+                <router-link :to="{ name: 'addPage'}" class="rcms-button"><span class="fa fa-plus"></span></router-link>
             </td>
         </tr>
         </tfoot>
@@ -52,17 +52,11 @@
 
 <script>
     export default {
-        // computed: {
-        //     users: function () {
-        //         return this.$store.getters['userManagement/users'];
-        //     },
-        //     roles: function () {
-        //         return this.$store.getters['userManagement/roles'];
-        //     },
-        //     canModify: function () {
-        //         return this.$store.getters.userRole === 1;
-        //     }
-        // },
+        computed: {
+            pages: function () {
+                return this.$store.getters['pageManagement/pages'];
+            },
+        },
         // methods: {
         //     selectUser: function (user) {
         //         this.$store.commit('userManagement/select', user);
@@ -79,8 +73,8 @@
         //             this.$store.commit('userManagement/unstageChange', user);
         //     }
         // },
-        // created () {
-        //     this.$store.commit('userManagement/requestUserList');
-        // }
+        created () {
+            this.$store.commit('pageManagement/requestList');
+        }
     };
 </script>

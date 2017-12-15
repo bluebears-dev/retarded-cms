@@ -15,7 +15,7 @@ export default [
     },
     {
         path: '/pages/add',
-        name: 'addPages',
+        name: 'addPage',
         components: {
             default: PageAddView,
             title: { template: '<h1>Create page</h1>' },

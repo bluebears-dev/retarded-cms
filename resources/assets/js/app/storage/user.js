@@ -14,7 +14,7 @@ export default {
         store(state, users) {
             state.users = users;
         },
-        requestUserList(state) {
+        requestList(state) {
             axios({
                 method: 'get',
                 url: '/api/user',
@@ -25,7 +25,7 @@ export default {
                 console.log(error);
             })
         },
-        requestUserRemoval(state, user) {
+        requestRemoval(state, user) {
             axios({
                 method: 'delete',
                 url: '/api/user/' + user,
@@ -38,7 +38,7 @@ export default {
                 console.log(error);
             })
         },
-        requestUserUpdate(state) {
+        requestUpdate(state) {
             for (let login in state.updatedUsers) {
                 axios({
                     method: 'put',

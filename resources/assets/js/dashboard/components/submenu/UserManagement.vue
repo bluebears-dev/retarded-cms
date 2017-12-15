@@ -19,16 +19,16 @@
         methods: {
             removeUser: function () {
                 let id = $('input[type=radio]:checked', '#content table').val();
-                this.$store.commit('userManagement/requestUserRemoval', id);
+                this.$store.commit('userManagement/requestRemoval', id);
             },
             saveChanges: function () {
-                this.$store.commit('userManagement/requestUserUpdate');
+                this.$store.commit('userManagement/requestUpdate');
             },
             addUserForm: function () {
                 this.$router.push({ name: 'addUserView'});
             },
             show: function () {
-                return this.$store.getters.userRole === 1;
+                return this.$store.getters['userManagement/userRole'] === 1;
             }
         }
     }

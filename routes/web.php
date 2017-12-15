@@ -28,9 +28,15 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('/api/user', 'Dashboard\UserController',
             ['except' => ['create', 'edit']]);
 
-        Route::post('/api/page/add', 'PageController@add');
+        Route::resource('/api/page', 'PageController',
+            ['except' => ['create', 'edit']]);
     });
 });
 
-Route::get('/', 'PageController@index')->name('home');
-Route::get('{slug}', 'PageController@page')->where('slug', '([A-Za-z0-9\-\/]+)');
+Route::get('/', 'PageController@home')->name('home');
+Route::get('{slug}', 'PageController@fetch')->where('slug', '([A-Za-z0-9\-\/]+)');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('/api/page', 'PageController',
+        ['except' => ['create', 'edit']]);
+});

@@ -18,6 +18,10 @@
     background: $rcms_dimmed;
     height: 60px;
 
+    &:nth-child(2n) {
+      background: transparent;
+    }
+
     &:first-child {
       border-top: 1px solid $rcms_main;
     }

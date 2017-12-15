@@ -58046,7 +58046,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$store.commit('userManagement/select', user);
         },
         removeUser: function removeUser(user) {
-            this.$store.commit('userManagement/requestUserRemoval', user);
+            this.$store.commit('userManagement/requestRemoval', user);
         },
         queueToUpdate: function queueToUpdate(user) {
             var newRole = $("#select_" + user.id + " :selected").val();
@@ -58055,7 +58055,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     created: function created() {
-        this.$store.commit('userManagement/requestUserList');
+        this.$store.commit('userManagement/requestList');
     }
 });
 
@@ -58069,7 +58069,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "table",
-    { staticClass: "rcms-table" },
+    { staticClass: "rcms-table rcms-user-table" },
     [
       _vm._m(0, false, false),
       _vm._v(" "),
@@ -58666,16 +58666,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         removeUser: function removeUser() {
             var id = $('input[type=radio]:checked', '#content table').val();
-            this.$store.commit('userManagement/requestUserRemoval', id);
+            this.$store.commit('userManagement/requestRemoval', id);
         },
         saveChanges: function saveChanges() {
-            this.$store.commit('userManagement/requestUserUpdate');
+            this.$store.commit('userManagement/requestUpdate');
         },
         addUserForm: function addUserForm() {
             this.$router.push({ name: 'addUserView' });
         },
         show: function show() {
-            return this.$store.getters.userRole === 1;
+            return this.$store.getters['userManagement/userRole'] === 1;
         }
     }
 });
@@ -62712,6 +62712,8 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__storage_ui__ = __webpack_require__(137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__storage_main__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage_user__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__storage_page__ = __webpack_require__(154);
+
 
 
 
@@ -62719,7 +62721,8 @@ if (false) {
 /* harmony default export */ __webpack_exports__["a"] = ({
     ui: __WEBPACK_IMPORTED_MODULE_0__storage_ui__["a" /* default */],
     main: __WEBPACK_IMPORTED_MODULE_1__storage_main__["a" /* default */],
-    userManagement: __WEBPACK_IMPORTED_MODULE_2__storage_user__["a" /* default */]
+    userManagement: __WEBPACK_IMPORTED_MODULE_2__storage_user__["a" /* default */],
+    pageManagement: __WEBPACK_IMPORTED_MODULE_3__storage_page__["a" /* default */]
 });
 
 /***/ }),
@@ -62769,7 +62772,7 @@ if (false) {
         store: function store(state, users) {
             state.users = users;
         },
-        requestUserList: function requestUserList(state) {
+        requestList: function requestList(state) {
             axios({
                 method: 'get',
                 url: '/api/user'
@@ -62779,7 +62782,7 @@ if (false) {
                 console.log(error);
             });
         },
-        requestUserRemoval: function requestUserRemoval(state, user) {
+        requestRemoval: function requestRemoval(state, user) {
             axios({
                 method: 'delete',
                 url: '/api/user/' + user
@@ -62793,7 +62796,7 @@ if (false) {
                 console.log(error);
             });
         },
-        requestUserUpdate: function requestUserUpdate(state) {
+        requestUpdate: function requestUpdate(state) {
             for (var login in state.updatedUsers) {
                 axios({
                     method: 'put',
@@ -63254,7 +63257,7 @@ if (false) {
     }
 }, {
     path: '/pages/add',
-    name: 'addPages',
+    name: 'addPage',
     components: {
         default: __WEBPACK_IMPORTED_MODULE_0__dashboard_components_page_PageAdd___default.a,
         title: { template: '<h1>Create page</h1>' },
@@ -63363,12 +63366,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.simpleMDE.clearAutosavedValue();
             axios({
                 method: 'post',
-                url: '/api/page/add',
+                url: '/api/page',
                 data: {
                     content: this.simpleMDE.value(),
                     name: 'page',
-                    parent_page: '/',
-                    active: true,
+                    parent_page: '',
+                    active: false,
                     _token: this.token
                 }
             }).then(function (response) {
@@ -71457,17 +71460,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    // computed: {
-    //     users: function () {
-    //         return this.$store.getters['userManagement/users'];
-    //     },
-    //     roles: function () {
-    //         return this.$store.getters['userManagement/roles'];
-    //     },
-    //     canModify: function () {
-    //         return this.$store.getters.userRole === 1;
-    //     }
-    // },
+    computed: {
+        pages: function pages() {
+            return this.$store.getters['pageManagement/pages'];
+        }
+    },
     // methods: {
     //     selectUser: function (user) {
     //         this.$store.commit('userManagement/select', user);
@@ -71484,9 +71481,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //             this.$store.commit('userManagement/unstageChange', user);
     //     }
     // },
-    // created () {
-    //     this.$store.commit('userManagement/requestUserList');
-    // }
+    created: function created() {
+        this.$store.commit('pageManagement/requestList');
+    }
 });
 
 /***/ }),
@@ -71499,105 +71496,94 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "table",
-    { staticClass: "rcms-table" },
+    { staticClass: "rcms-table rcms-page-table" },
     [
       _vm._m(0, false, false),
       _vm._v(" "),
       _c(
         "transition-group",
-        { attrs: { name: "fade", tag: "tbody" } },
-        _vm._l(_vm.users, function(user) {
-          return _c("tr", { key: user.login + user.id }, [
-            _c("td", [
-              _c("input", {
-                staticClass: "rcms-select",
-                attrs: {
-                  click: _vm.selectUser(user),
-                  type: "radio",
-                  name: "selected",
-                  id: user.login + user.id,
-                  title: "Select user"
+        {
+          staticClass: "rcms-table-body",
+          attrs: { name: "fade", tag: "tbody" }
+        },
+        _vm._l(_vm.pages, function(page) {
+          return _c("tr", { key: page.name, staticClass: "rcms-row" }, [
+            _c("td", { staticClass: "rcms-cell" }, [
+              _vm._v(
+                "\n                " + _vm._s(page.name) + "\n            "
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "rcms-cell" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(page.parent_page) +
+                  "\n            "
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "rcms-cell" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(page.active ? "Yes" : "No") +
+                  "\n            "
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "rcms-cell" }, [
+              _vm._v(
+                "\n                " + _vm._s(page.template) + "\n            "
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "rcms-cell" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "rcms-button",
+                  attrs: {
+                    title: page.active ? "Unpublish page" : "Publish page"
+                  }
                 },
-                domProps: { value: user.id }
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: user.login + user.id } })
+                [
+                  _c("span", {
+                    staticClass: "fa",
+                    class: page.active ? "fa-eye-slash" : "fa-eye"
+                  })
+                ]
+              )
             ]),
             _vm._v(" "),
-            _c("td", [
-              _c("div", { staticClass: "rcms-data" }, [
-                _vm._v(_vm._s(user.login))
-              ])
+            _c("td", { staticClass: "rcms-cell" }, [
+              _c(
+                "a",
+                { staticClass: "rcms-button", attrs: { title: "Edit page" } },
+                [_c("span", { staticClass: "fa fa-pencil" })]
+              )
             ]),
             _vm._v(" "),
-            _c("td", [
-              _c("div", { staticClass: "rcms-data" }, [
-                _vm.canModify
-                  ? _c("div", { staticClass: "rcms-form-dropdown" }, [
-                      _c(
-                        "select",
-                        {
-                          staticClass: "form-control",
-                          attrs: {
-                            id: "select_" + user.id,
-                            name: "role",
-                            title: "Change role"
-                          },
-                          on: {
-                            click: function($event) {
-                              _vm.queueToUpdate(user)
-                            }
-                          }
-                        },
-                        _vm._l(_vm.roles, function(role) {
-                          return _c(
-                            "option",
-                            {
-                              domProps: {
-                                value: role.name,
-                                selected: role.name === user.roles[0].name
-                              }
-                            },
-                            [_vm._v(_vm._s(role.name))]
-                          )
-                        })
-                      )
-                    ])
-                  : _c("span", [_vm._v(_vm._s(user.roles[0].name))])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm.canModify
-                ? _c(
-                    "a",
-                    {
-                      staticClass: "rcms-button",
-                      on: {
-                        click: function($event) {
-                          _vm.removeUser(user.id)
-                        }
-                      }
-                    },
-                    [_c("span", { staticClass: "fa fa-remove" })]
-                  )
-                : _vm._e()
+            _c("td", { staticClass: "rcms-cell" }, [
+              _c(
+                "a",
+                { staticClass: "rcms-button", attrs: { title: "Remove page" } },
+                [_c("span", { staticClass: "fa fa-remove" })]
+              )
             ])
           ])
         })
       ),
       _vm._v(" "),
-      _c("tfoot", [
-        _c("tr", [
+      _c("tfoot", { staticClass: "rcms-table-footer" }, [
+        _c("tr", { staticClass: "rcms-row" }, [
           _c(
             "td",
-            { attrs: { colspan: "5" } },
+            { staticClass: "rcms-cell", attrs: { colspan: "7" } },
             [
               _c(
                 "router-link",
                 {
                   staticClass: "rcms-button",
-                  attrs: { to: { name: "addUserView" } }
+                  attrs: { to: { name: "addPage" } }
                 },
                 [_c("span", { staticClass: "fa fa-plus" })]
               )
@@ -71615,15 +71601,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("td", [_vm._v("Selected")]),
+    return _c("thead", { staticClass: "rcms-table-header" }, [
+      _c("tr", { staticClass: "rcms-row" }, [
+        _c("td", { staticClass: "rcms-cell" }, [_vm._v("Name")]),
         _vm._v(" "),
-        _c("td", [_vm._v("Username")]),
+        _c("td", { staticClass: "rcms-cell" }, [_vm._v("Parent page")]),
         _vm._v(" "),
-        _c("td", [_vm._v("Role")]),
+        _c("td", { staticClass: "rcms-cell" }, [_vm._v("Published")]),
         _vm._v(" "),
-        _c("td", { attrs: { colspan: "2" } }, [_vm._v("Actions")])
+        _c("td", { staticClass: "rcms-cell" }, [_vm._v("Template")]),
+        _vm._v(" "),
+        _c("td", { staticClass: "rcms-cell", attrs: { colspan: "3" } }, [
+          _vm._v("Actions")
+        ])
       ])
     ])
   }
@@ -71727,6 +71717,41 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-f986a68a", module.exports)
   }
 }
+
+/***/ }),
+/* 154 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    namespaced: true,
+    state: {
+        pages: null
+    },
+    mutations: {
+        savePageData: function savePageData(state, data) {
+            state.autosavedPageData = data;
+        },
+        requestList: function requestList(state) {
+            axios({
+                method: 'get',
+                url: '/api/page'
+            }).then(function (response) {
+                if (response.data) state.pages = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
+    getters: {
+        pageData: function pageData(state) {
+            return state.autosavedPageData;
+        },
+        pages: function pages(state) {
+            return state.pages;
+        }
+    }
+});
 
 /***/ })
 /******/ ]);

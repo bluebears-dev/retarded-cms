@@ -1,5 +1,5 @@
 <template>
-    <table class="rcms-table">
+    <table class="rcms-table rcms-user-table">
             <thead class="rcms-table-header">
             <tr class="rcms-row">
                 <td class="rcms-cell">Selected</td>
@@ -68,11 +68,10 @@
                 this.$store.commit('userManagement/select', user);
             },
             removeUser: function (user) {
-                this.$store.commit('userManagement/requestUserRemoval', user);
+                this.$store.commit('userManagement/requestRemoval', user);
             },
             queueToUpdate: function (user) {
                 let newRole = $("#select_" + user.id + " :selected").val();
-                console.log(newRole);
                 if (newRole !== user.roles[0].name)
                     this.$store.commit('userManagement/stageChange', [user, newRole]);
                 else
@@ -80,7 +79,7 @@
             }
         },
         created () {
-            this.$store.commit('userManagement/requestUserList');
+            this.$store.commit('userManagement/requestList');
         }
     };
 </script>
