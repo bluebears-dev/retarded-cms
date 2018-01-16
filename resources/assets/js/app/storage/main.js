@@ -1,19 +1,14 @@
 export default {
     namespaced: true,
     state: {
-        currentPopup: null,
-        autosavedPageData: {
-            content: ""
-        }
-    },
-    mutations: {
-        savePageData(state, data) {
-            state.autosavedPageData = data
-        }
+        pusher: new Pusher('848b691dd173338e39f8', {
+            cluster: 'eu',
+            encrypted: true
+        })
     },
     getters: {
-        pageData(state) {
-            return state.autosavedPageData
+        pusher(state) {
+            return state.pusher
         }
     }
 }

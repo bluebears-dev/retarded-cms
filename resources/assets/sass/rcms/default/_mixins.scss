@@ -62,3 +62,9 @@
   box-shadow: none;
   border-radius: 0;
 }
+
+@mixin message-bubble($color, $text-color, $text-size) {
+  background: $color;
+  color: $text-color;
+  font-size: $text-size;
+}

@@ -6,19 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Theme;
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\App;
 use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Cache;
 use Validator;
 use Lang;
 
 class UserController extends Controller
 {
     private $rules = null;
-    private $changed = true;
+    private $pusher = null;
 
     public function __construct(Guard $auth)
     {
@@ -26,12 +25,12 @@ class UserController extends Controller
             'login' => 'required:users.login|unique:users',
             'password' => 'required:users.password|min:8'
         ];
+        $this->pusher = $pusher = App::make('pusher');
     }
 
     public function index()
     {
         $users = User::all();
-
         foreach ($users as $user)
             $user->getRoleNames();
 
@@ -53,6 +52,7 @@ class UserController extends Controller
             $user = User::create($request->only('login', 'password'));
             $user->assignRole($request->role);
             $user->save();
+            $this->pusher->trigger('user-management-channel', 'user-change-event', []);
             return $this->createResponse($user, Response::HTTP_OK);
         }
         return $this->createResponse('', Response::HTTP_FORBIDDEN);
@@ -67,8 +67,10 @@ class UserController extends Controller
     {
         if (Auth::user()->can('edit users')) {
             $user = User::find($user);
-            if ($user)
+            if ($user) {
                 $user->syncRoles($request->only('role'));
+                $this->pusher->trigger('user-management-channel', 'user-role-event', [$user->login => $request->role]);
+            }
         }
     }
 
@@ -85,7 +87,7 @@ class UserController extends Controller
                     $response_data = ['redirect' => route('dashboard')];
                 }
                 $user->delete();
-                $this->changed = true;
+                $this->pusher->trigger('user-management-channel', 'user-change-event', []);
             }
             return $this->createResponse($response_data, Response::HTTP_OK);
         }

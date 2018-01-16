@@ -1,10 +1,11 @@
 {
-    "/js/dashboard.js": "/js/dashboard.js",
+    "/js/rcms/dashboard.js": "/js/rcms/dashboard.js",
     "/css/app.css": "/css/app.css",
-    "/css/default/login.css": "/css/default/login.css",
-    "/css/default/dashboard.css": "/css/default/dashboard.css",
-    "/css/frozen/login.css": "/css/frozen/login.css",
-    "/css/frozen/dashboard.css": "/css/frozen/dashboard.css",
-    "/js/login.js": "/js/login.js",
-    "/js/bootstrap.js": "/js/bootstrap.js"
+    "/css/rcms/default/login.css": "/css/rcms/default/login.css",
+    "/css/rcms/default/dashboard.css": "/css/rcms/default/dashboard.css",
+    "/css/rcms/frozen/login.css": "/css/rcms/frozen/login.css",
+    "/css/rcms/frozen/dashboard.css": "/css/rcms/frozen/dashboard.css",
+    "/css/site/style.css": "/css/site/style.css",
+    "/js/rcms/login.js": "/js/rcms/login.js",
+    "/js/rcms/bootstrap.js": "/js/rcms/bootstrap.js"
 }

@@ -28,15 +28,21 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('/api/user', 'Dashboard\UserController',
             ['except' => ['create', 'edit']]);
 
+        Route::get('/api/page/{name}', 'PageController@getPage');
+        Route::post('/api/page/{name}/toggleState', 'PageController@toggleState');
         Route::resource('/api/page', 'PageController',
-            ['except' => ['create', 'edit']]);
+            ['except' => ['create', 'edit', 'show']]);
+
+        Route::get('/api/chat/{time}/{amount}', 'Dashboard\ChatController@index')->where([
+            'time' => '[0-9]+',
+            'amount' => '[0-9]+'
+        ]);
+        Route::post('/api/chat', 'Dashboard\ChatController@store');
+
+        Route::resource('/api/menu', 'Dashboard\MenuController',
+            ['except' => ['create', 'edit', 'show', 'update']]);
     });
 });
 
 Route::get('/', 'PageController@home')->name('home');
 Route::get('{slug}', 'PageController@fetch')->where('slug', '([A-Za-z0-9\-\/]+)');
-
-Route::group(['middleware' => 'auth'], function() {
-    Route::resource('/api/page', 'PageController',
-        ['except' => ['create', 'edit']]);
-});

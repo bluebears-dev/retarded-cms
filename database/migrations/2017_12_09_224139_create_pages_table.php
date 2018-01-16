@@ -20,7 +20,7 @@ class CreatePagesTable extends Migration
             $table->string('template');
             $table->text('content');
             $table->string('parent_page');
-            $table->boolean('active');
+            $table->boolean('published');
             $table->timestamps();
         });
     }

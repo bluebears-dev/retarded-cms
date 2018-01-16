@@ -63,7 +63,7 @@
   padding: 10px;
 
   .rcms-form-dropdown, .rcms-input {
-    flex: 0 1 49%;
+    flex: 0 1 40%;
     height: 35px;
     color: $rcms_white;
 
@@ -73,6 +73,15 @@
 
     select:hover, &:hover{
       border-color: $rcms_detail;
+    }
+  }
+
+  .rcms-active-page-button {
+    background: transparent;
+    color: $rcms_gray;
+
+    &:hover {
+      color: $rcms_detail;
     }
   }
 }

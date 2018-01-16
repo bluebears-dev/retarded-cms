@@ -19,7 +19,7 @@ class PageTableSeeder extends Seeder
             'template' => 'default',
             'content' => 'Welcome home!',
             'parent_page' => '',
-            'active' => true,
+            'published' => true,
             'created_at' => now(),
             'updated_at' => now()
         ]);

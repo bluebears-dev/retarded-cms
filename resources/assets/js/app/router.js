@@ -1,11 +1,13 @@
-import user_routes from "./routes/user"
-import options_routes from "./routes/options"
-import page_routes from "./routes/page"
-import main_routes from "./routes/main"
+import userRoutes from "./routes/user"
+import optionsRoutes from "./routes/options"
+import pageRoutes from "./routes/page"
+import mainRoutes from "./routes/main"
+import menuRoutes from "./routes/menu"
 
-let routes = main_routes
-    .concat(user_routes)
-    .concat(options_routes)
-    .concat(page_routes);
+let routes = mainRoutes
+    .concat(userRoutes)
+    .concat(optionsRoutes)
+    .concat(pageRoutes)
+    .concat(menuRoutes);
 
 export default routes

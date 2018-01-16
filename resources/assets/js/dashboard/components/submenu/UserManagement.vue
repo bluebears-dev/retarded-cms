@@ -1,17 +1,18 @@
 <template>
-    <transition name="fade">
-        <nav class="navbar-nav rcms-submenu">
-            <a v-if="show()" v-on:click="addUserForm" class="nav-link">
-                <div class="fa fa-user-plus"></div><span>Add</span>
-            </a>
-            <a v-if="show()" v-on:click="removeUser" class="nav-link">
-                <div class="fa fa-remove"></div><span>Remove</span>
-            </a>
-            <a v-if="show()" v-on:click="saveChanges" class="nav-link">
-                <div class="fa fa-check"></div><span>Save</span>
-            </a>
-        </nav>
-    </transition>
+    <nav class="navbar-nav rcms-submenu">
+        <a v-if="show()" @click="addUserForm" class="nav-link">
+            <div class="fa fa-user-plus"></div>
+            <span>New user</span>
+        </a>
+        <a v-if="show()" @click="removeUser" class="nav-link">
+            <div class="fa fa-remove"></div>
+            <span>Remove user</span>
+        </a>
+        <a v-if="show()" @click="saveChanges" class="nav-link">
+            <div class="fa fa-check"></div>
+            <span>Save</span>
+        </a>
+    </nav>
 </template>
 
 <script>
@@ -25,10 +26,10 @@
                 this.$store.commit('userManagement/requestUpdate');
             },
             addUserForm: function () {
-                this.$router.push({ name: 'addUserView'});
+                this.$router.push({name: 'addUserView'});
             },
             show: function () {
-                return this.$store.getters['userManagement/userRole'] === 1;
+                return this.$store.getters['userManagement/currentUserRole'] === 1;
             }
         }
     }

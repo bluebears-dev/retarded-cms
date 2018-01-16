@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 46);
+/******/ 	return __webpack_require__(__webpack_require__.s = 47);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -377,33 +377,6 @@ module.exports = {
 /* 1 */
 /***/ (function(module, exports) {
 
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
 /* globals __VUE_SSR_CONTEXT__ */
 
 // IMPORTANT: Do NOT use ES2015 features in this file.
@@ -507,6 +480,33 @@ module.exports = function normalizeComponent (
     options: options
   }
 }
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
 
 
 /***/ }),
@@ -10752,9 +10752,9 @@ window._ = __webpack_require__(12);
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(14);
-  window.Popper = __webpack_require__(15);
-  __webpack_require__(16);
+    window.$ = window.jQuery = __webpack_require__(14);
+    window.Popper = __webpack_require__(15);
+    __webpack_require__(16);
 } catch (e) {}
 
 /**
@@ -10764,6 +10764,25 @@ try {
  */
 
 window.axios = __webpack_require__(17);
+window.handleErrors = function (error, store) {
+    console.log(error);
+    switch (error.response.status) {
+        case 401:
+            store.dispatch('popup/initialize', {
+                title: 'Unauthorized attempt',
+                message: 'You are not authorized to perform this action',
+                buttons: {
+                    ok: 'Confirm'
+                },
+                actions: {
+                    ok: function ok() {
+                        document.location.reload();
+                    }
+                }
+            });
+            $('#popup').modal('show');
+    }
+};
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -10776,9 +10795,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 /**
@@ -27886,7 +27905,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(13)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(13)(module)))
 
 /***/ }),
 /* 13 */
@@ -40620,7 +40639,7 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
 
 /***/ }),
 /* 16 */
@@ -45357,11 +45376,11 @@ module.exports = function spread(callback) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(53)
+var __vue_script__ = __webpack_require__(54)
 /* template */
-var __vue_template__ = __webpack_require__(54)
+var __vue_template__ = __webpack_require__(55)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -56125,7 +56144,7 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(38).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(38).setImmediate))
 
 /***/ }),
 /* 38 */
@@ -56377,7 +56396,7 @@ exports.clearImmediate = clearImmediate;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(10)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(10)))
 
 /***/ }),
 /* 40 */
@@ -56386,11 +56405,11 @@ exports.clearImmediate = clearImmediate;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_components_user_UsersTable__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_components_user_UsersTable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__dashboard_components_user_UsersTable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_components_user_AddUser__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_components_user_AddUser__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_components_user_AddUser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__dashboard_components_user_AddUser__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_components_submenu_Back__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_components_submenu_Back___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__dashboard_components_submenu_Back__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dashboard_components_submenu_UserManagement__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dashboard_components_submenu_UserManagement__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dashboard_components_submenu_UserManagement___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__dashboard_components_submenu_UserManagement__);
 
 
@@ -56420,11 +56439,11 @@ exports.clearImmediate = clearImmediate;
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(48)
+var __vue_script__ = __webpack_require__(49)
 /* template */
-var __vue_template__ = __webpack_require__(49)
+var __vue_template__ = __webpack_require__(50)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -56465,85 +56484,2037 @@ module.exports = Component.exports
 
 /***/ }),
 /* 42 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
+"use strict";
+/*global require,module*/
 
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
+var CodeMirror = __webpack_require__(4);
+__webpack_require__(92);
+__webpack_require__(93);
+__webpack_require__(94);
+__webpack_require__(43);
+__webpack_require__(45);
+__webpack_require__(96);
+__webpack_require__(97);
+__webpack_require__(98);
+__webpack_require__(44);
+var CodeMirrorSpellChecker = __webpack_require__(99);
+var marked = __webpack_require__(106);
 
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
+
+// Some variables
+var isMac = /Mac/.test(navigator.platform);
+
+// Mapping of actions that can be bound to keyboard shortcuts or toolbar buttons
+var bindings = {
+	"toggleBold": toggleBold,
+	"toggleItalic": toggleItalic,
+	"drawLink": drawLink,
+	"toggleHeadingSmaller": toggleHeadingSmaller,
+	"toggleHeadingBigger": toggleHeadingBigger,
+	"drawImage": drawImage,
+	"toggleBlockquote": toggleBlockquote,
+	"toggleOrderedList": toggleOrderedList,
+	"toggleUnorderedList": toggleUnorderedList,
+	"toggleCodeBlock": toggleCodeBlock,
+	"togglePreview": togglePreview,
+	"toggleStrikethrough": toggleStrikethrough,
+	"toggleHeading1": toggleHeading1,
+	"toggleHeading2": toggleHeading2,
+	"toggleHeading3": toggleHeading3,
+	"cleanBlock": cleanBlock,
+	"drawTable": drawTable,
+	"drawHorizontalRule": drawHorizontalRule,
+	"undo": undo,
+	"redo": redo,
+	"toggleSideBySide": toggleSideBySide,
+	"toggleFullScreen": toggleFullScreen
 };
 
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
+var shortcuts = {
+	"toggleBold": "Cmd-B",
+	"toggleItalic": "Cmd-I",
+	"drawLink": "Cmd-K",
+	"toggleHeadingSmaller": "Cmd-H",
+	"toggleHeadingBigger": "Shift-Cmd-H",
+	"cleanBlock": "Cmd-E",
+	"drawImage": "Cmd-Alt-I",
+	"toggleBlockquote": "Cmd-'",
+	"toggleOrderedList": "Cmd-Alt-L",
+	"toggleUnorderedList": "Cmd-L",
+	"toggleCodeBlock": "Cmd-Alt-C",
+	"togglePreview": "Cmd-P",
+	"toggleSideBySide": "F9",
+	"toggleFullScreen": "F11"
+};
+
+var getBindingName = function(f) {
+	for(var key in bindings) {
+		if(bindings[key] === f) {
+			return key;
+		}
+	}
+	return null;
+};
+
+var isMobile = function() {
+	var check = false;
+	(function(a) {
+		if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+	})(navigator.userAgent || navigator.vendor || window.opera);
+	return check;
+};
+
+
+/**
+ * Fix shortcut. Mac use Command, others use Ctrl.
+ */
+function fixShortcut(name) {
+	if(isMac) {
+		name = name.replace("Ctrl", "Cmd");
+	} else {
+		name = name.replace("Cmd", "Ctrl");
+	}
+	return name;
+}
+
+
+/**
+ * Create icon element for toolbar.
+ */
+function createIcon(options, enableTooltips, shortcuts) {
+	options = options || {};
+	var el = document.createElement("a");
+	enableTooltips = (enableTooltips == undefined) ? true : enableTooltips;
+
+	if(options.title && enableTooltips) {
+		el.title = createTootlip(options.title, options.action, shortcuts);
+
+		if(isMac) {
+			el.title = el.title.replace("Ctrl", "⌘");
+			el.title = el.title.replace("Alt", "⌥");
+		}
 	}
 
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+	el.tabIndex = -1;
+	el.className = options.className;
+	return el;
+}
+
+function createSep() {
+	var el = document.createElement("i");
+	el.className = "separator";
+	el.innerHTML = "|";
+	return el;
+}
+
+function createTootlip(title, action, shortcuts) {
+	var actionName;
+	var tooltip = title;
+
+	if(action) {
+		actionName = getBindingName(action);
+		if(shortcuts[actionName]) {
+			tooltip += " (" + fixShortcut(shortcuts[actionName]) + ")";
+		}
+	}
+
+	return tooltip;
+}
+
+/**
+ * The state of CodeMirror at the given position.
+ */
+function getState(cm, pos) {
+	pos = pos || cm.getCursor("start");
+	var stat = cm.getTokenAt(pos);
+	if(!stat.type) return {};
+
+	var types = stat.type.split(" ");
+
+	var ret = {},
+		data, text;
+	for(var i = 0; i < types.length; i++) {
+		data = types[i];
+		if(data === "strong") {
+			ret.bold = true;
+		} else if(data === "variable-2") {
+			text = cm.getLine(pos.line);
+			if(/^\s*\d+\.\s/.test(text)) {
+				ret["ordered-list"] = true;
+			} else {
+				ret["unordered-list"] = true;
+			}
+		} else if(data === "atom") {
+			ret.quote = true;
+		} else if(data === "em") {
+			ret.italic = true;
+		} else if(data === "quote") {
+			ret.quote = true;
+		} else if(data === "strikethrough") {
+			ret.strikethrough = true;
+		} else if(data === "comment") {
+			ret.code = true;
+		} else if(data === "link") {
+			ret.link = true;
+		} else if(data === "tag") {
+			ret.image = true;
+		} else if(data.match(/^header(\-[1-6])?$/)) {
+			ret[data.replace("header", "heading")] = true;
+		}
+	}
+	return ret;
+}
+
+
+// Saved overflow setting
+var saved_overflow = "";
+
+/**
+ * Toggle full screen of the editor.
+ */
+function toggleFullScreen(editor) {
+	// Set fullscreen
+	var cm = editor.codemirror;
+	cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+
+
+	// Prevent scrolling on body during fullscreen active
+	if(cm.getOption("fullScreen")) {
+		saved_overflow = document.body.style.overflow;
+		document.body.style.overflow = "hidden";
+	} else {
+		document.body.style.overflow = saved_overflow;
+	}
+
+
+	// Update toolbar class
+	var wrap = cm.getWrapperElement();
+
+	if(!/fullscreen/.test(wrap.previousSibling.className)) {
+		wrap.previousSibling.className += " fullscreen";
+	} else {
+		wrap.previousSibling.className = wrap.previousSibling.className.replace(/\s*fullscreen\b/, "");
+	}
+
+
+	// Update toolbar button
+	var toolbarButton = editor.toolbarElements.fullscreen;
+
+	if(!/active/.test(toolbarButton.className)) {
+		toolbarButton.className += " active";
+	} else {
+		toolbarButton.className = toolbarButton.className.replace(/\s*active\s*/g, "");
+	}
+
+
+	// Hide side by side if needed
+	var sidebyside = cm.getWrapperElement().nextSibling;
+	if(/editor-preview-active-side/.test(sidebyside.className))
+		toggleSideBySide(editor);
+}
+
+
+/**
+ * Action for toggling bold.
+ */
+function toggleBold(editor) {
+	_toggleBlock(editor, "bold", editor.options.blockStyles.bold);
+}
+
+
+/**
+ * Action for toggling italic.
+ */
+function toggleItalic(editor) {
+	_toggleBlock(editor, "italic", editor.options.blockStyles.italic);
+}
+
+
+/**
+ * Action for toggling strikethrough.
+ */
+function toggleStrikethrough(editor) {
+	_toggleBlock(editor, "strikethrough", "~~");
+}
+
+/**
+ * Action for toggling code block.
+ */
+function toggleCodeBlock(editor) {
+	var fenceCharsToInsert = editor.options.blockStyles.code;
+
+	function fencing_line(line) {
+		/* return true, if this is a ``` or ~~~ line */
+		if(typeof line !== "object") {
+			throw "fencing_line() takes a 'line' object (not a line number, or line text).  Got: " + typeof line + ": " + line;
+		}
+		return line.styles && line.styles[2] && line.styles[2].indexOf("formatting-code-block") !== -1;
+	}
+
+	function token_state(token) {
+		// base goes an extra level deep when mode backdrops are used, e.g. spellchecker on
+		return token.state.base.base || token.state.base;
+	}
+
+	function code_type(cm, line_num, line, firstTok, lastTok) {
+		/*
+		 * Return "single", "indented", "fenced" or false
+		 *
+		 * cm and line_num are required.  Others are optional for efficiency
+		 *   To check in the middle of a line, pass in firstTok yourself.
+		 */
+		line = line || cm.getLineHandle(line_num);
+		firstTok = firstTok || cm.getTokenAt({
+			line: line_num,
+			ch: 1
+		});
+		lastTok = lastTok || (!!line.text && cm.getTokenAt({
+			line: line_num,
+			ch: line.text.length - 1
+		}));
+		var types = firstTok.type ? firstTok.type.split(" ") : [];
+		if(lastTok && token_state(lastTok).indentedCode) {
+			// have to check last char, since first chars of first line aren"t marked as indented
+			return "indented";
+		} else if(types.indexOf("comment") === -1) {
+			// has to be after "indented" check, since first chars of first indented line aren"t marked as such
+			return false;
+		} else if(token_state(firstTok).fencedChars || token_state(lastTok).fencedChars || fencing_line(line)) {
+			return "fenced";
+		} else {
+			return "single";
+		}
+	}
+
+	function insertFencingAtSelection(cm, cur_start, cur_end, fenceCharsToInsert) {
+		var start_line_sel = cur_start.line + 1,
+			end_line_sel = cur_end.line + 1,
+			sel_multi = cur_start.line !== cur_end.line,
+			repl_start = fenceCharsToInsert + "\n",
+			repl_end = "\n" + fenceCharsToInsert;
+		if(sel_multi) {
+			end_line_sel++;
+		}
+		// handle last char including \n or not
+		if(sel_multi && cur_end.ch === 0) {
+			repl_end = fenceCharsToInsert + "\n";
+			end_line_sel--;
+		}
+		_replaceSelection(cm, false, [repl_start, repl_end]);
+		cm.setSelection({
+			line: start_line_sel,
+			ch: 0
+		}, {
+			line: end_line_sel,
+			ch: 0
+		});
+	}
+
+	var cm = editor.codemirror,
+		cur_start = cm.getCursor("start"),
+		cur_end = cm.getCursor("end"),
+		tok = cm.getTokenAt({
+			line: cur_start.line,
+			ch: cur_start.ch || 1
+		}), // avoid ch 0 which is a cursor pos but not token
+		line = cm.getLineHandle(cur_start.line),
+		is_code = code_type(cm, cur_start.line, line, tok);
+	var block_start, block_end, lineCount;
+
+	if(is_code === "single") {
+		// similar to some SimpleMDE _toggleBlock logic
+		var start = line.text.slice(0, cur_start.ch).replace("`", ""),
+			end = line.text.slice(cur_start.ch).replace("`", "");
+		cm.replaceRange(start + end, {
+			line: cur_start.line,
+			ch: 0
+		}, {
+			line: cur_start.line,
+			ch: 99999999999999
+		});
+		cur_start.ch--;
+		if(cur_start !== cur_end) {
+			cur_end.ch--;
+		}
+		cm.setSelection(cur_start, cur_end);
+		cm.focus();
+	} else if(is_code === "fenced") {
+		if(cur_start.line !== cur_end.line || cur_start.ch !== cur_end.ch) {
+			// use selection
+
+			// find the fenced line so we know what type it is (tilde, backticks, number of them)
+			for(block_start = cur_start.line; block_start >= 0; block_start--) {
+				line = cm.getLineHandle(block_start);
+				if(fencing_line(line)) {
+					break;
+				}
+			}
+			var fencedTok = cm.getTokenAt({
+				line: block_start,
+				ch: 1
+			});
+			var fence_chars = token_state(fencedTok).fencedChars;
+			var start_text, start_line;
+			var end_text, end_line;
+			// check for selection going up against fenced lines, in which case we don't want to add more fencing
+			if(fencing_line(cm.getLineHandle(cur_start.line))) {
+				start_text = "";
+				start_line = cur_start.line;
+			} else if(fencing_line(cm.getLineHandle(cur_start.line - 1))) {
+				start_text = "";
+				start_line = cur_start.line - 1;
+			} else {
+				start_text = fence_chars + "\n";
+				start_line = cur_start.line;
+			}
+			if(fencing_line(cm.getLineHandle(cur_end.line))) {
+				end_text = "";
+				end_line = cur_end.line;
+				if(cur_end.ch === 0) {
+					end_line += 1;
+				}
+			} else if(cur_end.ch !== 0 && fencing_line(cm.getLineHandle(cur_end.line + 1))) {
+				end_text = "";
+				end_line = cur_end.line + 1;
+			} else {
+				end_text = fence_chars + "\n";
+				end_line = cur_end.line + 1;
+			}
+			if(cur_end.ch === 0) {
+				// full last line selected, putting cursor at beginning of next
+				end_line -= 1;
+			}
+			cm.operation(function() {
+				// end line first, so that line numbers don't change
+				cm.replaceRange(end_text, {
+					line: end_line,
+					ch: 0
+				}, {
+					line: end_line + (end_text ? 0 : 1),
+					ch: 0
+				});
+				cm.replaceRange(start_text, {
+					line: start_line,
+					ch: 0
+				}, {
+					line: start_line + (start_text ? 0 : 1),
+					ch: 0
+				});
+			});
+			cm.setSelection({
+				line: start_line + (start_text ? 1 : 0),
+				ch: 0
+			}, {
+				line: end_line + (start_text ? 1 : -1),
+				ch: 0
+			});
+			cm.focus();
+		} else {
+			// no selection, search for ends of this fenced block
+			var search_from = cur_start.line;
+			if(fencing_line(cm.getLineHandle(cur_start.line))) { // gets a little tricky if cursor is right on a fenced line
+				if(code_type(cm, cur_start.line + 1) === "fenced") {
+					block_start = cur_start.line;
+					search_from = cur_start.line + 1; // for searching for "end"
+				} else {
+					block_end = cur_start.line;
+					search_from = cur_start.line - 1; // for searching for "start"
+				}
+			}
+			if(block_start === undefined) {
+				for(block_start = search_from; block_start >= 0; block_start--) {
+					line = cm.getLineHandle(block_start);
+					if(fencing_line(line)) {
+						break;
+					}
+				}
+			}
+			if(block_end === undefined) {
+				lineCount = cm.lineCount();
+				for(block_end = search_from; block_end < lineCount; block_end++) {
+					line = cm.getLineHandle(block_end);
+					if(fencing_line(line)) {
+						break;
+					}
+				}
+			}
+			cm.operation(function() {
+				cm.replaceRange("", {
+					line: block_start,
+					ch: 0
+				}, {
+					line: block_start + 1,
+					ch: 0
+				});
+				cm.replaceRange("", {
+					line: block_end - 1,
+					ch: 0
+				}, {
+					line: block_end,
+					ch: 0
+				});
+			});
+			cm.focus();
+		}
+	} else if(is_code === "indented") {
+		if(cur_start.line !== cur_end.line || cur_start.ch !== cur_end.ch) {
+			// use selection
+			block_start = cur_start.line;
+			block_end = cur_end.line;
+			if(cur_end.ch === 0) {
+				block_end--;
+			}
+		} else {
+			// no selection, search for ends of this indented block
+			for(block_start = cur_start.line; block_start >= 0; block_start--) {
+				line = cm.getLineHandle(block_start);
+				if(line.text.match(/^\s*$/)) {
+					// empty or all whitespace - keep going
+					continue;
+				} else {
+					if(code_type(cm, block_start, line) !== "indented") {
+						block_start += 1;
+						break;
+					}
+				}
+			}
+			lineCount = cm.lineCount();
+			for(block_end = cur_start.line; block_end < lineCount; block_end++) {
+				line = cm.getLineHandle(block_end);
+				if(line.text.match(/^\s*$/)) {
+					// empty or all whitespace - keep going
+					continue;
+				} else {
+					if(code_type(cm, block_end, line) !== "indented") {
+						block_end -= 1;
+						break;
+					}
+				}
+			}
+		}
+		// if we are going to un-indent based on a selected set of lines, and the next line is indented too, we need to
+		// insert a blank line so that the next line(s) continue to be indented code
+		var next_line = cm.getLineHandle(block_end + 1),
+			next_line_last_tok = next_line && cm.getTokenAt({
+				line: block_end + 1,
+				ch: next_line.text.length - 1
+			}),
+			next_line_indented = next_line_last_tok && token_state(next_line_last_tok).indentedCode;
+		if(next_line_indented) {
+			cm.replaceRange("\n", {
+				line: block_end + 1,
+				ch: 0
+			});
+		}
+
+		for(var i = block_start; i <= block_end; i++) {
+			cm.indentLine(i, "subtract"); // TODO: this doesn't get tracked in the history, so can't be undone :(
+		}
+		cm.focus();
+	} else {
+		// insert code formatting
+		var no_sel_and_starting_of_line = (cur_start.line === cur_end.line && cur_start.ch === cur_end.ch && cur_start.ch === 0);
+		var sel_multi = cur_start.line !== cur_end.line;
+		if(no_sel_and_starting_of_line || sel_multi) {
+			insertFencingAtSelection(cm, cur_start, cur_end, fenceCharsToInsert);
+		} else {
+			_replaceSelection(cm, false, ["`", "`"]);
+		}
+	}
+}
+
+/**
+ * Action for toggling blockquote.
+ */
+function toggleBlockquote(editor) {
+	var cm = editor.codemirror;
+	_toggleLine(cm, "quote");
+}
+
+/**
+ * Action for toggling heading size: normal -> h1 -> h2 -> h3 -> h4 -> h5 -> h6 -> normal
+ */
+function toggleHeadingSmaller(editor) {
+	var cm = editor.codemirror;
+	_toggleHeading(cm, "smaller");
+}
+
+/**
+ * Action for toggling heading size: normal -> h6 -> h5 -> h4 -> h3 -> h2 -> h1 -> normal
+ */
+function toggleHeadingBigger(editor) {
+	var cm = editor.codemirror;
+	_toggleHeading(cm, "bigger");
+}
+
+/**
+ * Action for toggling heading size 1
+ */
+function toggleHeading1(editor) {
+	var cm = editor.codemirror;
+	_toggleHeading(cm, undefined, 1);
+}
+
+/**
+ * Action for toggling heading size 2
+ */
+function toggleHeading2(editor) {
+	var cm = editor.codemirror;
+	_toggleHeading(cm, undefined, 2);
+}
+
+/**
+ * Action for toggling heading size 3
+ */
+function toggleHeading3(editor) {
+	var cm = editor.codemirror;
+	_toggleHeading(cm, undefined, 3);
+}
+
+
+/**
+ * Action for toggling ul.
+ */
+function toggleUnorderedList(editor) {
+	var cm = editor.codemirror;
+	_toggleLine(cm, "unordered-list");
+}
+
+
+/**
+ * Action for toggling ol.
+ */
+function toggleOrderedList(editor) {
+	var cm = editor.codemirror;
+	_toggleLine(cm, "ordered-list");
+}
+
+/**
+ * Action for clean block (remove headline, list, blockquote code, markers)
+ */
+function cleanBlock(editor) {
+	var cm = editor.codemirror;
+	_cleanBlock(cm);
+}
+
+/**
+ * Action for drawing a link.
+ */
+function drawLink(editor) {
+	var cm = editor.codemirror;
+	var stat = getState(cm);
+	var options = editor.options;
+	var url = "http://";
+	if(options.promptURLs) {
+		url = prompt(options.promptTexts.link);
+		if(!url) {
+			return false;
+		}
+	}
+	_replaceSelection(cm, stat.link, options.insertTexts.link, url);
+}
+
+/**
+ * Action for drawing an img.
+ */
+function drawImage(editor) {
+	var cm = editor.codemirror;
+	var stat = getState(cm);
+	var options = editor.options;
+	var url = "http://";
+	if(options.promptURLs) {
+		url = prompt(options.promptTexts.image);
+		if(!url) {
+			return false;
+		}
+	}
+	_replaceSelection(cm, stat.image, options.insertTexts.image, url);
+}
+
+/**
+ * Action for drawing a table.
+ */
+function drawTable(editor) {
+	var cm = editor.codemirror;
+	var stat = getState(cm);
+	var options = editor.options;
+	_replaceSelection(cm, stat.table, options.insertTexts.table);
+}
+
+/**
+ * Action for drawing a horizontal rule.
+ */
+function drawHorizontalRule(editor) {
+	var cm = editor.codemirror;
+	var stat = getState(cm);
+	var options = editor.options;
+	_replaceSelection(cm, stat.image, options.insertTexts.horizontalRule);
+}
+
+
+/**
+ * Undo action.
+ */
+function undo(editor) {
+	var cm = editor.codemirror;
+	cm.undo();
+	cm.focus();
+}
+
+
+/**
+ * Redo action.
+ */
+function redo(editor) {
+	var cm = editor.codemirror;
+	cm.redo();
+	cm.focus();
+}
+
+
+/**
+ * Toggle side by side preview
+ */
+function toggleSideBySide(editor) {
+	var cm = editor.codemirror;
+	var wrapper = cm.getWrapperElement();
+	var preview = wrapper.nextSibling;
+	var toolbarButton = editor.toolbarElements["side-by-side"];
+	var useSideBySideListener = false;
+	if(/editor-preview-active-side/.test(preview.className)) {
+		preview.className = preview.className.replace(
+			/\s*editor-preview-active-side\s*/g, ""
+		);
+		toolbarButton.className = toolbarButton.className.replace(/\s*active\s*/g, "");
+		wrapper.className = wrapper.className.replace(/\s*CodeMirror-sided\s*/g, " ");
+	} else {
+		// When the preview button is clicked for the first time,
+		// give some time for the transition from editor.css to fire and the view to slide from right to left,
+		// instead of just appearing.
+		setTimeout(function() {
+			if(!cm.getOption("fullScreen"))
+				toggleFullScreen(editor);
+			preview.className += " editor-preview-active-side";
+		}, 1);
+		toolbarButton.className += " active";
+		wrapper.className += " CodeMirror-sided";
+		useSideBySideListener = true;
+	}
+
+	// Hide normal preview if active
+	var previewNormal = wrapper.lastChild;
+	if(/editor-preview-active/.test(previewNormal.className)) {
+		previewNormal.className = previewNormal.className.replace(
+			/\s*editor-preview-active\s*/g, ""
+		);
+		var toolbar = editor.toolbarElements.preview;
+		var toolbar_div = wrapper.previousSibling;
+		toolbar.className = toolbar.className.replace(/\s*active\s*/g, "");
+		toolbar_div.className = toolbar_div.className.replace(/\s*disabled-for-preview*/g, "");
+	}
+
+	var sideBySideRenderingFunction = function() {
+		preview.innerHTML = editor.options.previewRender(editor.value(), preview);
+	};
+
+	if(!cm.sideBySideRenderingFunction) {
+		cm.sideBySideRenderingFunction = sideBySideRenderingFunction;
+	}
+
+	if(useSideBySideListener) {
+		preview.innerHTML = editor.options.previewRender(editor.value(), preview);
+		cm.on("update", cm.sideBySideRenderingFunction);
+	} else {
+		cm.off("update", cm.sideBySideRenderingFunction);
+	}
+
+	// Refresh to fix selection being off (#309)
+	cm.refresh();
+}
+
+
+/**
+ * Preview action.
+ */
+function togglePreview(editor) {
+	var cm = editor.codemirror;
+	var wrapper = cm.getWrapperElement();
+	var toolbar_div = wrapper.previousSibling;
+	var toolbar = editor.options.toolbar ? editor.toolbarElements.preview : false;
+	var preview = wrapper.lastChild;
+	if(!preview || !/editor-preview/.test(preview.className)) {
+		preview = document.createElement("div");
+		preview.className = "editor-preview";
+		wrapper.appendChild(preview);
+	}
+	if(/editor-preview-active/.test(preview.className)) {
+		preview.className = preview.className.replace(
+			/\s*editor-preview-active\s*/g, ""
+		);
+		if(toolbar) {
+			toolbar.className = toolbar.className.replace(/\s*active\s*/g, "");
+			toolbar_div.className = toolbar_div.className.replace(/\s*disabled-for-preview*/g, "");
+		}
+	} else {
+		// When the preview button is clicked for the first time,
+		// give some time for the transition from editor.css to fire and the view to slide from right to left,
+		// instead of just appearing.
+		setTimeout(function() {
+			preview.className += " editor-preview-active";
+		}, 1);
+		if(toolbar) {
+			toolbar.className += " active";
+			toolbar_div.className += " disabled-for-preview";
+		}
+	}
+	preview.innerHTML = editor.options.previewRender(editor.value(), preview);
+
+	// Turn off side by side if needed
+	var sidebyside = cm.getWrapperElement().nextSibling;
+	if(/editor-preview-active-side/.test(sidebyside.className))
+		toggleSideBySide(editor);
+}
+
+function _replaceSelection(cm, active, startEnd, url) {
+	if(/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
+		return;
+
+	var text;
+	var start = startEnd[0];
+	var end = startEnd[1];
+	var startPoint = cm.getCursor("start");
+	var endPoint = cm.getCursor("end");
+	if(url) {
+		end = end.replace("#url#", url);
+	}
+	if(active) {
+		text = cm.getLine(startPoint.line);
+		start = text.slice(0, startPoint.ch);
+		end = text.slice(startPoint.ch);
+		cm.replaceRange(start + end, {
+			line: startPoint.line,
+			ch: 0
+		});
+	} else {
+		text = cm.getSelection();
+		cm.replaceSelection(start + text + end);
+
+		startPoint.ch += start.length;
+		if(startPoint !== endPoint) {
+			endPoint.ch += start.length;
+		}
+	}
+	cm.setSelection(startPoint, endPoint);
+	cm.focus();
+}
+
+
+function _toggleHeading(cm, direction, size) {
+	if(/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
+		return;
+
+	var startPoint = cm.getCursor("start");
+	var endPoint = cm.getCursor("end");
+	for(var i = startPoint.line; i <= endPoint.line; i++) {
+		(function(i) {
+			var text = cm.getLine(i);
+			var currHeadingLevel = text.search(/[^#]/);
+
+			if(direction !== undefined) {
+				if(currHeadingLevel <= 0) {
+					if(direction == "bigger") {
+						text = "###### " + text;
+					} else {
+						text = "# " + text;
+					}
+				} else if(currHeadingLevel == 6 && direction == "smaller") {
+					text = text.substr(7);
+				} else if(currHeadingLevel == 1 && direction == "bigger") {
+					text = text.substr(2);
+				} else {
+					if(direction == "bigger") {
+						text = text.substr(1);
+					} else {
+						text = "#" + text;
+					}
+				}
+			} else {
+				if(size == 1) {
+					if(currHeadingLevel <= 0) {
+						text = "# " + text;
+					} else if(currHeadingLevel == size) {
+						text = text.substr(currHeadingLevel + 1);
+					} else {
+						text = "# " + text.substr(currHeadingLevel + 1);
+					}
+				} else if(size == 2) {
+					if(currHeadingLevel <= 0) {
+						text = "## " + text;
+					} else if(currHeadingLevel == size) {
+						text = text.substr(currHeadingLevel + 1);
+					} else {
+						text = "## " + text.substr(currHeadingLevel + 1);
+					}
+				} else {
+					if(currHeadingLevel <= 0) {
+						text = "### " + text;
+					} else if(currHeadingLevel == size) {
+						text = text.substr(currHeadingLevel + 1);
+					} else {
+						text = "### " + text.substr(currHeadingLevel + 1);
+					}
+				}
+			}
+
+			cm.replaceRange(text, {
+				line: i,
+				ch: 0
+			}, {
+				line: i,
+				ch: 99999999999999
+			});
+		})(i);
+	}
+	cm.focus();
+}
+
+
+function _toggleLine(cm, name) {
+	if(/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
+		return;
+
+	var stat = getState(cm);
+	var startPoint = cm.getCursor("start");
+	var endPoint = cm.getCursor("end");
+	var repl = {
+		"quote": /^(\s*)\>\s+/,
+		"unordered-list": /^(\s*)(\*|\-|\+)\s+/,
+		"ordered-list": /^(\s*)\d+\.\s+/
+	};
+	var map = {
+		"quote": "> ",
+		"unordered-list": "* ",
+		"ordered-list": "1. "
+	};
+	for(var i = startPoint.line; i <= endPoint.line; i++) {
+		(function(i) {
+			var text = cm.getLine(i);
+			if(stat[name]) {
+				text = text.replace(repl[name], "$1");
+			} else {
+				text = map[name] + text;
+			}
+			cm.replaceRange(text, {
+				line: i,
+				ch: 0
+			}, {
+				line: i,
+				ch: 99999999999999
+			});
+		})(i);
+	}
+	cm.focus();
+}
+
+function _toggleBlock(editor, type, start_chars, end_chars) {
+	if(/editor-preview-active/.test(editor.codemirror.getWrapperElement().lastChild.className))
+		return;
+
+	end_chars = (typeof end_chars === "undefined") ? start_chars : end_chars;
+	var cm = editor.codemirror;
+	var stat = getState(cm);
+
+	var text;
+	var start = start_chars;
+	var end = end_chars;
+
+	var startPoint = cm.getCursor("start");
+	var endPoint = cm.getCursor("end");
+
+	if(stat[type]) {
+		text = cm.getLine(startPoint.line);
+		start = text.slice(0, startPoint.ch);
+		end = text.slice(startPoint.ch);
+		if(type == "bold") {
+			start = start.replace(/(\*\*|__)(?![\s\S]*(\*\*|__))/, "");
+			end = end.replace(/(\*\*|__)/, "");
+		} else if(type == "italic") {
+			start = start.replace(/(\*|_)(?![\s\S]*(\*|_))/, "");
+			end = end.replace(/(\*|_)/, "");
+		} else if(type == "strikethrough") {
+			start = start.replace(/(\*\*|~~)(?![\s\S]*(\*\*|~~))/, "");
+			end = end.replace(/(\*\*|~~)/, "");
+		}
+		cm.replaceRange(start + end, {
+			line: startPoint.line,
+			ch: 0
+		}, {
+			line: startPoint.line,
+			ch: 99999999999999
 		});
 
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+		if(type == "bold" || type == "strikethrough") {
+			startPoint.ch -= 2;
+			if(startPoint !== endPoint) {
+				endPoint.ch -= 2;
+			}
+		} else if(type == "italic") {
+			startPoint.ch -= 1;
+			if(startPoint !== endPoint) {
+				endPoint.ch -= 1;
+			}
+		}
+	} else {
+		text = cm.getSelection();
+		if(type == "bold") {
+			text = text.split("**").join("");
+			text = text.split("__").join("");
+		} else if(type == "italic") {
+			text = text.split("*").join("");
+			text = text.split("_").join("");
+		} else if(type == "strikethrough") {
+			text = text.split("~~").join("");
+		}
+		cm.replaceSelection(start + text + end);
+
+		startPoint.ch += start_chars.length;
+		endPoint.ch = startPoint.ch + text.length;
 	}
 
-	return [content].join('\n');
+	cm.setSelection(startPoint, endPoint);
+	cm.focus();
 }
 
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+function _cleanBlock(cm) {
+	if(/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
+		return;
 
-	return '/*# ' + data + ' */';
+	var startPoint = cm.getCursor("start");
+	var endPoint = cm.getCursor("end");
+	var text;
+
+	for(var line = startPoint.line; line <= endPoint.line; line++) {
+		text = cm.getLine(line);
+		text = text.replace(/^[ ]*([# ]+|\*|\-|[> ]+|[0-9]+(.|\)))[ ]*/, "");
+
+		cm.replaceRange(text, {
+			line: line,
+			ch: 0
+		}, {
+			line: line,
+			ch: 99999999999999
+		});
+	}
 }
 
+// Merge the properties of one object into another.
+function _mergeProperties(target, source) {
+	for(var property in source) {
+		if(source.hasOwnProperty(property)) {
+			if(source[property] instanceof Array) {
+				target[property] = source[property].concat(target[property] instanceof Array ? target[property] : []);
+			} else if(
+				source[property] !== null &&
+				typeof source[property] === "object" &&
+				source[property].constructor === Object
+			) {
+				target[property] = _mergeProperties(target[property] || {}, source[property]);
+			} else {
+				target[property] = source[property];
+			}
+		}
+	}
+
+	return target;
+}
+
+// Merge an arbitrary number of objects into one.
+function extend(target) {
+	for(var i = 1; i < arguments.length; i++) {
+		target = _mergeProperties(target, arguments[i]);
+	}
+
+	return target;
+}
+
+/* The right word count in respect for CJK. */
+function wordCount(data) {
+	var pattern = /[a-zA-Z0-9_\u0392-\u03c9\u0410-\u04F9]+|[\u4E00-\u9FFF\u3400-\u4dbf\uf900-\ufaff\u3040-\u309f\uac00-\ud7af]+/g;
+	var m = data.match(pattern);
+	var count = 0;
+	if(m === null) return count;
+	for(var i = 0; i < m.length; i++) {
+		if(m[i].charCodeAt(0) >= 0x4E00) {
+			count += m[i].length;
+		} else {
+			count += 1;
+		}
+	}
+	return count;
+}
+
+var toolbarBuiltInButtons = {
+	"bold": {
+		name: "bold",
+		action: toggleBold,
+		className: "fa fa-bold",
+		title: "Bold",
+		default: true
+	},
+	"italic": {
+		name: "italic",
+		action: toggleItalic,
+		className: "fa fa-italic",
+		title: "Italic",
+		default: true
+	},
+	"strikethrough": {
+		name: "strikethrough",
+		action: toggleStrikethrough,
+		className: "fa fa-strikethrough",
+		title: "Strikethrough"
+	},
+	"heading": {
+		name: "heading",
+		action: toggleHeadingSmaller,
+		className: "fa fa-header",
+		title: "Heading",
+		default: true
+	},
+	"heading-smaller": {
+		name: "heading-smaller",
+		action: toggleHeadingSmaller,
+		className: "fa fa-header fa-header-x fa-header-smaller",
+		title: "Smaller Heading"
+	},
+	"heading-bigger": {
+		name: "heading-bigger",
+		action: toggleHeadingBigger,
+		className: "fa fa-header fa-header-x fa-header-bigger",
+		title: "Bigger Heading"
+	},
+	"heading-1": {
+		name: "heading-1",
+		action: toggleHeading1,
+		className: "fa fa-header fa-header-x fa-header-1",
+		title: "Big Heading"
+	},
+	"heading-2": {
+		name: "heading-2",
+		action: toggleHeading2,
+		className: "fa fa-header fa-header-x fa-header-2",
+		title: "Medium Heading"
+	},
+	"heading-3": {
+		name: "heading-3",
+		action: toggleHeading3,
+		className: "fa fa-header fa-header-x fa-header-3",
+		title: "Small Heading"
+	},
+	"separator-1": {
+		name: "separator-1"
+	},
+	"code": {
+		name: "code",
+		action: toggleCodeBlock,
+		className: "fa fa-code",
+		title: "Code"
+	},
+	"quote": {
+		name: "quote",
+		action: toggleBlockquote,
+		className: "fa fa-quote-left",
+		title: "Quote",
+		default: true
+	},
+	"unordered-list": {
+		name: "unordered-list",
+		action: toggleUnorderedList,
+		className: "fa fa-list-ul",
+		title: "Generic List",
+		default: true
+	},
+	"ordered-list": {
+		name: "ordered-list",
+		action: toggleOrderedList,
+		className: "fa fa-list-ol",
+		title: "Numbered List",
+		default: true
+	},
+	"clean-block": {
+		name: "clean-block",
+		action: cleanBlock,
+		className: "fa fa-eraser fa-clean-block",
+		title: "Clean block"
+	},
+	"separator-2": {
+		name: "separator-2"
+	},
+	"link": {
+		name: "link",
+		action: drawLink,
+		className: "fa fa-link",
+		title: "Create Link",
+		default: true
+	},
+	"image": {
+		name: "image",
+		action: drawImage,
+		className: "fa fa-picture-o",
+		title: "Insert Image",
+		default: true
+	},
+	"table": {
+		name: "table",
+		action: drawTable,
+		className: "fa fa-table",
+		title: "Insert Table"
+	},
+	"horizontal-rule": {
+		name: "horizontal-rule",
+		action: drawHorizontalRule,
+		className: "fa fa-minus",
+		title: "Insert Horizontal Line"
+	},
+	"separator-3": {
+		name: "separator-3"
+	},
+	"preview": {
+		name: "preview",
+		action: togglePreview,
+		className: "fa fa-eye no-disable",
+		title: "Toggle Preview",
+		default: true
+	},
+	"side-by-side": {
+		name: "side-by-side",
+		action: toggleSideBySide,
+		className: "fa fa-columns no-disable no-mobile",
+		title: "Toggle Side by Side",
+		default: true
+	},
+	"fullscreen": {
+		name: "fullscreen",
+		action: toggleFullScreen,
+		className: "fa fa-arrows-alt no-disable no-mobile",
+		title: "Toggle Fullscreen",
+		default: true
+	},
+	"separator-4": {
+		name: "separator-4"
+	},
+	"guide": {
+		name: "guide",
+		action: "https://simplemde.com/markdown-guide",
+		className: "fa fa-question-circle",
+		title: "Markdown Guide",
+		default: true
+	},
+	"separator-5": {
+		name: "separator-5"
+	},
+	"undo": {
+		name: "undo",
+		action: undo,
+		className: "fa fa-undo no-disable",
+		title: "Undo"
+	},
+	"redo": {
+		name: "redo",
+		action: redo,
+		className: "fa fa-repeat no-disable",
+		title: "Redo"
+	}
+};
+
+var insertTexts = {
+	link: ["[", "](#url#)"],
+	image: ["![](", "#url#)"],
+	table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text     | Text     |\n\n"],
+	horizontalRule: ["", "\n\n-----\n\n"]
+};
+
+var promptTexts = {
+	link: "URL for the link:",
+	image: "URL of the image:"
+};
+
+var blockStyles = {
+	"bold": "**",
+	"code": "```",
+	"italic": "*"
+};
+
+/**
+ * Interface of SimpleMDE.
+ */
+function SimpleMDE(options) {
+	// Handle options parameter
+	options = options || {};
+
+
+	// Used later to refer to it"s parent
+	options.parent = this;
+
+
+	// Check if Font Awesome needs to be auto downloaded
+	var autoDownloadFA = true;
+
+	if(options.autoDownloadFontAwesome === false) {
+		autoDownloadFA = false;
+	}
+
+	if(options.autoDownloadFontAwesome !== true) {
+		var styleSheets = document.styleSheets;
+		for(var i = 0; i < styleSheets.length; i++) {
+			if(!styleSheets[i].href)
+				continue;
+
+			if(styleSheets[i].href.indexOf("//maxcdn.bootstrapcdn.com/font-awesome/") > -1) {
+				autoDownloadFA = false;
+			}
+		}
+	}
+
+	if(autoDownloadFA) {
+		var link = document.createElement("link");
+		link.rel = "stylesheet";
+		link.href = "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css";
+		document.getElementsByTagName("head")[0].appendChild(link);
+	}
+
+
+	// Find the textarea to use
+	if(options.element) {
+		this.element = options.element;
+	} else if(options.element === null) {
+		// This means that the element option was specified, but no element was found
+		console.log("SimpleMDE: Error. No element was found.");
+		return;
+	}
+
+
+	// Handle toolbar
+	if(options.toolbar === undefined) {
+		// Initialize
+		options.toolbar = [];
+
+
+		// Loop over the built in buttons, to get the preferred order
+		for(var key in toolbarBuiltInButtons) {
+			if(toolbarBuiltInButtons.hasOwnProperty(key)) {
+				if(key.indexOf("separator-") != -1) {
+					options.toolbar.push("|");
+				}
+
+				if(toolbarBuiltInButtons[key].default === true || (options.showIcons && options.showIcons.constructor === Array && options.showIcons.indexOf(key) != -1)) {
+					options.toolbar.push(key);
+				}
+			}
+		}
+	}
+
+
+	// Handle status bar
+	if(!options.hasOwnProperty("status")) {
+		options.status = ["autosave", "lines", "words", "cursor"];
+	}
+
+
+	// Add default preview rendering function
+	if(!options.previewRender) {
+		options.previewRender = function(plainText) {
+			// Note: "this" refers to the options object
+			return this.parent.markdown(plainText);
+		};
+	}
+
+
+	// Set default options for parsing config
+	options.parsingConfig = extend({
+		highlightFormatting: true // needed for toggleCodeBlock to detect types of code
+	}, options.parsingConfig || {});
+
+
+	// Merging the insertTexts, with the given options
+	options.insertTexts = extend({}, insertTexts, options.insertTexts || {});
+
+
+	// Merging the promptTexts, with the given options
+	options.promptTexts = promptTexts;
+
+
+	// Merging the blockStyles, with the given options
+	options.blockStyles = extend({}, blockStyles, options.blockStyles || {});
+
+
+	// Merging the shortcuts, with the given options
+	options.shortcuts = extend({}, shortcuts, options.shortcuts || {});
+
+
+	// Change unique_id to uniqueId for backwards compatibility
+	if(options.autosave != undefined && options.autosave.unique_id != undefined && options.autosave.unique_id != "")
+		options.autosave.uniqueId = options.autosave.unique_id;
+
+
+	// Update this options
+	this.options = options;
+
+
+	// Auto render
+	this.render();
+
+
+	// The codemirror component is only available after rendering
+	// so, the setter for the initialValue can only run after
+	// the element has been rendered
+	if(options.initialValue && (!this.options.autosave || this.options.autosave.foundSavedValue !== true)) {
+		this.value(options.initialValue);
+	}
+}
+
+/**
+ * Default markdown render.
+ */
+SimpleMDE.prototype.markdown = function(text) {
+	if(marked) {
+		// Initialize
+		var markedOptions = {};
+
+
+		// Update options
+		if(this.options && this.options.renderingConfig && this.options.renderingConfig.singleLineBreaks === false) {
+			markedOptions.breaks = false;
+		} else {
+			markedOptions.breaks = true;
+		}
+
+		if(this.options && this.options.renderingConfig && this.options.renderingConfig.codeSyntaxHighlighting === true && window.hljs) {
+			markedOptions.highlight = function(code) {
+				return window.hljs.highlightAuto(code).value;
+			};
+		}
+
+
+		// Set options
+		marked.setOptions(markedOptions);
+
+
+		// Return
+		return marked(text);
+	}
+};
+
+/**
+ * Render editor to the given element.
+ */
+SimpleMDE.prototype.render = function(el) {
+	if(!el) {
+		el = this.element || document.getElementsByTagName("textarea")[0];
+	}
+
+	if(this._rendered && this._rendered === el) {
+		// Already rendered.
+		return;
+	}
+
+	this.element = el;
+	var options = this.options;
+
+	var self = this;
+	var keyMaps = {};
+
+	for(var key in options.shortcuts) {
+		// null stands for "do not bind this command"
+		if(options.shortcuts[key] !== null && bindings[key] !== null) {
+			(function(key) {
+				keyMaps[fixShortcut(options.shortcuts[key])] = function() {
+					bindings[key](self);
+				};
+			})(key);
+		}
+	}
+
+	keyMaps["Enter"] = "newlineAndIndentContinueMarkdownList";
+	keyMaps["Tab"] = "tabAndIndentMarkdownList";
+	keyMaps["Shift-Tab"] = "shiftTabAndUnindentMarkdownList";
+	keyMaps["Esc"] = function(cm) {
+		if(cm.getOption("fullScreen")) toggleFullScreen(self);
+	};
+
+	document.addEventListener("keydown", function(e) {
+		e = e || window.event;
+
+		if(e.keyCode == 27) {
+			if(self.codemirror.getOption("fullScreen")) toggleFullScreen(self);
+		}
+	}, false);
+
+	var mode, backdrop;
+	if(options.spellChecker !== false) {
+		mode = "spell-checker";
+		backdrop = options.parsingConfig;
+		backdrop.name = "gfm";
+		backdrop.gitHubSpice = false;
+
+		CodeMirrorSpellChecker({
+			codeMirrorInstance: CodeMirror
+		});
+	} else {
+		mode = options.parsingConfig;
+		mode.name = "gfm";
+		mode.gitHubSpice = false;
+	}
+
+	this.codemirror = CodeMirror.fromTextArea(el, {
+		mode: mode,
+		backdrop: backdrop,
+		theme: "paper",
+		tabSize: (options.tabSize != undefined) ? options.tabSize : 2,
+		indentUnit: (options.tabSize != undefined) ? options.tabSize : 2,
+		indentWithTabs: (options.indentWithTabs === false) ? false : true,
+		lineNumbers: false,
+		autofocus: (options.autofocus === true) ? true : false,
+		extraKeys: keyMaps,
+		lineWrapping: (options.lineWrapping === false) ? false : true,
+		allowDropFileTypes: ["text/plain"],
+		placeholder: options.placeholder || el.getAttribute("placeholder") || "",
+		styleSelectedText: (options.styleSelectedText != undefined) ? options.styleSelectedText : true
+	});
+
+	if(options.forceSync === true) {
+		var cm = this.codemirror;
+		cm.on("change", function() {
+			cm.save();
+		});
+	}
+
+	this.gui = {};
+
+	if(options.toolbar !== false) {
+		this.gui.toolbar = this.createToolbar();
+	}
+	if(options.status !== false) {
+		this.gui.statusbar = this.createStatusbar();
+	}
+	if(options.autosave != undefined && options.autosave.enabled === true) {
+		this.autosave();
+	}
+
+	this.gui.sideBySide = this.createSideBySide();
+
+	this._rendered = this.element;
+
+
+	// Fixes CodeMirror bug (#344)
+	var temp_cm = this.codemirror;
+	setTimeout(function() {
+		temp_cm.refresh();
+	}.bind(temp_cm), 0);
+};
+
+// Safari, in Private Browsing Mode, looks like it supports localStorage but all calls to setItem throw QuotaExceededError. We're going to detect this and set a variable accordingly.
+function isLocalStorageAvailable() {
+	if(typeof localStorage === "object") {
+		try {
+			localStorage.setItem("smde_localStorage", 1);
+			localStorage.removeItem("smde_localStorage");
+		} catch(e) {
+			return false;
+		}
+	} else {
+		return false;
+	}
+
+	return true;
+}
+
+SimpleMDE.prototype.autosave = function() {
+	if(isLocalStorageAvailable()) {
+		var simplemde = this;
+
+		if(this.options.autosave.uniqueId == undefined || this.options.autosave.uniqueId == "") {
+			console.log("SimpleMDE: You must set a uniqueId to use the autosave feature");
+			return;
+		}
+
+		if(simplemde.element.form != null && simplemde.element.form != undefined) {
+			simplemde.element.form.addEventListener("submit", function() {
+				localStorage.removeItem("smde_" + simplemde.options.autosave.uniqueId);
+			});
+		}
+
+		if(this.options.autosave.loaded !== true) {
+			if(typeof localStorage.getItem("smde_" + this.options.autosave.uniqueId) == "string" && localStorage.getItem("smde_" + this.options.autosave.uniqueId) != "") {
+				this.codemirror.setValue(localStorage.getItem("smde_" + this.options.autosave.uniqueId));
+				this.options.autosave.foundSavedValue = true;
+			}
+
+			this.options.autosave.loaded = true;
+		}
+
+		localStorage.setItem("smde_" + this.options.autosave.uniqueId, simplemde.value());
+
+		var el = document.getElementById("autosaved");
+		if(el != null && el != undefined && el != "") {
+			var d = new Date();
+			var hh = d.getHours();
+			var m = d.getMinutes();
+			var dd = "am";
+			var h = hh;
+			if(h >= 12) {
+				h = hh - 12;
+				dd = "pm";
+			}
+			if(h == 0) {
+				h = 12;
+			}
+			m = m < 10 ? "0" + m : m;
+
+			el.innerHTML = "Autosaved: " + h + ":" + m + " " + dd;
+		}
+
+		this.autosaveTimeoutId = setTimeout(function() {
+			simplemde.autosave();
+		}, this.options.autosave.delay || 10000);
+	} else {
+		console.log("SimpleMDE: localStorage not available, cannot autosave");
+	}
+};
+
+SimpleMDE.prototype.clearAutosavedValue = function() {
+	if(isLocalStorageAvailable()) {
+		if(this.options.autosave == undefined || this.options.autosave.uniqueId == undefined || this.options.autosave.uniqueId == "") {
+			console.log("SimpleMDE: You must set a uniqueId to clear the autosave value");
+			return;
+		}
+
+		localStorage.removeItem("smde_" + this.options.autosave.uniqueId);
+	} else {
+		console.log("SimpleMDE: localStorage not available, cannot autosave");
+	}
+};
+
+SimpleMDE.prototype.createSideBySide = function() {
+	var cm = this.codemirror;
+	var wrapper = cm.getWrapperElement();
+	var preview = wrapper.nextSibling;
+
+	if(!preview || !/editor-preview-side/.test(preview.className)) {
+		preview = document.createElement("div");
+		preview.className = "editor-preview-side";
+		wrapper.parentNode.insertBefore(preview, wrapper.nextSibling);
+	}
+
+	// Syncs scroll  editor -> preview
+	var cScroll = false;
+	var pScroll = false;
+	cm.on("scroll", function(v) {
+		if(cScroll) {
+			cScroll = false;
+			return;
+		}
+		pScroll = true;
+		var height = v.getScrollInfo().height - v.getScrollInfo().clientHeight;
+		var ratio = parseFloat(v.getScrollInfo().top) / height;
+		var move = (preview.scrollHeight - preview.clientHeight) * ratio;
+		preview.scrollTop = move;
+	});
+
+	// Syncs scroll  preview -> editor
+	preview.onscroll = function() {
+		if(pScroll) {
+			pScroll = false;
+			return;
+		}
+		cScroll = true;
+		var height = preview.scrollHeight - preview.clientHeight;
+		var ratio = parseFloat(preview.scrollTop) / height;
+		var move = (cm.getScrollInfo().height - cm.getScrollInfo().clientHeight) * ratio;
+		cm.scrollTo(0, move);
+	};
+	return preview;
+};
+
+SimpleMDE.prototype.createToolbar = function(items) {
+	items = items || this.options.toolbar;
+
+	if(!items || items.length === 0) {
+		return;
+	}
+	var i;
+	for(i = 0; i < items.length; i++) {
+		if(toolbarBuiltInButtons[items[i]] != undefined) {
+			items[i] = toolbarBuiltInButtons[items[i]];
+		}
+	}
+
+	var bar = document.createElement("div");
+	bar.className = "editor-toolbar";
+
+	var self = this;
+
+	var toolbarData = {};
+	self.toolbar = items;
+
+	for(i = 0; i < items.length; i++) {
+		if(items[i].name == "guide" && self.options.toolbarGuideIcon === false)
+			continue;
+
+		if(self.options.hideIcons && self.options.hideIcons.indexOf(items[i].name) != -1)
+			continue;
+
+		// Fullscreen does not work well on mobile devices (even tablets)
+		// In the future, hopefully this can be resolved
+		if((items[i].name == "fullscreen" || items[i].name == "side-by-side") && isMobile())
+			continue;
+
+
+		// Don't include trailing separators
+		if(items[i] === "|") {
+			var nonSeparatorIconsFollow = false;
+
+			for(var x = (i + 1); x < items.length; x++) {
+				if(items[x] !== "|" && (!self.options.hideIcons || self.options.hideIcons.indexOf(items[x].name) == -1)) {
+					nonSeparatorIconsFollow = true;
+				}
+			}
+
+			if(!nonSeparatorIconsFollow)
+				continue;
+		}
+
+
+		// Create the icon and append to the toolbar
+		(function(item) {
+			var el;
+			if(item === "|") {
+				el = createSep();
+			} else {
+				el = createIcon(item, self.options.toolbarTips, self.options.shortcuts);
+			}
+
+			// bind events, special for info
+			if(item.action) {
+				if(typeof item.action === "function") {
+					el.onclick = function(e) {
+						e.preventDefault();
+						item.action(self);
+					};
+				} else if(typeof item.action === "string") {
+					el.href = item.action;
+					el.target = "_blank";
+				}
+			}
+
+			toolbarData[item.name || item] = el;
+			bar.appendChild(el);
+		})(items[i]);
+	}
+
+	self.toolbarElements = toolbarData;
+
+	var cm = this.codemirror;
+	cm.on("cursorActivity", function() {
+		var stat = getState(cm);
+
+		for(var key in toolbarData) {
+			(function(key) {
+				var el = toolbarData[key];
+				if(stat[key]) {
+					el.className += " active";
+				} else if(key != "fullscreen" && key != "side-by-side") {
+					el.className = el.className.replace(/\s*active\s*/g, "");
+				}
+			})(key);
+		}
+	});
+
+	var cmWrapper = cm.getWrapperElement();
+	cmWrapper.parentNode.insertBefore(bar, cmWrapper);
+	return bar;
+};
+
+SimpleMDE.prototype.createStatusbar = function(status) {
+	// Initialize
+	status = status || this.options.status;
+	var options = this.options;
+	var cm = this.codemirror;
+
+
+	// Make sure the status variable is valid
+	if(!status || status.length === 0)
+		return;
+
+
+	// Set up the built-in items
+	var items = [];
+	var i, onUpdate, defaultValue;
+
+	for(i = 0; i < status.length; i++) {
+		// Reset some values
+		onUpdate = undefined;
+		defaultValue = undefined;
+
+
+		// Handle if custom or not
+		if(typeof status[i] === "object") {
+			items.push({
+				className: status[i].className,
+				defaultValue: status[i].defaultValue,
+				onUpdate: status[i].onUpdate
+			});
+		} else {
+			var name = status[i];
+
+			if(name === "words") {
+				defaultValue = function(el) {
+					el.innerHTML = wordCount(cm.getValue());
+				};
+				onUpdate = function(el) {
+					el.innerHTML = wordCount(cm.getValue());
+				};
+			} else if(name === "lines") {
+				defaultValue = function(el) {
+					el.innerHTML = cm.lineCount();
+				};
+				onUpdate = function(el) {
+					el.innerHTML = cm.lineCount();
+				};
+			} else if(name === "cursor") {
+				defaultValue = function(el) {
+					el.innerHTML = "0:0";
+				};
+				onUpdate = function(el) {
+					var pos = cm.getCursor();
+					el.innerHTML = pos.line + ":" + pos.ch;
+				};
+			} else if(name === "autosave") {
+				defaultValue = function(el) {
+					if(options.autosave != undefined && options.autosave.enabled === true) {
+						el.setAttribute("id", "autosaved");
+					}
+				};
+			}
+
+			items.push({
+				className: name,
+				defaultValue: defaultValue,
+				onUpdate: onUpdate
+			});
+		}
+	}
+
+
+	// Create element for the status bar
+	var bar = document.createElement("div");
+	bar.className = "editor-statusbar";
+
+
+	// Create a new span for each item
+	for(i = 0; i < items.length; i++) {
+		// Store in temporary variable
+		var item = items[i];
+
+
+		// Create span element
+		var el = document.createElement("span");
+		el.className = item.className;
+
+
+		// Ensure the defaultValue is a function
+		if(typeof item.defaultValue === "function") {
+			item.defaultValue(el);
+		}
+
+
+		// Ensure the onUpdate is a function
+		if(typeof item.onUpdate === "function") {
+			// Create a closure around the span of the current action, then execute the onUpdate handler
+			this.codemirror.on("update", (function(el, item) {
+				return function() {
+					item.onUpdate(el);
+				};
+			}(el, item)));
+		}
+
+
+		// Append the item to the status bar
+		bar.appendChild(el);
+	}
+
+
+	// Insert the status bar into the DOM
+	var cmWrapper = this.codemirror.getWrapperElement();
+	cmWrapper.parentNode.insertBefore(bar, cmWrapper.nextSibling);
+	return bar;
+};
+
+/**
+ * Get or set the text content.
+ */
+SimpleMDE.prototype.value = function(val) {
+	if(val === undefined) {
+		return this.codemirror.getValue();
+	} else {
+		this.codemirror.getDoc().setValue(val);
+		return this;
+	}
+};
+
+
+/**
+ * Bind static methods for exports.
+ */
+SimpleMDE.toggleBold = toggleBold;
+SimpleMDE.toggleItalic = toggleItalic;
+SimpleMDE.toggleStrikethrough = toggleStrikethrough;
+SimpleMDE.toggleBlockquote = toggleBlockquote;
+SimpleMDE.toggleHeadingSmaller = toggleHeadingSmaller;
+SimpleMDE.toggleHeadingBigger = toggleHeadingBigger;
+SimpleMDE.toggleHeading1 = toggleHeading1;
+SimpleMDE.toggleHeading2 = toggleHeading2;
+SimpleMDE.toggleHeading3 = toggleHeading3;
+SimpleMDE.toggleCodeBlock = toggleCodeBlock;
+SimpleMDE.toggleUnorderedList = toggleUnorderedList;
+SimpleMDE.toggleOrderedList = toggleOrderedList;
+SimpleMDE.cleanBlock = cleanBlock;
+SimpleMDE.drawLink = drawLink;
+SimpleMDE.drawImage = drawImage;
+SimpleMDE.drawTable = drawTable;
+SimpleMDE.drawHorizontalRule = drawHorizontalRule;
+SimpleMDE.undo = undo;
+SimpleMDE.redo = redo;
+SimpleMDE.togglePreview = togglePreview;
+SimpleMDE.toggleSideBySide = toggleSideBySide;
+SimpleMDE.toggleFullScreen = toggleFullScreen;
+
+/**
+ * Bind instance methods for exports.
+ */
+SimpleMDE.prototype.toggleBold = function() {
+	toggleBold(this);
+};
+SimpleMDE.prototype.toggleItalic = function() {
+	toggleItalic(this);
+};
+SimpleMDE.prototype.toggleStrikethrough = function() {
+	toggleStrikethrough(this);
+};
+SimpleMDE.prototype.toggleBlockquote = function() {
+	toggleBlockquote(this);
+};
+SimpleMDE.prototype.toggleHeadingSmaller = function() {
+	toggleHeadingSmaller(this);
+};
+SimpleMDE.prototype.toggleHeadingBigger = function() {
+	toggleHeadingBigger(this);
+};
+SimpleMDE.prototype.toggleHeading1 = function() {
+	toggleHeading1(this);
+};
+SimpleMDE.prototype.toggleHeading2 = function() {
+	toggleHeading2(this);
+};
+SimpleMDE.prototype.toggleHeading3 = function() {
+	toggleHeading3(this);
+};
+SimpleMDE.prototype.toggleCodeBlock = function() {
+	toggleCodeBlock(this);
+};
+SimpleMDE.prototype.toggleUnorderedList = function() {
+	toggleUnorderedList(this);
+};
+SimpleMDE.prototype.toggleOrderedList = function() {
+	toggleOrderedList(this);
+};
+SimpleMDE.prototype.cleanBlock = function() {
+	cleanBlock(this);
+};
+SimpleMDE.prototype.drawLink = function() {
+	drawLink(this);
+};
+SimpleMDE.prototype.drawImage = function() {
+	drawImage(this);
+};
+SimpleMDE.prototype.drawTable = function() {
+	drawTable(this);
+};
+SimpleMDE.prototype.drawHorizontalRule = function() {
+	drawHorizontalRule(this);
+};
+SimpleMDE.prototype.undo = function() {
+	undo(this);
+};
+SimpleMDE.prototype.redo = function() {
+	redo(this);
+};
+SimpleMDE.prototype.togglePreview = function() {
+	togglePreview(this);
+};
+SimpleMDE.prototype.toggleSideBySide = function() {
+	toggleSideBySide(this);
+};
+SimpleMDE.prototype.toggleFullScreen = function() {
+	toggleFullScreen(this);
+};
+
+SimpleMDE.prototype.isPreviewActive = function() {
+	var cm = this.codemirror;
+	var wrapper = cm.getWrapperElement();
+	var preview = wrapper.lastChild;
+
+	return /editor-preview-active/.test(preview.className);
+};
+
+SimpleMDE.prototype.isSideBySideActive = function() {
+	var cm = this.codemirror;
+	var wrapper = cm.getWrapperElement();
+	var preview = wrapper.nextSibling;
+
+	return /editor-preview-active-side/.test(preview.className);
+};
+
+SimpleMDE.prototype.isFullscreenActive = function() {
+	var cm = this.codemirror;
+
+	return cm.getOption("fullScreen");
+};
+
+SimpleMDE.prototype.getState = function() {
+	var cm = this.codemirror;
+
+	return getState(cm);
+};
+
+SimpleMDE.prototype.toTextArea = function() {
+	var cm = this.codemirror;
+	var wrapper = cm.getWrapperElement();
+
+	if(wrapper.parentNode) {
+		if(this.gui.toolbar) {
+			wrapper.parentNode.removeChild(this.gui.toolbar);
+		}
+		if(this.gui.statusbar) {
+			wrapper.parentNode.removeChild(this.gui.statusbar);
+		}
+		if(this.gui.sideBySide) {
+			wrapper.parentNode.removeChild(this.gui.sideBySide);
+		}
+	}
+
+	cm.toTextArea();
+
+	if(this.autosaveTimeoutId) {
+		clearTimeout(this.autosaveTimeoutId);
+		this.autosaveTimeoutId = undefined;
+		this.clearAutosavedValue();
+	}
+};
+
+module.exports = SimpleMDE;
 
 /***/ }),
 /* 43 */
@@ -56554,7 +58525,7 @@ function toComment(sourceMap) {
 
 (function(mod) {
   if (true) // CommonJS
-    mod(__webpack_require__(4), __webpack_require__(44), __webpack_require__(94));
+    mod(__webpack_require__(4), __webpack_require__(44), __webpack_require__(95));
   else if (typeof define == "function" && define.amd) // AMD
     define(["../../lib/codemirror", "../xml/xml", "../meta"], mod);
   else // Plain browser env
@@ -57912,16 +59883,47 @@ CodeMirror.overlayMode = function(base, overlay, combine) {
 /* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(47);
-__webpack_require__(116);
-__webpack_require__(117);
-__webpack_require__(118);
-__webpack_require__(119);
-module.exports = __webpack_require__(120);
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
+// load the styles
+var content = __webpack_require__(107);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(109)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../css-loader/index.js!./github.css", function() {
+			var newContent = require("!!../../css-loader/index.js!./github.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 /* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(48);
+__webpack_require__(127);
+__webpack_require__(128);
+__webpack_require__(129);
+__webpack_require__(130);
+module.exports = __webpack_require__(131);
+
+
+/***/ }),
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57929,12 +59931,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_routes_user__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_router__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dashboard_Dashboard_vue__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_router__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dashboard_Dashboard_vue__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dashboard_Dashboard_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__dashboard_Dashboard_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_store__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_router__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_store__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_router__ = __webpack_require__(79);
 
 
 __webpack_require__(11);
@@ -57962,6 +59964,12 @@ var router = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
     routes: __WEBPACK_IMPORTED_MODULE_6__app_router__["a" /* default */]
 });
 
+router.beforeEach(function (to, from, next) {
+    var view = document.getElementById('content');
+    if (view) view.scrollTop = 0;
+    next();
+});
+
 var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
     el: "#app",
     store: store,
@@ -57971,7 +59979,7 @@ var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
 });
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58038,7 +60046,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.$store.getters['userManagement/roles'];
         },
         canModify: function canModify() {
-            return this.$store.getters['userManagement/userRole'] === 1;
+            return this.$store.getters['userManagement/currentUserRole'] === 1;
         }
     },
     methods: {
@@ -58050,17 +60058,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         queueToUpdate: function queueToUpdate(user) {
             var newRole = $("#select_" + user.id + " :selected").val();
-            console.log(newRole);
             if (newRole !== user.roles[0].name) this.$store.commit('userManagement/stageChange', [user, newRole]);else this.$store.commit('userManagement/unstageChange', user);
         }
     },
     created: function created() {
         this.$store.commit('userManagement/requestList');
+
+        var pusher = this.$store.getters['main/pusher'];
+        var handler = function handler(object) {
+            return function () {
+                object.$store.commit('userManagement/requestList');
+            };
+        };
+        var channel = pusher.subscribe('user-management-channel');
+        channel.bind('user-change-event', handler(this));
     }
 });
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -58217,15 +60233,15 @@ if (false) {
 }
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(51)
+var __vue_script__ = __webpack_require__(52)
 /* template */
-var __vue_template__ = __webpack_require__(52)
+var __vue_template__ = __webpack_require__(53)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -58265,7 +60281,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58335,7 +60351,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         _token: this.token
                     }
                 }).then(function (response) {
-                    console.log(response);
                     _this.$router.push({ name: 'users' });
                 }).catch(function (error) {
                     console.log(error);
@@ -58346,7 +60361,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -58540,11 +60555,14 @@ if (false) {
 }
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -58565,7 +60583,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -58573,10 +60591,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("transition", { attrs: { name: "fade" } }, [
-    _c("nav", { staticClass: "navbar-nav rcms-submenu" }, [
-      _c("a", { staticClass: "nav-link", on: { click: _vm.back } }, [
-        _c("div", { staticClass: "fa fa-arrow-left" }),
-        _c("span", [_vm._v("Back")])
+    _c("section", { staticClass: "rcms-menu-bottom" }, [
+      _c("h5", [_vm._v("Actions")]),
+      _vm._v(" "),
+      _c("nav", { staticClass: "navbar-nav rcms-submenu" }, [
+        _c("a", { staticClass: "nav-link", on: { click: _vm.back } }, [
+          _c("div", { staticClass: "fa fa-arrow-left" }),
+          _c("span", [_vm._v("Back")])
+        ])
       ])
     ])
   ])
@@ -58592,15 +60614,15 @@ if (false) {
 }
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(56)
+var __vue_script__ = __webpack_require__(57)
 /* template */
-var __vue_template__ = __webpack_require__(57)
+var __vue_template__ = __webpack_require__(58)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -58640,11 +60662,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -58671,17 +60696,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         saveChanges: function saveChanges() {
             this.$store.commit('userManagement/requestUpdate');
         },
-        addUserForm: function addUserForm() {
+        addPageForm: function addUserForm() {
             this.$router.push({ name: 'addUserView' });
         },
         show: function show() {
-            return this.$store.getters['userManagement/userRole'] === 1;
+            return this.$store.getters['userManagement/currentUserRole'] === 1;
         }
     }
 });
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -58689,27 +60714,43 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("transition", { attrs: { name: "fade" } }, [
-    _c("nav", { staticClass: "navbar-nav rcms-submenu" }, [
-      _vm.show()
-        ? _c("a", { staticClass: "nav-link", on: { click: _vm.addUserForm } }, [
-            _c("div", { staticClass: "fa fa-user-plus" }),
-            _c("span", [_vm._v("Add")])
-          ])
-        : _vm._e(),
+    _c("section", { staticClass: "rcms-menu-bottom" }, [
+      _c("h5", [_vm._v("Actions")]),
       _vm._v(" "),
-      _vm.show()
-        ? _c("a", { staticClass: "nav-link", on: { click: _vm.removeUser } }, [
-            _c("div", { staticClass: "fa fa-remove" }),
-            _c("span", [_vm._v("Remove")])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.show()
-        ? _c("a", { staticClass: "nav-link", on: { click: _vm.saveChanges } }, [
-            _c("div", { staticClass: "fa fa-check" }),
-            _c("span", [_vm._v("Save")])
-          ])
-        : _vm._e()
+      _c("nav", { staticClass: "navbar-nav rcms-submenu" }, [
+        _vm.show()
+          ? _c(
+              "a",
+              { staticClass: "nav-link", on: { click: _vm.addPageForm } },
+              [
+                _c("div", { staticClass: "fa fa-user-plus" }),
+                _c("span", [_vm._v("Add")])
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.show()
+          ? _c(
+              "a",
+              { staticClass: "nav-link", on: { click: _vm.removeUser } },
+              [
+                _c("div", { staticClass: "fa fa-remove" }),
+                _c("span", [_vm._v("Remove")])
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.show()
+          ? _c(
+              "a",
+              { staticClass: "nav-link", on: { click: _vm.saveChanges } },
+              [
+                _c("div", { staticClass: "fa fa-check" }),
+                _c("span", [_vm._v("Save")])
+              ]
+            )
+          : _vm._e()
+      ])
     ])
   ])
 }
@@ -58724,7 +60765,7 @@ if (false) {
 }
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61354,7 +63395,7 @@ if (inBrowser && window.Vue) {
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62299,15 +64340,15 @@ var index_esm = {
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(61)
+var __vue_script__ = __webpack_require__(62)
 /* template */
-var __vue_template__ = __webpack_require__(68)
+var __vue_template__ = __webpack_require__(72)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -62347,17 +64388,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_user_UsersTable_vue__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_user_UsersTable_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_user_UsersTable_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_MainMenu_vue__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_MainMenu_vue__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_MainMenu_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_MainMenu_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Topbar_vue__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Topbar_vue__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Topbar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Topbar_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_popup_Popup_vue__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_popup_Popup_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_popup_Popup_vue__);
 //
 //
 //
@@ -62373,6 +64416,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -62380,7 +64424,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        UsersTable: __WEBPACK_IMPORTED_MODULE_0__components_user_UsersTable_vue___default.a, MainMenu: __WEBPACK_IMPORTED_MODULE_1__components_MainMenu_vue___default.a, Topbar: __WEBPACK_IMPORTED_MODULE_2__components_Topbar_vue___default.a
+        UsersTable: __WEBPACK_IMPORTED_MODULE_0__components_user_UsersTable_vue___default.a, MainMenu: __WEBPACK_IMPORTED_MODULE_1__components_MainMenu_vue___default.a, Topbar: __WEBPACK_IMPORTED_MODULE_2__components_Topbar_vue___default.a, Popup: __WEBPACK_IMPORTED_MODULE_3__components_popup_Popup_vue___default.a
     },
     mounted: function mounted() {
         var _this = this;
@@ -62391,21 +64435,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }).then(function (response) {
             if ('currentUser' in response.data) _this.$store.commit('userManagement/currentUser', response.data.currentUser);
         }).catch(function (error) {
-            console.log(error);
+            handleErrors(error, _this.$store);
         });
     }
 });
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(63)
+var __vue_script__ = __webpack_require__(64)
 /* template */
-var __vue_template__ = __webpack_require__(64)
+var __vue_template__ = __webpack_require__(65)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -62445,14 +64489,11 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
 //
 //
 //
@@ -62475,7 +64516,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -62504,17 +64545,9 @@ var render = function() {
         })
       ),
       _vm._v(" "),
-      _c(
-        "section",
-        { staticClass: "rcms-menu-bottom" },
-        [
-          _c("h5", [_vm._v("Actions")]),
-          _vm._v(" "),
-          _c("router-view", { attrs: { name: "submenu" } })
-        ],
-        1
-      )
-    ]
+      _c("router-view", { attrs: { name: "submenu" } })
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -62528,15 +64561,15 @@ if (false) {
 }
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(66)
+var __vue_script__ = __webpack_require__(67)
 /* template */
-var __vue_template__ = __webpack_require__(67)
+var __vue_template__ = __webpack_require__(68)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -62576,7 +64609,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62605,7 +64638,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -62655,7 +64688,195 @@ if (false) {
 }
 
 /***/ }),
-/* 68 */
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(70)
+/* template */
+var __vue_template__ = __webpack_require__(71)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/dashboard/components/popup/Popup.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5c5b387d", Component.options)
+  } else {
+    hotAPI.reload("data-v-5c5b387d", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    computed: {
+        title: function title() {
+            return this.$store.getters['popup/title'];
+        },
+        message: function message() {
+            return this.$store.getters['popup/message'];
+        },
+        buttons: function buttons() {
+            return this.$store.getters['popup/buttons'];
+        },
+        actions: function actions() {
+            return this.$store.getters['popup/actions'];
+        }
+    }
+});
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: {
+        id: "popup",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "modal-header" }, [
+            _c("h5", { staticClass: "modal-title" }, [
+              _vm._v(_vm._s(_vm.title))
+            ]),
+            _vm._v(" "),
+            _vm._m(0, false, false)
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _vm._v(
+              "\n                " + _vm._s(_vm.message) + "\n            "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _vm.buttons.cancel
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: { click: _vm.actions.cancel }
+                  },
+                  [_vm._v(_vm._s(_vm.buttons.cancel))]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.buttons.ok
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: { click: _vm.actions.ok }
+                  },
+                  [_vm._v(_vm._s(_vm.buttons.ok))]
+                )
+              : _vm._e()
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5c5b387d", module.exports)
+  }
+}
+
+/***/ }),
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -62689,7 +64910,9 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("Popup")
     ],
     1
   )
@@ -62705,14 +64928,16 @@ if (false) {
 }
 
 /***/ }),
-/* 69 */
+/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__storage_ui__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__storage_main__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage_user__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__storage_page__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__storage_ui__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__storage_main__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage_user__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__storage_page__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__storage_menu__ = __webpack_require__(147);
+
 
 
 
@@ -62722,37 +64947,71 @@ if (false) {
     ui: __WEBPACK_IMPORTED_MODULE_0__storage_ui__["a" /* default */],
     main: __WEBPACK_IMPORTED_MODULE_1__storage_main__["a" /* default */],
     userManagement: __WEBPACK_IMPORTED_MODULE_2__storage_user__["a" /* default */],
-    pageManagement: __WEBPACK_IMPORTED_MODULE_3__storage_page__["a" /* default */]
+    pageManagement: __WEBPACK_IMPORTED_MODULE_3__storage_page__["a" /* default */],
+    menuManagement: __WEBPACK_IMPORTED_MODULE_4__storage_menu__["a" /* default */]
 });
 
 /***/ }),
-/* 70 */,
-/* 71 */
+/* 74 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     namespaced: true,
     state: {
-        currentPopup: null,
-        autosavedPageData: {
-            content: ""
-        }
-    },
-    mutations: {
-        savePageData: function savePageData(state, data) {
-            state.autosavedPageData = data;
-        }
+        menuEntries: [{
+            button: 'User management',
+            routeName: 'users'
+        }, {
+            button: 'Pages',
+            routeName: 'pages'
+        }, {
+            button: 'Chat',
+            routeName: 'chat'
+        }, {
+            button: 'Menu management',
+            routeName: 'menu'
+        }],
+        topbarEntries: [{
+            icon: 'fa fa-power-off',
+            route: '/logout'
+        }, {
+            icon: 'fa fa-gear',
+            route: '/dashboard#/options'
+        }] // in reverse order
     },
     getters: {
-        pageData: function pageData(state) {
-            return state.autosavedPageData;
+        menu: function menu(state) {
+            return state.menuEntries;
+        },
+        topbar: function topbar(state) {
+            return state.topbarEntries;
         }
     }
 });
 
 /***/ }),
-/* 72 */
+/* 75 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    namespaced: true,
+    state: {
+        pusher: new Pusher('848b691dd173338e39f8', {
+            cluster: 'eu',
+            encrypted: true
+        })
+    },
+    getters: {
+        pusher: function pusher(state) {
+            return state.pusher;
+        }
+    }
+});
+
+/***/ }),
+/* 76 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62805,7 +65064,6 @@ if (false) {
                         role: state.updatedUsers[login][0]
                     }
                 }).then(function (response) {
-                    console.log(response);
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -62854,44 +65112,113 @@ if (false) {
             }
             return state.roles;
         },
-        username: function username(state) {
+        currentUserLogin: function currentUserLogin(state) {
             return state.currentUser.login;
         },
-        userRole: function userRole(state) {
+        currentUserRole: function currentUserRole(state) {
             if (state.currentUser.roles) return state.currentUser.roles[0].id;
         },
-        userTheme: function userTheme(state) {
+        currentUserTheme: function currentUserTheme(state) {
             return state.currentUser.theme;
         }
     }
 });
 
 /***/ }),
-/* 73 */
+/* 77 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    namespaced: true,
+    state: {
+        pages: null
+    },
+    mutations: {
+        requestList: function requestList(state) {
+            var _this = this;
+
+            axios({
+                method: 'get',
+                url: '/api/page'
+            }).then(function (response) {
+                if (response.data && response.data.pages) state.pages = response.data.pages;
+            }).catch(function (error) {
+                handleErrors(error, _this.$store);
+            });
+        },
+        requestTogglingPublishedState: function requestTogglingPublishedState(state, name) {
+            var _this2 = this;
+
+            axios({
+                method: 'post',
+                url: '/api/page/' + name + '/toggleState'
+            }).then(function (response) {
+                var index = state.pages.findIndex(function (element) {
+                    return element.name === name;
+                });
+
+                if (index === -1 || !response.data) return;
+                if (response.data.published !== state.pages[index].published) state.pages[index].published = response.data.published;
+            }).catch(function (error) {
+                handleErrors(error, _this2.$store);
+            });
+        },
+        requestRemoval: function requestRemoval(state, name) {
+            var _this3 = this;
+
+            axios({
+                method: 'delete',
+                url: '/api/page/' + name
+            }).then(function (response) {
+                if (response.data && response.data.name) {
+                    var page = state.pages.find(function (el) {
+                        return el.id === response.data.name;
+                    });
+                    var index = state.pages.indexOf(page);
+                    if (index > -1) state.pages.splice(index, 1);
+                }
+            }).catch(function (error) {
+                handleErrors(error, _this3.$store);
+            });
+        }
+    },
+    getters: {
+        pages: function pages(state) {
+            return state.pages;
+        }
+    }
+});
+
+/***/ }),
+/* 78 */,
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__routes_user__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routes_options__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__routes_page__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routes_main__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routes_options__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__routes_page__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routes_main__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routes_menu__ = __webpack_require__(148);
 
 
 
 
 
-var routes = __WEBPACK_IMPORTED_MODULE_3__routes_main__["a" /* default */].concat(__WEBPACK_IMPORTED_MODULE_0__routes_user__["a" /* default */]).concat(__WEBPACK_IMPORTED_MODULE_1__routes_options__["a" /* default */]).concat(__WEBPACK_IMPORTED_MODULE_2__routes_page__["a" /* default */]);
+
+var routes = __WEBPACK_IMPORTED_MODULE_3__routes_main__["a" /* default */].concat(__WEBPACK_IMPORTED_MODULE_0__routes_user__["a" /* default */]).concat(__WEBPACK_IMPORTED_MODULE_1__routes_options__["a" /* default */]).concat(__WEBPACK_IMPORTED_MODULE_2__routes_page__["a" /* default */]).concat(__WEBPACK_IMPORTED_MODULE_4__routes_menu__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = (routes);
 
 /***/ }),
-/* 74 */
+/* 80 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_components_options_Options__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_components_options_Options__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_components_options_Options___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__dashboard_components_options_Options__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_components_options_entries_Themes__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_components_options_entries_Themes__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_components_options_entries_Themes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__dashboard_components_options_entries_Themes__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_components_submenu_Back__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_components_submenu_Back___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__dashboard_components_submenu_Back__);
@@ -62918,15 +65245,15 @@ var routes = __WEBPACK_IMPORTED_MODULE_3__routes_main__["a" /* default */].conca
 }]);
 
 /***/ }),
-/* 75 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = null
 /* template */
-var __vue_template__ = __webpack_require__(76)
+var __vue_template__ = __webpack_require__(82)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -62966,7 +65293,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 76 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -63000,15 +65327,15 @@ if (false) {
 }
 
 /***/ }),
-/* 77 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(82)
+var __vue_script__ = __webpack_require__(84)
 /* template */
-var __vue_template__ = __webpack_require__(136)
+var __vue_template__ = __webpack_require__(88)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -63048,16 +65375,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */
+/* 84 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ThemeEntry_vue__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ThemeEntry_vue__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ThemeEntry_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ThemeEntry_vue__);
 //
 //
@@ -63095,15 +65418,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 83 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(84)
+var __vue_script__ = __webpack_require__(86)
 /* template */
-var __vue_template__ = __webpack_require__(85)
+var __vue_template__ = __webpack_require__(87)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -63143,7 +65466,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 84 */
+/* 86 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63180,7 +65503,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }).then(function (response) {
                 if (response.status === 200) document.location.reload();
-                console.log(response);
             }).catch(function (error) {
                 console.log(error);
             });
@@ -63189,7 +65511,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 85 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -63229,19 +65551,50 @@ if (false) {
 }
 
 /***/ }),
-/* 86 */,
-/* 87 */
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    { staticClass: "rcms-themes-view" },
+    _vm._l(_vm.themes, function(theme) {
+      return _c("ThemeEntry", {
+        key: theme.name,
+        attrs: { name: theme.name, encodedColors: theme.colors }
+      })
+    })
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0dcf18f6", module.exports)
+  }
+}
+
+/***/ }),
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_components_page_PageAdd__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_components_page_PageAdd__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_components_page_PageAdd___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__dashboard_components_page_PageAdd__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_components_page_PageList__ = __webpack_require__(138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_components_page_PageList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__dashboard_components_page_PageList__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_components_submenu_Page__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_components_submenu_Page___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__dashboard_components_submenu_Page__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dashboard_components_submenu_Back__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dashboard_components_submenu_Back___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__dashboard_components_submenu_Back__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_components_page_PageEdit__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_components_page_PageEdit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__dashboard_components_page_PageEdit__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_components_page_PageList__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_components_page_PageList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__dashboard_components_page_PageList__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dashboard_components_submenu_Page__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dashboard_components_submenu_Page___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__dashboard_components_submenu_Page__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dashboard_components_submenu_Back__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dashboard_components_submenu_Back___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__dashboard_components_submenu_Back__);
+
 
 
 
@@ -63251,9 +65604,9 @@ if (false) {
     path: '/pages',
     name: 'pages',
     components: {
-        default: __WEBPACK_IMPORTED_MODULE_1__dashboard_components_page_PageList___default.a,
+        default: __WEBPACK_IMPORTED_MODULE_2__dashboard_components_page_PageList___default.a,
         title: { template: '<h1>Pages</h1>' },
-        submenu: __WEBPACK_IMPORTED_MODULE_2__dashboard_components_submenu_Page___default.a
+        submenu: __WEBPACK_IMPORTED_MODULE_3__dashboard_components_submenu_Page___default.a
     }
 }, {
     path: '/pages/add',
@@ -63261,20 +65614,33 @@ if (false) {
     components: {
         default: __WEBPACK_IMPORTED_MODULE_0__dashboard_components_page_PageAdd___default.a,
         title: { template: '<h1>Create page</h1>' },
-        submenu: __WEBPACK_IMPORTED_MODULE_3__dashboard_components_submenu_Back___default.a
+        submenu: __WEBPACK_IMPORTED_MODULE_4__dashboard_components_submenu_Back___default.a
+    }
+}, {
+    path: '/pages/edit/:page',
+    name: 'editPage',
+    components: {
+        default: __WEBPACK_IMPORTED_MODULE_1__dashboard_components_page_PageEdit___default.a,
+        title: { template: '<h1>Edit page</h1>' },
+        submenu: __WEBPACK_IMPORTED_MODULE_4__dashboard_components_submenu_Back___default.a
+    },
+    props: {
+        default: true,
+        title: false,
+        submenu: false
     }
 }]);
 
 /***/ }),
-/* 88 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(89)
+var __vue_script__ = __webpack_require__(91)
 /* template */
-var __vue_template__ = __webpack_require__(110)
+var __vue_template__ = __webpack_require__(111)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -63314,15 +65680,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 89 */
+/* 91 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_simplemde__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_simplemde__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_simplemde___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_simplemde__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js_styles_github_css__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js_styles_github_css__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js_styles_github_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_highlight_js_styles_github_css__);
+//
+//
 //
 //
 //
@@ -63347,40 +65715,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            page: null,
+            parent: null,
             simpleMDE: null,
-            saved: false,
-            pages: {}
+            published: true
         };
     },
 
     computed: {
         token: function token() {
-            var element = document.querySelector("meta[name=csrf-token]");
+            var element = document.querySelector('meta[name=csrf-token]');
             return element.content;
+        },
+        pages: function pages() {
+            var pages = this.$store.getters['pageManagement/pages'];
+
+            if (pages) return pages.map(function (element) {
+                return element.name;
+            });else return [];
         }
     },
     methods: {
+        toggleVisibility: function toggleVisibility() {
+            this.published = !this.published;
+            document.getElementsByName('published')[0].className = this.published ? 'fa fa-eye' : 'fa fa-eye-slash';
+        },
+        validateName: function validateName(name) {
+            return name && !this.pages.includes(name) && /^[a-z0-9\-_]+$/.test(name);
+        },
         savePage: function savePage() {
             var _this = this;
 
-            this.simpleMDE.clearAutosavedValue();
-            axios({
-                method: 'post',
-                url: '/api/page',
-                data: {
-                    content: this.simpleMDE.value(),
-                    name: 'page',
-                    parent_page: '',
-                    active: false,
-                    _token: this.token
-                }
-            }).then(function (response) {
-                console.log(response.data);
-                _this.saved = true;
-                _this.simpleMDE.clearAutosavedValue();
-            }).catch(function (error) {
-                console.log(error);
-            });
+            if (!this.parent) this.parent = 'home';
+
+            if (this.validateName(this.page)) {
+                axios({
+                    method: 'post',
+                    url: '/api/page',
+                    data: {
+                        content: this.simpleMDE.value() ? this.simpleMDE.value() : ' ',
+                        name: this.page,
+                        parent_page: this.parent,
+                        published: this.published,
+                        _token: this.token
+                    }
+                }).then(function (response) {
+                    _this.simpleMDE.clearAutosavedValue();
+                    _this.$store.commit('pageManagement/requestList');
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            } else {
+                window.alert("Invalid page name");
+            }
         }
     },
     mounted: function mounted() {
@@ -63406,2056 +65793,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             forceSync: true,
             toolbarTips: true
         });
-
-        var pageData = this.$store.getters['main/pageData'];
-        if (pageData && !pageData.content) this.simpleMDE.value(pageData.content);
-        this.saved = false;
-
-        var toolbar = $('.editor-toolbar');
-        toolbar.append('<i class="separator"></i>');
-        toolbar.append('<i class="separator"></i>');
-    },
-    beforeDestroy: function beforeDestroy() {
-        if (!this.saved) this.$store.commit('main/savePageData', { content: this.simpleMDE.value() });
+        this.$store.commit('pageManagement/requestList');
     }
 });
 
 /***/ }),
-/* 90 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*global require,module*/
-
-var CodeMirror = __webpack_require__(4);
-__webpack_require__(91);
-__webpack_require__(92);
-__webpack_require__(93);
-__webpack_require__(43);
-__webpack_require__(45);
-__webpack_require__(95);
-__webpack_require__(96);
-__webpack_require__(97);
-__webpack_require__(44);
-var CodeMirrorSpellChecker = __webpack_require__(98);
-var marked = __webpack_require__(105);
-
-
-// Some variables
-var isMac = /Mac/.test(navigator.platform);
-
-// Mapping of actions that can be bound to keyboard shortcuts or toolbar buttons
-var bindings = {
-	"toggleBold": toggleBold,
-	"toggleItalic": toggleItalic,
-	"drawLink": drawLink,
-	"toggleHeadingSmaller": toggleHeadingSmaller,
-	"toggleHeadingBigger": toggleHeadingBigger,
-	"drawImage": drawImage,
-	"toggleBlockquote": toggleBlockquote,
-	"toggleOrderedList": toggleOrderedList,
-	"toggleUnorderedList": toggleUnorderedList,
-	"toggleCodeBlock": toggleCodeBlock,
-	"togglePreview": togglePreview,
-	"toggleStrikethrough": toggleStrikethrough,
-	"toggleHeading1": toggleHeading1,
-	"toggleHeading2": toggleHeading2,
-	"toggleHeading3": toggleHeading3,
-	"cleanBlock": cleanBlock,
-	"drawTable": drawTable,
-	"drawHorizontalRule": drawHorizontalRule,
-	"undo": undo,
-	"redo": redo,
-	"toggleSideBySide": toggleSideBySide,
-	"toggleFullScreen": toggleFullScreen
-};
-
-var shortcuts = {
-	"toggleBold": "Cmd-B",
-	"toggleItalic": "Cmd-I",
-	"drawLink": "Cmd-K",
-	"toggleHeadingSmaller": "Cmd-H",
-	"toggleHeadingBigger": "Shift-Cmd-H",
-	"cleanBlock": "Cmd-E",
-	"drawImage": "Cmd-Alt-I",
-	"toggleBlockquote": "Cmd-'",
-	"toggleOrderedList": "Cmd-Alt-L",
-	"toggleUnorderedList": "Cmd-L",
-	"toggleCodeBlock": "Cmd-Alt-C",
-	"togglePreview": "Cmd-P",
-	"toggleSideBySide": "F9",
-	"toggleFullScreen": "F11"
-};
-
-var getBindingName = function(f) {
-	for(var key in bindings) {
-		if(bindings[key] === f) {
-			return key;
-		}
-	}
-	return null;
-};
-
-var isMobile = function() {
-	var check = false;
-	(function(a) {
-		if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
-	})(navigator.userAgent || navigator.vendor || window.opera);
-	return check;
-};
-
-
-/**
- * Fix shortcut. Mac use Command, others use Ctrl.
- */
-function fixShortcut(name) {
-	if(isMac) {
-		name = name.replace("Ctrl", "Cmd");
-	} else {
-		name = name.replace("Cmd", "Ctrl");
-	}
-	return name;
-}
-
-
-/**
- * Create icon element for toolbar.
- */
-function createIcon(options, enableTooltips, shortcuts) {
-	options = options || {};
-	var el = document.createElement("a");
-	enableTooltips = (enableTooltips == undefined) ? true : enableTooltips;
-
-	if(options.title && enableTooltips) {
-		el.title = createTootlip(options.title, options.action, shortcuts);
-
-		if(isMac) {
-			el.title = el.title.replace("Ctrl", "⌘");
-			el.title = el.title.replace("Alt", "⌥");
-		}
-	}
-
-	el.tabIndex = -1;
-	el.className = options.className;
-	return el;
-}
-
-function createSep() {
-	var el = document.createElement("i");
-	el.className = "separator";
-	el.innerHTML = "|";
-	return el;
-}
-
-function createTootlip(title, action, shortcuts) {
-	var actionName;
-	var tooltip = title;
-
-	if(action) {
-		actionName = getBindingName(action);
-		if(shortcuts[actionName]) {
-			tooltip += " (" + fixShortcut(shortcuts[actionName]) + ")";
-		}
-	}
-
-	return tooltip;
-}
-
-/**
- * The state of CodeMirror at the given position.
- */
-function getState(cm, pos) {
-	pos = pos || cm.getCursor("start");
-	var stat = cm.getTokenAt(pos);
-	if(!stat.type) return {};
-
-	var types = stat.type.split(" ");
-
-	var ret = {},
-		data, text;
-	for(var i = 0; i < types.length; i++) {
-		data = types[i];
-		if(data === "strong") {
-			ret.bold = true;
-		} else if(data === "variable-2") {
-			text = cm.getLine(pos.line);
-			if(/^\s*\d+\.\s/.test(text)) {
-				ret["ordered-list"] = true;
-			} else {
-				ret["unordered-list"] = true;
-			}
-		} else if(data === "atom") {
-			ret.quote = true;
-		} else if(data === "em") {
-			ret.italic = true;
-		} else if(data === "quote") {
-			ret.quote = true;
-		} else if(data === "strikethrough") {
-			ret.strikethrough = true;
-		} else if(data === "comment") {
-			ret.code = true;
-		} else if(data === "link") {
-			ret.link = true;
-		} else if(data === "tag") {
-			ret.image = true;
-		} else if(data.match(/^header(\-[1-6])?$/)) {
-			ret[data.replace("header", "heading")] = true;
-		}
-	}
-	return ret;
-}
-
-
-// Saved overflow setting
-var saved_overflow = "";
-
-/**
- * Toggle full screen of the editor.
- */
-function toggleFullScreen(editor) {
-	// Set fullscreen
-	var cm = editor.codemirror;
-	cm.setOption("fullScreen", !cm.getOption("fullScreen"));
-
-
-	// Prevent scrolling on body during fullscreen active
-	if(cm.getOption("fullScreen")) {
-		saved_overflow = document.body.style.overflow;
-		document.body.style.overflow = "hidden";
-	} else {
-		document.body.style.overflow = saved_overflow;
-	}
-
-
-	// Update toolbar class
-	var wrap = cm.getWrapperElement();
-
-	if(!/fullscreen/.test(wrap.previousSibling.className)) {
-		wrap.previousSibling.className += " fullscreen";
-	} else {
-		wrap.previousSibling.className = wrap.previousSibling.className.replace(/\s*fullscreen\b/, "");
-	}
-
-
-	// Update toolbar button
-	var toolbarButton = editor.toolbarElements.fullscreen;
-
-	if(!/active/.test(toolbarButton.className)) {
-		toolbarButton.className += " active";
-	} else {
-		toolbarButton.className = toolbarButton.className.replace(/\s*active\s*/g, "");
-	}
-
-
-	// Hide side by side if needed
-	var sidebyside = cm.getWrapperElement().nextSibling;
-	if(/editor-preview-active-side/.test(sidebyside.className))
-		toggleSideBySide(editor);
-}
-
-
-/**
- * Action for toggling bold.
- */
-function toggleBold(editor) {
-	_toggleBlock(editor, "bold", editor.options.blockStyles.bold);
-}
-
-
-/**
- * Action for toggling italic.
- */
-function toggleItalic(editor) {
-	_toggleBlock(editor, "italic", editor.options.blockStyles.italic);
-}
-
-
-/**
- * Action for toggling strikethrough.
- */
-function toggleStrikethrough(editor) {
-	_toggleBlock(editor, "strikethrough", "~~");
-}
-
-/**
- * Action for toggling code block.
- */
-function toggleCodeBlock(editor) {
-	var fenceCharsToInsert = editor.options.blockStyles.code;
-
-	function fencing_line(line) {
-		/* return true, if this is a ``` or ~~~ line */
-		if(typeof line !== "object") {
-			throw "fencing_line() takes a 'line' object (not a line number, or line text).  Got: " + typeof line + ": " + line;
-		}
-		return line.styles && line.styles[2] && line.styles[2].indexOf("formatting-code-block") !== -1;
-	}
-
-	function token_state(token) {
-		// base goes an extra level deep when mode backdrops are used, e.g. spellchecker on
-		return token.state.base.base || token.state.base;
-	}
-
-	function code_type(cm, line_num, line, firstTok, lastTok) {
-		/*
-		 * Return "single", "indented", "fenced" or false
-		 *
-		 * cm and line_num are required.  Others are optional for efficiency
-		 *   To check in the middle of a line, pass in firstTok yourself.
-		 */
-		line = line || cm.getLineHandle(line_num);
-		firstTok = firstTok || cm.getTokenAt({
-			line: line_num,
-			ch: 1
-		});
-		lastTok = lastTok || (!!line.text && cm.getTokenAt({
-			line: line_num,
-			ch: line.text.length - 1
-		}));
-		var types = firstTok.type ? firstTok.type.split(" ") : [];
-		if(lastTok && token_state(lastTok).indentedCode) {
-			// have to check last char, since first chars of first line aren"t marked as indented
-			return "indented";
-		} else if(types.indexOf("comment") === -1) {
-			// has to be after "indented" check, since first chars of first indented line aren"t marked as such
-			return false;
-		} else if(token_state(firstTok).fencedChars || token_state(lastTok).fencedChars || fencing_line(line)) {
-			return "fenced";
-		} else {
-			return "single";
-		}
-	}
-
-	function insertFencingAtSelection(cm, cur_start, cur_end, fenceCharsToInsert) {
-		var start_line_sel = cur_start.line + 1,
-			end_line_sel = cur_end.line + 1,
-			sel_multi = cur_start.line !== cur_end.line,
-			repl_start = fenceCharsToInsert + "\n",
-			repl_end = "\n" + fenceCharsToInsert;
-		if(sel_multi) {
-			end_line_sel++;
-		}
-		// handle last char including \n or not
-		if(sel_multi && cur_end.ch === 0) {
-			repl_end = fenceCharsToInsert + "\n";
-			end_line_sel--;
-		}
-		_replaceSelection(cm, false, [repl_start, repl_end]);
-		cm.setSelection({
-			line: start_line_sel,
-			ch: 0
-		}, {
-			line: end_line_sel,
-			ch: 0
-		});
-	}
-
-	var cm = editor.codemirror,
-		cur_start = cm.getCursor("start"),
-		cur_end = cm.getCursor("end"),
-		tok = cm.getTokenAt({
-			line: cur_start.line,
-			ch: cur_start.ch || 1
-		}), // avoid ch 0 which is a cursor pos but not token
-		line = cm.getLineHandle(cur_start.line),
-		is_code = code_type(cm, cur_start.line, line, tok);
-	var block_start, block_end, lineCount;
-
-	if(is_code === "single") {
-		// similar to some SimpleMDE _toggleBlock logic
-		var start = line.text.slice(0, cur_start.ch).replace("`", ""),
-			end = line.text.slice(cur_start.ch).replace("`", "");
-		cm.replaceRange(start + end, {
-			line: cur_start.line,
-			ch: 0
-		}, {
-			line: cur_start.line,
-			ch: 99999999999999
-		});
-		cur_start.ch--;
-		if(cur_start !== cur_end) {
-			cur_end.ch--;
-		}
-		cm.setSelection(cur_start, cur_end);
-		cm.focus();
-	} else if(is_code === "fenced") {
-		if(cur_start.line !== cur_end.line || cur_start.ch !== cur_end.ch) {
-			// use selection
-
-			// find the fenced line so we know what type it is (tilde, backticks, number of them)
-			for(block_start = cur_start.line; block_start >= 0; block_start--) {
-				line = cm.getLineHandle(block_start);
-				if(fencing_line(line)) {
-					break;
-				}
-			}
-			var fencedTok = cm.getTokenAt({
-				line: block_start,
-				ch: 1
-			});
-			var fence_chars = token_state(fencedTok).fencedChars;
-			var start_text, start_line;
-			var end_text, end_line;
-			// check for selection going up against fenced lines, in which case we don't want to add more fencing
-			if(fencing_line(cm.getLineHandle(cur_start.line))) {
-				start_text = "";
-				start_line = cur_start.line;
-			} else if(fencing_line(cm.getLineHandle(cur_start.line - 1))) {
-				start_text = "";
-				start_line = cur_start.line - 1;
-			} else {
-				start_text = fence_chars + "\n";
-				start_line = cur_start.line;
-			}
-			if(fencing_line(cm.getLineHandle(cur_end.line))) {
-				end_text = "";
-				end_line = cur_end.line;
-				if(cur_end.ch === 0) {
-					end_line += 1;
-				}
-			} else if(cur_end.ch !== 0 && fencing_line(cm.getLineHandle(cur_end.line + 1))) {
-				end_text = "";
-				end_line = cur_end.line + 1;
-			} else {
-				end_text = fence_chars + "\n";
-				end_line = cur_end.line + 1;
-			}
-			if(cur_end.ch === 0) {
-				// full last line selected, putting cursor at beginning of next
-				end_line -= 1;
-			}
-			cm.operation(function() {
-				// end line first, so that line numbers don't change
-				cm.replaceRange(end_text, {
-					line: end_line,
-					ch: 0
-				}, {
-					line: end_line + (end_text ? 0 : 1),
-					ch: 0
-				});
-				cm.replaceRange(start_text, {
-					line: start_line,
-					ch: 0
-				}, {
-					line: start_line + (start_text ? 0 : 1),
-					ch: 0
-				});
-			});
-			cm.setSelection({
-				line: start_line + (start_text ? 1 : 0),
-				ch: 0
-			}, {
-				line: end_line + (start_text ? 1 : -1),
-				ch: 0
-			});
-			cm.focus();
-		} else {
-			// no selection, search for ends of this fenced block
-			var search_from = cur_start.line;
-			if(fencing_line(cm.getLineHandle(cur_start.line))) { // gets a little tricky if cursor is right on a fenced line
-				if(code_type(cm, cur_start.line + 1) === "fenced") {
-					block_start = cur_start.line;
-					search_from = cur_start.line + 1; // for searching for "end"
-				} else {
-					block_end = cur_start.line;
-					search_from = cur_start.line - 1; // for searching for "start"
-				}
-			}
-			if(block_start === undefined) {
-				for(block_start = search_from; block_start >= 0; block_start--) {
-					line = cm.getLineHandle(block_start);
-					if(fencing_line(line)) {
-						break;
-					}
-				}
-			}
-			if(block_end === undefined) {
-				lineCount = cm.lineCount();
-				for(block_end = search_from; block_end < lineCount; block_end++) {
-					line = cm.getLineHandle(block_end);
-					if(fencing_line(line)) {
-						break;
-					}
-				}
-			}
-			cm.operation(function() {
-				cm.replaceRange("", {
-					line: block_start,
-					ch: 0
-				}, {
-					line: block_start + 1,
-					ch: 0
-				});
-				cm.replaceRange("", {
-					line: block_end - 1,
-					ch: 0
-				}, {
-					line: block_end,
-					ch: 0
-				});
-			});
-			cm.focus();
-		}
-	} else if(is_code === "indented") {
-		if(cur_start.line !== cur_end.line || cur_start.ch !== cur_end.ch) {
-			// use selection
-			block_start = cur_start.line;
-			block_end = cur_end.line;
-			if(cur_end.ch === 0) {
-				block_end--;
-			}
-		} else {
-			// no selection, search for ends of this indented block
-			for(block_start = cur_start.line; block_start >= 0; block_start--) {
-				line = cm.getLineHandle(block_start);
-				if(line.text.match(/^\s*$/)) {
-					// empty or all whitespace - keep going
-					continue;
-				} else {
-					if(code_type(cm, block_start, line) !== "indented") {
-						block_start += 1;
-						break;
-					}
-				}
-			}
-			lineCount = cm.lineCount();
-			for(block_end = cur_start.line; block_end < lineCount; block_end++) {
-				line = cm.getLineHandle(block_end);
-				if(line.text.match(/^\s*$/)) {
-					// empty or all whitespace - keep going
-					continue;
-				} else {
-					if(code_type(cm, block_end, line) !== "indented") {
-						block_end -= 1;
-						break;
-					}
-				}
-			}
-		}
-		// if we are going to un-indent based on a selected set of lines, and the next line is indented too, we need to
-		// insert a blank line so that the next line(s) continue to be indented code
-		var next_line = cm.getLineHandle(block_end + 1),
-			next_line_last_tok = next_line && cm.getTokenAt({
-				line: block_end + 1,
-				ch: next_line.text.length - 1
-			}),
-			next_line_indented = next_line_last_tok && token_state(next_line_last_tok).indentedCode;
-		if(next_line_indented) {
-			cm.replaceRange("\n", {
-				line: block_end + 1,
-				ch: 0
-			});
-		}
-
-		for(var i = block_start; i <= block_end; i++) {
-			cm.indentLine(i, "subtract"); // TODO: this doesn't get tracked in the history, so can't be undone :(
-		}
-		cm.focus();
-	} else {
-		// insert code formatting
-		var no_sel_and_starting_of_line = (cur_start.line === cur_end.line && cur_start.ch === cur_end.ch && cur_start.ch === 0);
-		var sel_multi = cur_start.line !== cur_end.line;
-		if(no_sel_and_starting_of_line || sel_multi) {
-			insertFencingAtSelection(cm, cur_start, cur_end, fenceCharsToInsert);
-		} else {
-			_replaceSelection(cm, false, ["`", "`"]);
-		}
-	}
-}
-
-/**
- * Action for toggling blockquote.
- */
-function toggleBlockquote(editor) {
-	var cm = editor.codemirror;
-	_toggleLine(cm, "quote");
-}
-
-/**
- * Action for toggling heading size: normal -> h1 -> h2 -> h3 -> h4 -> h5 -> h6 -> normal
- */
-function toggleHeadingSmaller(editor) {
-	var cm = editor.codemirror;
-	_toggleHeading(cm, "smaller");
-}
-
-/**
- * Action for toggling heading size: normal -> h6 -> h5 -> h4 -> h3 -> h2 -> h1 -> normal
- */
-function toggleHeadingBigger(editor) {
-	var cm = editor.codemirror;
-	_toggleHeading(cm, "bigger");
-}
-
-/**
- * Action for toggling heading size 1
- */
-function toggleHeading1(editor) {
-	var cm = editor.codemirror;
-	_toggleHeading(cm, undefined, 1);
-}
-
-/**
- * Action for toggling heading size 2
- */
-function toggleHeading2(editor) {
-	var cm = editor.codemirror;
-	_toggleHeading(cm, undefined, 2);
-}
-
-/**
- * Action for toggling heading size 3
- */
-function toggleHeading3(editor) {
-	var cm = editor.codemirror;
-	_toggleHeading(cm, undefined, 3);
-}
-
-
-/**
- * Action for toggling ul.
- */
-function toggleUnorderedList(editor) {
-	var cm = editor.codemirror;
-	_toggleLine(cm, "unordered-list");
-}
-
-
-/**
- * Action for toggling ol.
- */
-function toggleOrderedList(editor) {
-	var cm = editor.codemirror;
-	_toggleLine(cm, "ordered-list");
-}
-
-/**
- * Action for clean block (remove headline, list, blockquote code, markers)
- */
-function cleanBlock(editor) {
-	var cm = editor.codemirror;
-	_cleanBlock(cm);
-}
-
-/**
- * Action for drawing a link.
- */
-function drawLink(editor) {
-	var cm = editor.codemirror;
-	var stat = getState(cm);
-	var options = editor.options;
-	var url = "http://";
-	if(options.promptURLs) {
-		url = prompt(options.promptTexts.link);
-		if(!url) {
-			return false;
-		}
-	}
-	_replaceSelection(cm, stat.link, options.insertTexts.link, url);
-}
-
-/**
- * Action for drawing an img.
- */
-function drawImage(editor) {
-	var cm = editor.codemirror;
-	var stat = getState(cm);
-	var options = editor.options;
-	var url = "http://";
-	if(options.promptURLs) {
-		url = prompt(options.promptTexts.image);
-		if(!url) {
-			return false;
-		}
-	}
-	_replaceSelection(cm, stat.image, options.insertTexts.image, url);
-}
-
-/**
- * Action for drawing a table.
- */
-function drawTable(editor) {
-	var cm = editor.codemirror;
-	var stat = getState(cm);
-	var options = editor.options;
-	_replaceSelection(cm, stat.table, options.insertTexts.table);
-}
-
-/**
- * Action for drawing a horizontal rule.
- */
-function drawHorizontalRule(editor) {
-	var cm = editor.codemirror;
-	var stat = getState(cm);
-	var options = editor.options;
-	_replaceSelection(cm, stat.image, options.insertTexts.horizontalRule);
-}
-
-
-/**
- * Undo action.
- */
-function undo(editor) {
-	var cm = editor.codemirror;
-	cm.undo();
-	cm.focus();
-}
-
-
-/**
- * Redo action.
- */
-function redo(editor) {
-	var cm = editor.codemirror;
-	cm.redo();
-	cm.focus();
-}
-
-
-/**
- * Toggle side by side preview
- */
-function toggleSideBySide(editor) {
-	var cm = editor.codemirror;
-	var wrapper = cm.getWrapperElement();
-	var preview = wrapper.nextSibling;
-	var toolbarButton = editor.toolbarElements["side-by-side"];
-	var useSideBySideListener = false;
-	if(/editor-preview-active-side/.test(preview.className)) {
-		preview.className = preview.className.replace(
-			/\s*editor-preview-active-side\s*/g, ""
-		);
-		toolbarButton.className = toolbarButton.className.replace(/\s*active\s*/g, "");
-		wrapper.className = wrapper.className.replace(/\s*CodeMirror-sided\s*/g, " ");
-	} else {
-		// When the preview button is clicked for the first time,
-		// give some time for the transition from editor.css to fire and the view to slide from right to left,
-		// instead of just appearing.
-		setTimeout(function() {
-			if(!cm.getOption("fullScreen"))
-				toggleFullScreen(editor);
-			preview.className += " editor-preview-active-side";
-		}, 1);
-		toolbarButton.className += " active";
-		wrapper.className += " CodeMirror-sided";
-		useSideBySideListener = true;
-	}
-
-	// Hide normal preview if active
-	var previewNormal = wrapper.lastChild;
-	if(/editor-preview-active/.test(previewNormal.className)) {
-		previewNormal.className = previewNormal.className.replace(
-			/\s*editor-preview-active\s*/g, ""
-		);
-		var toolbar = editor.toolbarElements.preview;
-		var toolbar_div = wrapper.previousSibling;
-		toolbar.className = toolbar.className.replace(/\s*active\s*/g, "");
-		toolbar_div.className = toolbar_div.className.replace(/\s*disabled-for-preview*/g, "");
-	}
-
-	var sideBySideRenderingFunction = function() {
-		preview.innerHTML = editor.options.previewRender(editor.value(), preview);
-	};
-
-	if(!cm.sideBySideRenderingFunction) {
-		cm.sideBySideRenderingFunction = sideBySideRenderingFunction;
-	}
-
-	if(useSideBySideListener) {
-		preview.innerHTML = editor.options.previewRender(editor.value(), preview);
-		cm.on("update", cm.sideBySideRenderingFunction);
-	} else {
-		cm.off("update", cm.sideBySideRenderingFunction);
-	}
-
-	// Refresh to fix selection being off (#309)
-	cm.refresh();
-}
-
-
-/**
- * Preview action.
- */
-function togglePreview(editor) {
-	var cm = editor.codemirror;
-	var wrapper = cm.getWrapperElement();
-	var toolbar_div = wrapper.previousSibling;
-	var toolbar = editor.options.toolbar ? editor.toolbarElements.preview : false;
-	var preview = wrapper.lastChild;
-	if(!preview || !/editor-preview/.test(preview.className)) {
-		preview = document.createElement("div");
-		preview.className = "editor-preview";
-		wrapper.appendChild(preview);
-	}
-	if(/editor-preview-active/.test(preview.className)) {
-		preview.className = preview.className.replace(
-			/\s*editor-preview-active\s*/g, ""
-		);
-		if(toolbar) {
-			toolbar.className = toolbar.className.replace(/\s*active\s*/g, "");
-			toolbar_div.className = toolbar_div.className.replace(/\s*disabled-for-preview*/g, "");
-		}
-	} else {
-		// When the preview button is clicked for the first time,
-		// give some time for the transition from editor.css to fire and the view to slide from right to left,
-		// instead of just appearing.
-		setTimeout(function() {
-			preview.className += " editor-preview-active";
-		}, 1);
-		if(toolbar) {
-			toolbar.className += " active";
-			toolbar_div.className += " disabled-for-preview";
-		}
-	}
-	preview.innerHTML = editor.options.previewRender(editor.value(), preview);
-
-	// Turn off side by side if needed
-	var sidebyside = cm.getWrapperElement().nextSibling;
-	if(/editor-preview-active-side/.test(sidebyside.className))
-		toggleSideBySide(editor);
-}
-
-function _replaceSelection(cm, active, startEnd, url) {
-	if(/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
-		return;
-
-	var text;
-	var start = startEnd[0];
-	var end = startEnd[1];
-	var startPoint = cm.getCursor("start");
-	var endPoint = cm.getCursor("end");
-	if(url) {
-		end = end.replace("#url#", url);
-	}
-	if(active) {
-		text = cm.getLine(startPoint.line);
-		start = text.slice(0, startPoint.ch);
-		end = text.slice(startPoint.ch);
-		cm.replaceRange(start + end, {
-			line: startPoint.line,
-			ch: 0
-		});
-	} else {
-		text = cm.getSelection();
-		cm.replaceSelection(start + text + end);
-
-		startPoint.ch += start.length;
-		if(startPoint !== endPoint) {
-			endPoint.ch += start.length;
-		}
-	}
-	cm.setSelection(startPoint, endPoint);
-	cm.focus();
-}
-
-
-function _toggleHeading(cm, direction, size) {
-	if(/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
-		return;
-
-	var startPoint = cm.getCursor("start");
-	var endPoint = cm.getCursor("end");
-	for(var i = startPoint.line; i <= endPoint.line; i++) {
-		(function(i) {
-			var text = cm.getLine(i);
-			var currHeadingLevel = text.search(/[^#]/);
-
-			if(direction !== undefined) {
-				if(currHeadingLevel <= 0) {
-					if(direction == "bigger") {
-						text = "###### " + text;
-					} else {
-						text = "# " + text;
-					}
-				} else if(currHeadingLevel == 6 && direction == "smaller") {
-					text = text.substr(7);
-				} else if(currHeadingLevel == 1 && direction == "bigger") {
-					text = text.substr(2);
-				} else {
-					if(direction == "bigger") {
-						text = text.substr(1);
-					} else {
-						text = "#" + text;
-					}
-				}
-			} else {
-				if(size == 1) {
-					if(currHeadingLevel <= 0) {
-						text = "# " + text;
-					} else if(currHeadingLevel == size) {
-						text = text.substr(currHeadingLevel + 1);
-					} else {
-						text = "# " + text.substr(currHeadingLevel + 1);
-					}
-				} else if(size == 2) {
-					if(currHeadingLevel <= 0) {
-						text = "## " + text;
-					} else if(currHeadingLevel == size) {
-						text = text.substr(currHeadingLevel + 1);
-					} else {
-						text = "## " + text.substr(currHeadingLevel + 1);
-					}
-				} else {
-					if(currHeadingLevel <= 0) {
-						text = "### " + text;
-					} else if(currHeadingLevel == size) {
-						text = text.substr(currHeadingLevel + 1);
-					} else {
-						text = "### " + text.substr(currHeadingLevel + 1);
-					}
-				}
-			}
-
-			cm.replaceRange(text, {
-				line: i,
-				ch: 0
-			}, {
-				line: i,
-				ch: 99999999999999
-			});
-		})(i);
-	}
-	cm.focus();
-}
-
-
-function _toggleLine(cm, name) {
-	if(/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
-		return;
-
-	var stat = getState(cm);
-	var startPoint = cm.getCursor("start");
-	var endPoint = cm.getCursor("end");
-	var repl = {
-		"quote": /^(\s*)\>\s+/,
-		"unordered-list": /^(\s*)(\*|\-|\+)\s+/,
-		"ordered-list": /^(\s*)\d+\.\s+/
-	};
-	var map = {
-		"quote": "> ",
-		"unordered-list": "* ",
-		"ordered-list": "1. "
-	};
-	for(var i = startPoint.line; i <= endPoint.line; i++) {
-		(function(i) {
-			var text = cm.getLine(i);
-			if(stat[name]) {
-				text = text.replace(repl[name], "$1");
-			} else {
-				text = map[name] + text;
-			}
-			cm.replaceRange(text, {
-				line: i,
-				ch: 0
-			}, {
-				line: i,
-				ch: 99999999999999
-			});
-		})(i);
-	}
-	cm.focus();
-}
-
-function _toggleBlock(editor, type, start_chars, end_chars) {
-	if(/editor-preview-active/.test(editor.codemirror.getWrapperElement().lastChild.className))
-		return;
-
-	end_chars = (typeof end_chars === "undefined") ? start_chars : end_chars;
-	var cm = editor.codemirror;
-	var stat = getState(cm);
-
-	var text;
-	var start = start_chars;
-	var end = end_chars;
-
-	var startPoint = cm.getCursor("start");
-	var endPoint = cm.getCursor("end");
-
-	if(stat[type]) {
-		text = cm.getLine(startPoint.line);
-		start = text.slice(0, startPoint.ch);
-		end = text.slice(startPoint.ch);
-		if(type == "bold") {
-			start = start.replace(/(\*\*|__)(?![\s\S]*(\*\*|__))/, "");
-			end = end.replace(/(\*\*|__)/, "");
-		} else if(type == "italic") {
-			start = start.replace(/(\*|_)(?![\s\S]*(\*|_))/, "");
-			end = end.replace(/(\*|_)/, "");
-		} else if(type == "strikethrough") {
-			start = start.replace(/(\*\*|~~)(?![\s\S]*(\*\*|~~))/, "");
-			end = end.replace(/(\*\*|~~)/, "");
-		}
-		cm.replaceRange(start + end, {
-			line: startPoint.line,
-			ch: 0
-		}, {
-			line: startPoint.line,
-			ch: 99999999999999
-		});
-
-		if(type == "bold" || type == "strikethrough") {
-			startPoint.ch -= 2;
-			if(startPoint !== endPoint) {
-				endPoint.ch -= 2;
-			}
-		} else if(type == "italic") {
-			startPoint.ch -= 1;
-			if(startPoint !== endPoint) {
-				endPoint.ch -= 1;
-			}
-		}
-	} else {
-		text = cm.getSelection();
-		if(type == "bold") {
-			text = text.split("**").join("");
-			text = text.split("__").join("");
-		} else if(type == "italic") {
-			text = text.split("*").join("");
-			text = text.split("_").join("");
-		} else if(type == "strikethrough") {
-			text = text.split("~~").join("");
-		}
-		cm.replaceSelection(start + text + end);
-
-		startPoint.ch += start_chars.length;
-		endPoint.ch = startPoint.ch + text.length;
-	}
-
-	cm.setSelection(startPoint, endPoint);
-	cm.focus();
-}
-
-function _cleanBlock(cm) {
-	if(/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
-		return;
-
-	var startPoint = cm.getCursor("start");
-	var endPoint = cm.getCursor("end");
-	var text;
-
-	for(var line = startPoint.line; line <= endPoint.line; line++) {
-		text = cm.getLine(line);
-		text = text.replace(/^[ ]*([# ]+|\*|\-|[> ]+|[0-9]+(.|\)))[ ]*/, "");
-
-		cm.replaceRange(text, {
-			line: line,
-			ch: 0
-		}, {
-			line: line,
-			ch: 99999999999999
-		});
-	}
-}
-
-// Merge the properties of one object into another.
-function _mergeProperties(target, source) {
-	for(var property in source) {
-		if(source.hasOwnProperty(property)) {
-			if(source[property] instanceof Array) {
-				target[property] = source[property].concat(target[property] instanceof Array ? target[property] : []);
-			} else if(
-				source[property] !== null &&
-				typeof source[property] === "object" &&
-				source[property].constructor === Object
-			) {
-				target[property] = _mergeProperties(target[property] || {}, source[property]);
-			} else {
-				target[property] = source[property];
-			}
-		}
-	}
-
-	return target;
-}
-
-// Merge an arbitrary number of objects into one.
-function extend(target) {
-	for(var i = 1; i < arguments.length; i++) {
-		target = _mergeProperties(target, arguments[i]);
-	}
-
-	return target;
-}
-
-/* The right word count in respect for CJK. */
-function wordCount(data) {
-	var pattern = /[a-zA-Z0-9_\u0392-\u03c9\u0410-\u04F9]+|[\u4E00-\u9FFF\u3400-\u4dbf\uf900-\ufaff\u3040-\u309f\uac00-\ud7af]+/g;
-	var m = data.match(pattern);
-	var count = 0;
-	if(m === null) return count;
-	for(var i = 0; i < m.length; i++) {
-		if(m[i].charCodeAt(0) >= 0x4E00) {
-			count += m[i].length;
-		} else {
-			count += 1;
-		}
-	}
-	return count;
-}
-
-var toolbarBuiltInButtons = {
-	"bold": {
-		name: "bold",
-		action: toggleBold,
-		className: "fa fa-bold",
-		title: "Bold",
-		default: true
-	},
-	"italic": {
-		name: "italic",
-		action: toggleItalic,
-		className: "fa fa-italic",
-		title: "Italic",
-		default: true
-	},
-	"strikethrough": {
-		name: "strikethrough",
-		action: toggleStrikethrough,
-		className: "fa fa-strikethrough",
-		title: "Strikethrough"
-	},
-	"heading": {
-		name: "heading",
-		action: toggleHeadingSmaller,
-		className: "fa fa-header",
-		title: "Heading",
-		default: true
-	},
-	"heading-smaller": {
-		name: "heading-smaller",
-		action: toggleHeadingSmaller,
-		className: "fa fa-header fa-header-x fa-header-smaller",
-		title: "Smaller Heading"
-	},
-	"heading-bigger": {
-		name: "heading-bigger",
-		action: toggleHeadingBigger,
-		className: "fa fa-header fa-header-x fa-header-bigger",
-		title: "Bigger Heading"
-	},
-	"heading-1": {
-		name: "heading-1",
-		action: toggleHeading1,
-		className: "fa fa-header fa-header-x fa-header-1",
-		title: "Big Heading"
-	},
-	"heading-2": {
-		name: "heading-2",
-		action: toggleHeading2,
-		className: "fa fa-header fa-header-x fa-header-2",
-		title: "Medium Heading"
-	},
-	"heading-3": {
-		name: "heading-3",
-		action: toggleHeading3,
-		className: "fa fa-header fa-header-x fa-header-3",
-		title: "Small Heading"
-	},
-	"separator-1": {
-		name: "separator-1"
-	},
-	"code": {
-		name: "code",
-		action: toggleCodeBlock,
-		className: "fa fa-code",
-		title: "Code"
-	},
-	"quote": {
-		name: "quote",
-		action: toggleBlockquote,
-		className: "fa fa-quote-left",
-		title: "Quote",
-		default: true
-	},
-	"unordered-list": {
-		name: "unordered-list",
-		action: toggleUnorderedList,
-		className: "fa fa-list-ul",
-		title: "Generic List",
-		default: true
-	},
-	"ordered-list": {
-		name: "ordered-list",
-		action: toggleOrderedList,
-		className: "fa fa-list-ol",
-		title: "Numbered List",
-		default: true
-	},
-	"clean-block": {
-		name: "clean-block",
-		action: cleanBlock,
-		className: "fa fa-eraser fa-clean-block",
-		title: "Clean block"
-	},
-	"separator-2": {
-		name: "separator-2"
-	},
-	"link": {
-		name: "link",
-		action: drawLink,
-		className: "fa fa-link",
-		title: "Create Link",
-		default: true
-	},
-	"image": {
-		name: "image",
-		action: drawImage,
-		className: "fa fa-picture-o",
-		title: "Insert Image",
-		default: true
-	},
-	"table": {
-		name: "table",
-		action: drawTable,
-		className: "fa fa-table",
-		title: "Insert Table"
-	},
-	"horizontal-rule": {
-		name: "horizontal-rule",
-		action: drawHorizontalRule,
-		className: "fa fa-minus",
-		title: "Insert Horizontal Line"
-	},
-	"separator-3": {
-		name: "separator-3"
-	},
-	"preview": {
-		name: "preview",
-		action: togglePreview,
-		className: "fa fa-eye no-disable",
-		title: "Toggle Preview",
-		default: true
-	},
-	"side-by-side": {
-		name: "side-by-side",
-		action: toggleSideBySide,
-		className: "fa fa-columns no-disable no-mobile",
-		title: "Toggle Side by Side",
-		default: true
-	},
-	"fullscreen": {
-		name: "fullscreen",
-		action: toggleFullScreen,
-		className: "fa fa-arrows-alt no-disable no-mobile",
-		title: "Toggle Fullscreen",
-		default: true
-	},
-	"separator-4": {
-		name: "separator-4"
-	},
-	"guide": {
-		name: "guide",
-		action: "https://simplemde.com/markdown-guide",
-		className: "fa fa-question-circle",
-		title: "Markdown Guide",
-		default: true
-	},
-	"separator-5": {
-		name: "separator-5"
-	},
-	"undo": {
-		name: "undo",
-		action: undo,
-		className: "fa fa-undo no-disable",
-		title: "Undo"
-	},
-	"redo": {
-		name: "redo",
-		action: redo,
-		className: "fa fa-repeat no-disable",
-		title: "Redo"
-	}
-};
-
-var insertTexts = {
-	link: ["[", "](#url#)"],
-	image: ["![](", "#url#)"],
-	table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text     | Text     |\n\n"],
-	horizontalRule: ["", "\n\n-----\n\n"]
-};
-
-var promptTexts = {
-	link: "URL for the link:",
-	image: "URL of the image:"
-};
-
-var blockStyles = {
-	"bold": "**",
-	"code": "```",
-	"italic": "*"
-};
-
-/**
- * Interface of SimpleMDE.
- */
-function SimpleMDE(options) {
-	// Handle options parameter
-	options = options || {};
-
-
-	// Used later to refer to it"s parent
-	options.parent = this;
-
-
-	// Check if Font Awesome needs to be auto downloaded
-	var autoDownloadFA = true;
-
-	if(options.autoDownloadFontAwesome === false) {
-		autoDownloadFA = false;
-	}
-
-	if(options.autoDownloadFontAwesome !== true) {
-		var styleSheets = document.styleSheets;
-		for(var i = 0; i < styleSheets.length; i++) {
-			if(!styleSheets[i].href)
-				continue;
-
-			if(styleSheets[i].href.indexOf("//maxcdn.bootstrapcdn.com/font-awesome/") > -1) {
-				autoDownloadFA = false;
-			}
-		}
-	}
-
-	if(autoDownloadFA) {
-		var link = document.createElement("link");
-		link.rel = "stylesheet";
-		link.href = "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css";
-		document.getElementsByTagName("head")[0].appendChild(link);
-	}
-
-
-	// Find the textarea to use
-	if(options.element) {
-		this.element = options.element;
-	} else if(options.element === null) {
-		// This means that the element option was specified, but no element was found
-		console.log("SimpleMDE: Error. No element was found.");
-		return;
-	}
-
-
-	// Handle toolbar
-	if(options.toolbar === undefined) {
-		// Initialize
-		options.toolbar = [];
-
-
-		// Loop over the built in buttons, to get the preferred order
-		for(var key in toolbarBuiltInButtons) {
-			if(toolbarBuiltInButtons.hasOwnProperty(key)) {
-				if(key.indexOf("separator-") != -1) {
-					options.toolbar.push("|");
-				}
-
-				if(toolbarBuiltInButtons[key].default === true || (options.showIcons && options.showIcons.constructor === Array && options.showIcons.indexOf(key) != -1)) {
-					options.toolbar.push(key);
-				}
-			}
-		}
-	}
-
-
-	// Handle status bar
-	if(!options.hasOwnProperty("status")) {
-		options.status = ["autosave", "lines", "words", "cursor"];
-	}
-
-
-	// Add default preview rendering function
-	if(!options.previewRender) {
-		options.previewRender = function(plainText) {
-			// Note: "this" refers to the options object
-			return this.parent.markdown(plainText);
-		};
-	}
-
-
-	// Set default options for parsing config
-	options.parsingConfig = extend({
-		highlightFormatting: true // needed for toggleCodeBlock to detect types of code
-	}, options.parsingConfig || {});
-
-
-	// Merging the insertTexts, with the given options
-	options.insertTexts = extend({}, insertTexts, options.insertTexts || {});
-
-
-	// Merging the promptTexts, with the given options
-	options.promptTexts = promptTexts;
-
-
-	// Merging the blockStyles, with the given options
-	options.blockStyles = extend({}, blockStyles, options.blockStyles || {});
-
-
-	// Merging the shortcuts, with the given options
-	options.shortcuts = extend({}, shortcuts, options.shortcuts || {});
-
-
-	// Change unique_id to uniqueId for backwards compatibility
-	if(options.autosave != undefined && options.autosave.unique_id != undefined && options.autosave.unique_id != "")
-		options.autosave.uniqueId = options.autosave.unique_id;
-
-
-	// Update this options
-	this.options = options;
-
-
-	// Auto render
-	this.render();
-
-
-	// The codemirror component is only available after rendering
-	// so, the setter for the initialValue can only run after
-	// the element has been rendered
-	if(options.initialValue && (!this.options.autosave || this.options.autosave.foundSavedValue !== true)) {
-		this.value(options.initialValue);
-	}
-}
-
-/**
- * Default markdown render.
- */
-SimpleMDE.prototype.markdown = function(text) {
-	if(marked) {
-		// Initialize
-		var markedOptions = {};
-
-
-		// Update options
-		if(this.options && this.options.renderingConfig && this.options.renderingConfig.singleLineBreaks === false) {
-			markedOptions.breaks = false;
-		} else {
-			markedOptions.breaks = true;
-		}
-
-		if(this.options && this.options.renderingConfig && this.options.renderingConfig.codeSyntaxHighlighting === true && window.hljs) {
-			markedOptions.highlight = function(code) {
-				return window.hljs.highlightAuto(code).value;
-			};
-		}
-
-
-		// Set options
-		marked.setOptions(markedOptions);
-
-
-		// Return
-		return marked(text);
-	}
-};
-
-/**
- * Render editor to the given element.
- */
-SimpleMDE.prototype.render = function(el) {
-	if(!el) {
-		el = this.element || document.getElementsByTagName("textarea")[0];
-	}
-
-	if(this._rendered && this._rendered === el) {
-		// Already rendered.
-		return;
-	}
-
-	this.element = el;
-	var options = this.options;
-
-	var self = this;
-	var keyMaps = {};
-
-	for(var key in options.shortcuts) {
-		// null stands for "do not bind this command"
-		if(options.shortcuts[key] !== null && bindings[key] !== null) {
-			(function(key) {
-				keyMaps[fixShortcut(options.shortcuts[key])] = function() {
-					bindings[key](self);
-				};
-			})(key);
-		}
-	}
-
-	keyMaps["Enter"] = "newlineAndIndentContinueMarkdownList";
-	keyMaps["Tab"] = "tabAndIndentMarkdownList";
-	keyMaps["Shift-Tab"] = "shiftTabAndUnindentMarkdownList";
-	keyMaps["Esc"] = function(cm) {
-		if(cm.getOption("fullScreen")) toggleFullScreen(self);
-	};
-
-	document.addEventListener("keydown", function(e) {
-		e = e || window.event;
-
-		if(e.keyCode == 27) {
-			if(self.codemirror.getOption("fullScreen")) toggleFullScreen(self);
-		}
-	}, false);
-
-	var mode, backdrop;
-	if(options.spellChecker !== false) {
-		mode = "spell-checker";
-		backdrop = options.parsingConfig;
-		backdrop.name = "gfm";
-		backdrop.gitHubSpice = false;
-
-		CodeMirrorSpellChecker({
-			codeMirrorInstance: CodeMirror
-		});
-	} else {
-		mode = options.parsingConfig;
-		mode.name = "gfm";
-		mode.gitHubSpice = false;
-	}
-
-	this.codemirror = CodeMirror.fromTextArea(el, {
-		mode: mode,
-		backdrop: backdrop,
-		theme: "paper",
-		tabSize: (options.tabSize != undefined) ? options.tabSize : 2,
-		indentUnit: (options.tabSize != undefined) ? options.tabSize : 2,
-		indentWithTabs: (options.indentWithTabs === false) ? false : true,
-		lineNumbers: false,
-		autofocus: (options.autofocus === true) ? true : false,
-		extraKeys: keyMaps,
-		lineWrapping: (options.lineWrapping === false) ? false : true,
-		allowDropFileTypes: ["text/plain"],
-		placeholder: options.placeholder || el.getAttribute("placeholder") || "",
-		styleSelectedText: (options.styleSelectedText != undefined) ? options.styleSelectedText : true
-	});
-
-	if(options.forceSync === true) {
-		var cm = this.codemirror;
-		cm.on("change", function() {
-			cm.save();
-		});
-	}
-
-	this.gui = {};
-
-	if(options.toolbar !== false) {
-		this.gui.toolbar = this.createToolbar();
-	}
-	if(options.status !== false) {
-		this.gui.statusbar = this.createStatusbar();
-	}
-	if(options.autosave != undefined && options.autosave.enabled === true) {
-		this.autosave();
-	}
-
-	this.gui.sideBySide = this.createSideBySide();
-
-	this._rendered = this.element;
-
-
-	// Fixes CodeMirror bug (#344)
-	var temp_cm = this.codemirror;
-	setTimeout(function() {
-		temp_cm.refresh();
-	}.bind(temp_cm), 0);
-};
-
-// Safari, in Private Browsing Mode, looks like it supports localStorage but all calls to setItem throw QuotaExceededError. We're going to detect this and set a variable accordingly.
-function isLocalStorageAvailable() {
-	if(typeof localStorage === "object") {
-		try {
-			localStorage.setItem("smde_localStorage", 1);
-			localStorage.removeItem("smde_localStorage");
-		} catch(e) {
-			return false;
-		}
-	} else {
-		return false;
-	}
-
-	return true;
-}
-
-SimpleMDE.prototype.autosave = function() {
-	if(isLocalStorageAvailable()) {
-		var simplemde = this;
-
-		if(this.options.autosave.uniqueId == undefined || this.options.autosave.uniqueId == "") {
-			console.log("SimpleMDE: You must set a uniqueId to use the autosave feature");
-			return;
-		}
-
-		if(simplemde.element.form != null && simplemde.element.form != undefined) {
-			simplemde.element.form.addEventListener("submit", function() {
-				localStorage.removeItem("smde_" + simplemde.options.autosave.uniqueId);
-			});
-		}
-
-		if(this.options.autosave.loaded !== true) {
-			if(typeof localStorage.getItem("smde_" + this.options.autosave.uniqueId) == "string" && localStorage.getItem("smde_" + this.options.autosave.uniqueId) != "") {
-				this.codemirror.setValue(localStorage.getItem("smde_" + this.options.autosave.uniqueId));
-				this.options.autosave.foundSavedValue = true;
-			}
-
-			this.options.autosave.loaded = true;
-		}
-
-		localStorage.setItem("smde_" + this.options.autosave.uniqueId, simplemde.value());
-
-		var el = document.getElementById("autosaved");
-		if(el != null && el != undefined && el != "") {
-			var d = new Date();
-			var hh = d.getHours();
-			var m = d.getMinutes();
-			var dd = "am";
-			var h = hh;
-			if(h >= 12) {
-				h = hh - 12;
-				dd = "pm";
-			}
-			if(h == 0) {
-				h = 12;
-			}
-			m = m < 10 ? "0" + m : m;
-
-			el.innerHTML = "Autosaved: " + h + ":" + m + " " + dd;
-		}
-
-		this.autosaveTimeoutId = setTimeout(function() {
-			simplemde.autosave();
-		}, this.options.autosave.delay || 10000);
-	} else {
-		console.log("SimpleMDE: localStorage not available, cannot autosave");
-	}
-};
-
-SimpleMDE.prototype.clearAutosavedValue = function() {
-	if(isLocalStorageAvailable()) {
-		if(this.options.autosave == undefined || this.options.autosave.uniqueId == undefined || this.options.autosave.uniqueId == "") {
-			console.log("SimpleMDE: You must set a uniqueId to clear the autosave value");
-			return;
-		}
-
-		localStorage.removeItem("smde_" + this.options.autosave.uniqueId);
-	} else {
-		console.log("SimpleMDE: localStorage not available, cannot autosave");
-	}
-};
-
-SimpleMDE.prototype.createSideBySide = function() {
-	var cm = this.codemirror;
-	var wrapper = cm.getWrapperElement();
-	var preview = wrapper.nextSibling;
-
-	if(!preview || !/editor-preview-side/.test(preview.className)) {
-		preview = document.createElement("div");
-		preview.className = "editor-preview-side";
-		wrapper.parentNode.insertBefore(preview, wrapper.nextSibling);
-	}
-
-	// Syncs scroll  editor -> preview
-	var cScroll = false;
-	var pScroll = false;
-	cm.on("scroll", function(v) {
-		if(cScroll) {
-			cScroll = false;
-			return;
-		}
-		pScroll = true;
-		var height = v.getScrollInfo().height - v.getScrollInfo().clientHeight;
-		var ratio = parseFloat(v.getScrollInfo().top) / height;
-		var move = (preview.scrollHeight - preview.clientHeight) * ratio;
-		preview.scrollTop = move;
-	});
-
-	// Syncs scroll  preview -> editor
-	preview.onscroll = function() {
-		if(pScroll) {
-			pScroll = false;
-			return;
-		}
-		cScroll = true;
-		var height = preview.scrollHeight - preview.clientHeight;
-		var ratio = parseFloat(preview.scrollTop) / height;
-		var move = (cm.getScrollInfo().height - cm.getScrollInfo().clientHeight) * ratio;
-		cm.scrollTo(0, move);
-	};
-	return preview;
-};
-
-SimpleMDE.prototype.createToolbar = function(items) {
-	items = items || this.options.toolbar;
-
-	if(!items || items.length === 0) {
-		return;
-	}
-	var i;
-	for(i = 0; i < items.length; i++) {
-		if(toolbarBuiltInButtons[items[i]] != undefined) {
-			items[i] = toolbarBuiltInButtons[items[i]];
-		}
-	}
-
-	var bar = document.createElement("div");
-	bar.className = "editor-toolbar";
-
-	var self = this;
-
-	var toolbarData = {};
-	self.toolbar = items;
-
-	for(i = 0; i < items.length; i++) {
-		if(items[i].name == "guide" && self.options.toolbarGuideIcon === false)
-			continue;
-
-		if(self.options.hideIcons && self.options.hideIcons.indexOf(items[i].name) != -1)
-			continue;
-
-		// Fullscreen does not work well on mobile devices (even tablets)
-		// In the future, hopefully this can be resolved
-		if((items[i].name == "fullscreen" || items[i].name == "side-by-side") && isMobile())
-			continue;
-
-
-		// Don't include trailing separators
-		if(items[i] === "|") {
-			var nonSeparatorIconsFollow = false;
-
-			for(var x = (i + 1); x < items.length; x++) {
-				if(items[x] !== "|" && (!self.options.hideIcons || self.options.hideIcons.indexOf(items[x].name) == -1)) {
-					nonSeparatorIconsFollow = true;
-				}
-			}
-
-			if(!nonSeparatorIconsFollow)
-				continue;
-		}
-
-
-		// Create the icon and append to the toolbar
-		(function(item) {
-			var el;
-			if(item === "|") {
-				el = createSep();
-			} else {
-				el = createIcon(item, self.options.toolbarTips, self.options.shortcuts);
-			}
-
-			// bind events, special for info
-			if(item.action) {
-				if(typeof item.action === "function") {
-					el.onclick = function(e) {
-						e.preventDefault();
-						item.action(self);
-					};
-				} else if(typeof item.action === "string") {
-					el.href = item.action;
-					el.target = "_blank";
-				}
-			}
-
-			toolbarData[item.name || item] = el;
-			bar.appendChild(el);
-		})(items[i]);
-	}
-
-	self.toolbarElements = toolbarData;
-
-	var cm = this.codemirror;
-	cm.on("cursorActivity", function() {
-		var stat = getState(cm);
-
-		for(var key in toolbarData) {
-			(function(key) {
-				var el = toolbarData[key];
-				if(stat[key]) {
-					el.className += " active";
-				} else if(key != "fullscreen" && key != "side-by-side") {
-					el.className = el.className.replace(/\s*active\s*/g, "");
-				}
-			})(key);
-		}
-	});
-
-	var cmWrapper = cm.getWrapperElement();
-	cmWrapper.parentNode.insertBefore(bar, cmWrapper);
-	return bar;
-};
-
-SimpleMDE.prototype.createStatusbar = function(status) {
-	// Initialize
-	status = status || this.options.status;
-	var options = this.options;
-	var cm = this.codemirror;
-
-
-	// Make sure the status variable is valid
-	if(!status || status.length === 0)
-		return;
-
-
-	// Set up the built-in items
-	var items = [];
-	var i, onUpdate, defaultValue;
-
-	for(i = 0; i < status.length; i++) {
-		// Reset some values
-		onUpdate = undefined;
-		defaultValue = undefined;
-
-
-		// Handle if custom or not
-		if(typeof status[i] === "object") {
-			items.push({
-				className: status[i].className,
-				defaultValue: status[i].defaultValue,
-				onUpdate: status[i].onUpdate
-			});
-		} else {
-			var name = status[i];
-
-			if(name === "words") {
-				defaultValue = function(el) {
-					el.innerHTML = wordCount(cm.getValue());
-				};
-				onUpdate = function(el) {
-					el.innerHTML = wordCount(cm.getValue());
-				};
-			} else if(name === "lines") {
-				defaultValue = function(el) {
-					el.innerHTML = cm.lineCount();
-				};
-				onUpdate = function(el) {
-					el.innerHTML = cm.lineCount();
-				};
-			} else if(name === "cursor") {
-				defaultValue = function(el) {
-					el.innerHTML = "0:0";
-				};
-				onUpdate = function(el) {
-					var pos = cm.getCursor();
-					el.innerHTML = pos.line + ":" + pos.ch;
-				};
-			} else if(name === "autosave") {
-				defaultValue = function(el) {
-					if(options.autosave != undefined && options.autosave.enabled === true) {
-						el.setAttribute("id", "autosaved");
-					}
-				};
-			}
-
-			items.push({
-				className: name,
-				defaultValue: defaultValue,
-				onUpdate: onUpdate
-			});
-		}
-	}
-
-
-	// Create element for the status bar
-	var bar = document.createElement("div");
-	bar.className = "editor-statusbar";
-
-
-	// Create a new span for each item
-	for(i = 0; i < items.length; i++) {
-		// Store in temporary variable
-		var item = items[i];
-
-
-		// Create span element
-		var el = document.createElement("span");
-		el.className = item.className;
-
-
-		// Ensure the defaultValue is a function
-		if(typeof item.defaultValue === "function") {
-			item.defaultValue(el);
-		}
-
-
-		// Ensure the onUpdate is a function
-		if(typeof item.onUpdate === "function") {
-			// Create a closure around the span of the current action, then execute the onUpdate handler
-			this.codemirror.on("update", (function(el, item) {
-				return function() {
-					item.onUpdate(el);
-				};
-			}(el, item)));
-		}
-
-
-		// Append the item to the status bar
-		bar.appendChild(el);
-	}
-
-
-	// Insert the status bar into the DOM
-	var cmWrapper = this.codemirror.getWrapperElement();
-	cmWrapper.parentNode.insertBefore(bar, cmWrapper.nextSibling);
-	return bar;
-};
-
-/**
- * Get or set the text content.
- */
-SimpleMDE.prototype.value = function(val) {
-	if(val === undefined) {
-		return this.codemirror.getValue();
-	} else {
-		this.codemirror.getDoc().setValue(val);
-		return this;
-	}
-};
-
-
-/**
- * Bind static methods for exports.
- */
-SimpleMDE.toggleBold = toggleBold;
-SimpleMDE.toggleItalic = toggleItalic;
-SimpleMDE.toggleStrikethrough = toggleStrikethrough;
-SimpleMDE.toggleBlockquote = toggleBlockquote;
-SimpleMDE.toggleHeadingSmaller = toggleHeadingSmaller;
-SimpleMDE.toggleHeadingBigger = toggleHeadingBigger;
-SimpleMDE.toggleHeading1 = toggleHeading1;
-SimpleMDE.toggleHeading2 = toggleHeading2;
-SimpleMDE.toggleHeading3 = toggleHeading3;
-SimpleMDE.toggleCodeBlock = toggleCodeBlock;
-SimpleMDE.toggleUnorderedList = toggleUnorderedList;
-SimpleMDE.toggleOrderedList = toggleOrderedList;
-SimpleMDE.cleanBlock = cleanBlock;
-SimpleMDE.drawLink = drawLink;
-SimpleMDE.drawImage = drawImage;
-SimpleMDE.drawTable = drawTable;
-SimpleMDE.drawHorizontalRule = drawHorizontalRule;
-SimpleMDE.undo = undo;
-SimpleMDE.redo = redo;
-SimpleMDE.togglePreview = togglePreview;
-SimpleMDE.toggleSideBySide = toggleSideBySide;
-SimpleMDE.toggleFullScreen = toggleFullScreen;
-
-/**
- * Bind instance methods for exports.
- */
-SimpleMDE.prototype.toggleBold = function() {
-	toggleBold(this);
-};
-SimpleMDE.prototype.toggleItalic = function() {
-	toggleItalic(this);
-};
-SimpleMDE.prototype.toggleStrikethrough = function() {
-	toggleStrikethrough(this);
-};
-SimpleMDE.prototype.toggleBlockquote = function() {
-	toggleBlockquote(this);
-};
-SimpleMDE.prototype.toggleHeadingSmaller = function() {
-	toggleHeadingSmaller(this);
-};
-SimpleMDE.prototype.toggleHeadingBigger = function() {
-	toggleHeadingBigger(this);
-};
-SimpleMDE.prototype.toggleHeading1 = function() {
-	toggleHeading1(this);
-};
-SimpleMDE.prototype.toggleHeading2 = function() {
-	toggleHeading2(this);
-};
-SimpleMDE.prototype.toggleHeading3 = function() {
-	toggleHeading3(this);
-};
-SimpleMDE.prototype.toggleCodeBlock = function() {
-	toggleCodeBlock(this);
-};
-SimpleMDE.prototype.toggleUnorderedList = function() {
-	toggleUnorderedList(this);
-};
-SimpleMDE.prototype.toggleOrderedList = function() {
-	toggleOrderedList(this);
-};
-SimpleMDE.prototype.cleanBlock = function() {
-	cleanBlock(this);
-};
-SimpleMDE.prototype.drawLink = function() {
-	drawLink(this);
-};
-SimpleMDE.prototype.drawImage = function() {
-	drawImage(this);
-};
-SimpleMDE.prototype.drawTable = function() {
-	drawTable(this);
-};
-SimpleMDE.prototype.drawHorizontalRule = function() {
-	drawHorizontalRule(this);
-};
-SimpleMDE.prototype.undo = function() {
-	undo(this);
-};
-SimpleMDE.prototype.redo = function() {
-	redo(this);
-};
-SimpleMDE.prototype.togglePreview = function() {
-	togglePreview(this);
-};
-SimpleMDE.prototype.toggleSideBySide = function() {
-	toggleSideBySide(this);
-};
-SimpleMDE.prototype.toggleFullScreen = function() {
-	toggleFullScreen(this);
-};
-
-SimpleMDE.prototype.isPreviewActive = function() {
-	var cm = this.codemirror;
-	var wrapper = cm.getWrapperElement();
-	var preview = wrapper.lastChild;
-
-	return /editor-preview-active/.test(preview.className);
-};
-
-SimpleMDE.prototype.isSideBySideActive = function() {
-	var cm = this.codemirror;
-	var wrapper = cm.getWrapperElement();
-	var preview = wrapper.nextSibling;
-
-	return /editor-preview-active-side/.test(preview.className);
-};
-
-SimpleMDE.prototype.isFullscreenActive = function() {
-	var cm = this.codemirror;
-
-	return cm.getOption("fullScreen");
-};
-
-SimpleMDE.prototype.getState = function() {
-	var cm = this.codemirror;
-
-	return getState(cm);
-};
-
-SimpleMDE.prototype.toTextArea = function() {
-	var cm = this.codemirror;
-	var wrapper = cm.getWrapperElement();
-
-	if(wrapper.parentNode) {
-		if(this.gui.toolbar) {
-			wrapper.parentNode.removeChild(this.gui.toolbar);
-		}
-		if(this.gui.statusbar) {
-			wrapper.parentNode.removeChild(this.gui.statusbar);
-		}
-		if(this.gui.sideBySide) {
-			wrapper.parentNode.removeChild(this.gui.sideBySide);
-		}
-	}
-
-	cm.toTextArea();
-
-	if(this.autosaveTimeoutId) {
-		clearTimeout(this.autosaveTimeoutId);
-		this.autosaveTimeoutId = undefined;
-		this.clearAutosavedValue();
-	}
-};
-
-module.exports = SimpleMDE;
-
-/***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -65552,7 +65895,7 @@ module.exports = SimpleMDE;
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -65602,7 +65945,7 @@ CodeMirror.commands.shiftTabAndUnindentMarkdownList = function (cm) {
 
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -65649,7 +65992,7 @@ CodeMirror.commands.shiftTabAndUnindentMarkdownList = function (cm) {
 
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -65871,7 +66214,7 @@ CodeMirror.commands.shiftTabAndUnindentMarkdownList = function (cm) {
 
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -65939,7 +66282,7 @@ CodeMirror.commands.shiftTabAndUnindentMarkdownList = function (cm) {
 
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -66064,7 +66407,7 @@ CodeMirror.commands.shiftTabAndUnindentMarkdownList = function (cm) {
 
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -66199,7 +66542,7 @@ CodeMirror.defineMode("gfm", function(config, modeConfig) {
 
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66208,7 +66551,7 @@ CodeMirror.defineMode("gfm", function(config, modeConfig) {
 
 
 // Requires
-var Typo = __webpack_require__(99);
+var Typo = __webpack_require__(100);
 
 
 // Create function
@@ -66324,7 +66667,7 @@ CodeMirrorSpellChecker.typo;
 module.exports = CodeMirrorSpellChecker;
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__dirname, Buffer) {/* globals chrome: false */
@@ -66587,7 +66930,7 @@ Typo.prototype = {
 		}
 		else if (true) {
 			// Node.js
-			var fs = __webpack_require__(104);
+			var fs = __webpack_require__(105);
 			
 			try {
 				if (fs.existsSync(path)) {
@@ -67258,10 +67601,10 @@ Typo.prototype = {
 if (true) {
 	module.exports = Typo;
 }
-/* WEBPACK VAR INJECTION */}.call(exports, "/", __webpack_require__(100).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, "/", __webpack_require__(101).Buffer))
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67275,9 +67618,9 @@ if (true) {
 
 
 
-var base64 = __webpack_require__(101)
-var ieee754 = __webpack_require__(102)
-var isArray = __webpack_require__(103)
+var base64 = __webpack_require__(102)
+var ieee754 = __webpack_require__(103)
+var isArray = __webpack_require__(104)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -69055,10 +69398,10 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69179,7 +69522,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -69269,7 +69612,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -69280,13 +69623,13 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -70576,44 +70919,13 @@ if (true) {
   return this || (typeof window !== 'undefined' ? window : global);
 }());
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 106 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(107);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(108)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../css-loader/index.js!./github.css", function() {
-			var newContent = require("!!../../css-loader/index.js!./github.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
 /* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(42)(undefined);
+exports = module.exports = __webpack_require__(108)(undefined);
 // imports
 
 
@@ -70625,6 +70937,88 @@ exports.push([module.i, "/*\n\ngithub.com style (c) Vasily Polovnyov <vast@white
 
 /***/ }),
 /* 108 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -70670,7 +71064,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(109);
+var	fixUrls = __webpack_require__(110);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -70983,7 +71377,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports) {
 
 
@@ -71078,7 +71472,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -71096,15 +71490,11 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.pages,
-                  expression: "pages"
+                  value: _vm.parent,
+                  expression: "parent"
                 }
               ],
-              attrs: {
-                name: "parent_page",
-                title: "Select parent page",
-                required: ""
-              },
+              attrs: { name: "parent", title: "Select parent page" },
               on: {
                 change: function($event) {
                   var $$selectedVal = Array.prototype.filter
@@ -71115,29 +71505,60 @@ var render = function() {
                       var val = "_value" in o ? o._value : o.value
                       return val
                     })
-                  _vm.pages = $event.target.multiple
+                  _vm.parent = $event.target.multiple
                     ? $$selectedVal
                     : $$selectedVal[0]
                 }
               }
             },
             _vm._l(_vm.pages, function(page) {
-              return _c("option", { domProps: { value: page.name } }, [
-                _vm._v(_vm._s(page.name))
+              return _c("option", { domProps: { value: page } }, [
+                _vm._v(_vm._s(page))
               ])
             })
           )
         ]),
         _vm._v(" "),
         _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.page,
+              expression: "page"
+            }
+          ],
           staticClass: "rcms-input",
           attrs: {
             type: "text",
-            name: "page_name",
+            name: "name",
             placeholder: "Page name",
             required: ""
+          },
+          domProps: { value: _vm.page },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.page = $event.target.value
+            }
           }
-        })
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "rcms-active-page-button",
+            on: { click: _vm.toggleVisibility }
+          },
+          [
+            _c("span", {
+              staticClass: "fa fa-eye",
+              attrs: { name: "published" }
+            })
+          ]
+        )
       ]),
       _vm._v(" "),
       _c("textarea", { attrs: { id: "rcms-editor" } })
@@ -71155,36 +71576,15 @@ if (false) {
 }
 
 /***/ }),
-/* 111 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_components_submenu_Blank__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_components_submenu_Blank___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__dashboard_components_submenu_Blank__);
-
-
-/* harmony default export */ __webpack_exports__["a"] = ([{
-    path: '/',
-    name: 'main',
-    components: {
-        default: null,
-        title: { template: '<h1>&nbsp;</h1>' },
-        submenu: __WEBPACK_IMPORTED_MODULE_0__dashboard_components_submenu_Blank___default.a
-    }
-}]);
-
-/***/ }),
-/* 112 */,
-/* 113 */,
-/* 114 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(113)
 /* template */
-var __vue_template__ = __webpack_require__(115)
+var __vue_template__ = __webpack_require__(114)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -71201,7 +71601,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/dashboard/components/submenu/Blank.vue"
+Component.options.__file = "resources/assets/js/dashboard/components/page/PageEdit.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -71211,9 +71611,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1478e558", Component.options)
+    hotAPI.createRecord("data-v-54353626", Component.options)
   } else {
-    hotAPI.reload("data-v-1478e558", Component.options)
+    hotAPI.reload("data-v-54353626", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -71224,15 +71624,248 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 115 */
+/* 113 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_simplemde__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_simplemde___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_simplemde__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js_styles_github_css__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js_styles_github_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_highlight_js_styles_github_css__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['page'],
+    data: function data() {
+        return {
+            name: this.page,
+            parent: null,
+            simpleMDE: null,
+            published: true
+        };
+    },
+
+    computed: {
+        token: function token() {
+            var element = document.querySelector('meta[name=csrf-token]');
+            return element.content;
+        },
+        pages: function pages() {
+            var pages = this.$store.getters['pageManagement/pages'];
+
+            var func = function func(name) {
+                return function (element) {
+                    if (element.name !== name) return element.name;
+                    return null;
+                };
+            };
+
+            if (pages) return pages.map(func(this.page)).filter(function (n) {
+                return n;
+            });else return [];
+        }
+    },
+    methods: {
+        toggleVisibility: function toggleVisibility() {
+            this.published = !this.published;
+            document.getElementsByName('published')[0].className = this.published ? 'fa fa-eye' : 'fa fa-eye-slash';
+        },
+        validateName: function validateName(name) {
+            return name && !this.pages.includes(name) && /^[a-z0-9\-_]+$/.test(name);
+        },
+        savePage: function savePage() {
+            var _this = this;
+
+            if (!this.parent) this.parent = 'home';
+
+            if (this.validateName(this.page)) {
+                axios({
+                    method: 'put',
+                    url: '/api/page/' + this.page,
+                    data: {
+                        content: this.simpleMDE.value() ? this.simpleMDE.value() : ' ',
+                        name: this.name,
+                        parent_page: this.parent,
+                        published: this.published,
+                        _token: this.token
+                    }
+                }).then(function (response) {
+                    _this.$store.commit('pageManagement/requestList');
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            } else {
+                window.alert("Invalid page name");
+            }
+        },
+        getPage: function getPage() {
+            var _this2 = this;
+
+            axios({
+                method: 'get',
+                url: '/api/page/' + this.page
+            }).then(function (response) {
+                var page = response.data.page;
+                if (page) {
+                    _this2.simpleMDE.value(page.content);
+                    _this2.name = page.name;
+                    _this2.published = page.published;
+                    if (_this2.validateName(page.parent_page)) _this2.parent = page.parent_page;
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
+    mounted: function mounted() {
+        this.simpleMDE = new __WEBPACK_IMPORTED_MODULE_0_simplemde___default.a({
+            autoDownloadFontAwesome: false,
+            autosave: false,
+            element: document.getElementById("rcms-editor"),
+            renderingConfig: {
+                codeSyntaxHighlighting: true
+            },
+            shortcuts: {
+                togglePreview: 'Alt-P'
+            },
+            toolbar: ['preview', '|', 'bold', 'italic', 'strikethrough', 'code', 'quote', '|', 'heading-bigger', 'heading-smaller', 'unordered-list', 'ordered-list', 'table', '|', 'link', 'image', 'horizontal-rule', '|', 'guide', '|', {
+                name: 'save',
+                action: this.savePage,
+                className: "fa fa-floppy-o",
+                title: "Save page"
+            }],
+            forceSync: true,
+            toolbarTips: true
+        });
+        this.$store.commit('pageManagement/requestList');
+        this.getPage();
+    }
+});
+
+/***/ }),
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("transition", { attrs: { name: "fade" } }, [
-    _c("nav", { staticClass: "navbar-nav rcms-submenu" })
+  return _c("section", [
+    _c("div", { staticClass: "rcms-editor-wrapper" }, [
+      _c("nav", { staticClass: "page-toolbar" }, [
+        _c("div", { staticClass: "rcms-form-dropdown" }, [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.parent,
+                  expression: "parent"
+                }
+              ],
+              attrs: {
+                name: "parent",
+                title: "Select parent page",
+                required: ""
+              },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.parent = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            _vm._l(_vm.pages, function(current_page) {
+              return current_page !== _vm.page
+                ? _c("option", { domProps: { value: current_page } }, [
+                    _vm._v(_vm._s(current_page))
+                  ])
+                : _vm._e()
+            })
+          )
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.name,
+              expression: "name"
+            }
+          ],
+          staticClass: "rcms-input",
+          attrs: {
+            type: "text",
+            name: "name",
+            placeholder: "Page name",
+            required: ""
+          },
+          domProps: { value: _vm.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.name = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "rcms-active-page-button",
+            on: {
+              click: function($event) {
+                _vm.toggleVisibility()
+              }
+            }
+          },
+          [
+            _c("span", {
+              staticClass: "fa fa-eye",
+              attrs: { name: "published" }
+            })
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("textarea", { attrs: { id: "rcms-editor" } })
+    ])
   ])
 }
 var staticRenderFns = []
@@ -71241,127 +71874,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1478e558", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-54353626", module.exports)
   }
 }
 
 /***/ }),
-/* 116 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 117 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 118 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 119 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 120 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */,
-/* 126 */,
-/* 127 */,
-/* 128 */,
-/* 129 */,
-/* 130 */,
-/* 131 */,
-/* 132 */,
-/* 133 */,
-/* 134 */,
-/* 135 */,
-/* 136 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    { staticClass: "rcms-themes-view" },
-    _vm._l(_vm.themes, function(theme) {
-      return _c("ThemeEntry", {
-        key: theme.name,
-        attrs: { name: theme.name, encodedColors: theme.colors }
-      })
-    })
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0dcf18f6", module.exports)
-  }
-}
-
-/***/ }),
-/* 137 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-    namespaced: true,
-    state: {
-        menuEntries: [{
-            button: 'User Management',
-            routeName: 'users'
-        }, {
-            button: 'Pages',
-            routeName: 'pages'
-        }],
-        topbarEntries: [{
-            icon: 'fa fa-power-off',
-            route: '/logout'
-        }, {
-            icon: 'fa fa-gear',
-            route: '/dashboard#/options'
-        }] // in reverse order
-    },
-    getters: {
-        menu: function menu(state) {
-            return state.menuEntries;
-        },
-        topbar: function topbar(state) {
-            return state.topbarEntries;
-        }
-    }
-});
-
-/***/ }),
-/* 138 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(139)
+var __vue_script__ = __webpack_require__(116)
 /* template */
-var __vue_template__ = __webpack_require__(140)
+var __vue_template__ = __webpack_require__(117)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -71401,13 +71927,11 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 139 */
+/* 116 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
 //
 //
 //
@@ -71465,29 +71989,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.$store.getters['pageManagement/pages'];
         }
     },
-    // methods: {
-    //     selectUser: function (user) {
-    //         this.$store.commit('userManagement/select', user);
-    //     },
-    //     removeUser: function (user) {
-    //         this.$store.commit('userManagement/requestUserRemoval', user);
-    //     },
-    //     queueToUpdate: function (user) {
-    //         let newRole = $("#select_" + user.id + " :selected").val();
-    //         console.log(newRole);
-    //         if (newRole !== user.roles[0].name)
-    //             this.$store.commit('userManagement/stageChange', [user, newRole]);
-    //         else
-    //             this.$store.commit('userManagement/unstageChange', user);
-    //     }
-    // },
+    methods: {
+        togglePublishedState: function togglePublishedState(name) {
+            this.$store.commit('pageManagement/requestTogglingPublishedState', name);
+        },
+        show: function show(name) {
+            return this.$store.getters['userManagement/currentUserRole'] <= 3 && name !== 'home';
+        },
+        remove: function remove(name) {
+            this.$store.commit('pageManagement/requestRemoval', name);
+        },
+        edit: function edit(name) {
+            this.$router.push();
+        }
+    },
     created: function created() {
         this.$store.commit('pageManagement/requestList');
     }
 });
 
 /***/ }),
-/* 140 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -71507,69 +72029,111 @@ var render = function() {
           attrs: { name: "fade", tag: "tbody" }
         },
         _vm._l(_vm.pages, function(page) {
-          return _c("tr", { key: page.name, staticClass: "rcms-row" }, [
-            _c("td", { staticClass: "rcms-cell" }, [
-              _vm._v(
-                "\n                " + _vm._s(page.name) + "\n            "
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "rcms-cell" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(page.parent_page) +
-                  "\n            "
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "rcms-cell" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(page.active ? "Yes" : "No") +
-                  "\n            "
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "rcms-cell" }, [
-              _vm._v(
-                "\n                " + _vm._s(page.template) + "\n            "
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "rcms-cell" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "rcms-button",
-                  attrs: {
-                    title: page.active ? "Unpublish page" : "Publish page"
-                  }
+          return _c(
+            "tr",
+            {
+              key: page.name,
+              staticClass: "rcms-row",
+              model: {
+                value: _vm.pages,
+                callback: function($$v) {
+                  _vm.pages = $$v
                 },
+                expression: "pages"
+              }
+            },
+            [
+              _c("td", { staticClass: "rcms-cell" }, [
+                _vm._v("\n            " + _vm._s(page.name) + "\n        ")
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "rcms-cell" }, [
+                _vm._v("\n            " + _vm._s(page.route) + "\n        ")
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "rcms-cell" }, [
+                _vm.show(page.name)
+                  ? _c(
+                      "a",
+                      {
+                        staticClass: "rcms-button",
+                        attrs: {
+                          title: page.published
+                            ? "Unpublish page"
+                            : "Publish page"
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.togglePublishedState(page.name)
+                          }
+                        }
+                      },
+                      [
+                        _c("span", {
+                          staticClass: "fa",
+                          class: page.published ? "fa-eye" : "fa-eye-slash"
+                        })
+                      ]
+                    )
+                  : _c(
+                      "a",
+                      {
+                        staticClass: "rcms-button rcms-disabled",
+                        attrs: {
+                          title: page.published
+                            ? "Unpublish page"
+                            : "Publish page"
+                        }
+                      },
+                      [
+                        _c("span", {
+                          staticClass: "fa",
+                          class: page.published ? "fa-eye" : "fa-eye-slash"
+                        })
+                      ]
+                    )
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "rcms-cell" }, [
+                _vm._v("\n            " + _vm._s(page.template) + "\n        ")
+              ]),
+              _vm._v(" "),
+              _c(
+                "td",
+                { staticClass: "rcms-cell" },
                 [
-                  _c("span", {
-                    staticClass: "fa",
-                    class: page.active ? "fa-eye-slash" : "fa-eye"
-                  })
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "rcms-cell" }, [
-              _c(
-                "a",
-                { staticClass: "rcms-button", attrs: { title: "Edit page" } },
-                [_c("span", { staticClass: "fa fa-pencil" })]
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "rcms-cell" }, [
-              _c(
-                "a",
-                { staticClass: "rcms-button", attrs: { title: "Remove page" } },
-                [_c("span", { staticClass: "fa fa-remove" })]
-              )
-            ])
-          ])
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "rcms-button",
+                      attrs: {
+                        to: { name: "editPage", params: { page: page.name } },
+                        title: "Edit page"
+                      }
+                    },
+                    [_c("span", { staticClass: "fa fa-pencil" })]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("td", { staticClass: "rcms-cell" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "rcms-button",
+                    attrs: { title: "Remove page" },
+                    on: {
+                      click: function($event) {
+                        _vm.remove(page.name)
+                      }
+                    }
+                  },
+                  [_c("span", { staticClass: "fa fa-remove" })]
+                )
+              ])
+            ]
+          )
         })
       ),
       _vm._v(" "),
@@ -71605,7 +72169,7 @@ var staticRenderFns = [
       _c("tr", { staticClass: "rcms-row" }, [
         _c("td", { staticClass: "rcms-cell" }, [_vm._v("Name")]),
         _vm._v(" "),
-        _c("td", { staticClass: "rcms-cell" }, [_vm._v("Parent page")]),
+        _c("td", { staticClass: "rcms-cell" }, [_vm._v("Route")]),
         _vm._v(" "),
         _c("td", { staticClass: "rcms-cell" }, [_vm._v("Published")]),
         _vm._v(" "),
@@ -71628,25 +72192,15 @@ if (false) {
 }
 
 /***/ }),
-/* 141 */,
-/* 142 */,
-/* 143 */,
-/* 144 */,
-/* 145 */,
-/* 146 */,
-/* 147 */,
-/* 148 */,
-/* 149 */,
-/* 150 */,
-/* 151 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(152)
+var __vue_script__ = __webpack_require__(119)
 /* template */
-var __vue_template__ = __webpack_require__(153)
+var __vue_template__ = __webpack_require__(120)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -71686,7 +72240,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 152 */
+/* 119 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -71695,11 +72249,122 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 153 */
+/* 120 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("transition", { attrs: { name: "fade" } }, [
+    _c("section", { staticClass: "rcms-menu-bottom" }, [
+      _c("h5", [_vm._v("Actions")]),
+      _vm._v(" "),
+      _c("nav", { staticClass: "navbar-nav rcms-submenu" })
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f986a68a", module.exports)
+  }
+}
+
+/***/ }),
+/* 121 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_components_submenu_Blank__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_components_submenu_Blank___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__dashboard_components_submenu_Blank__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_components_chat_ChatView__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_components_chat_ChatView___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__dashboard_components_chat_ChatView__);
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ([{
+    path: '/',
+    name: 'main',
+    components: {
+        default: null,
+        title: { template: '<h1>&nbsp;</h1>' },
+        submenu: __WEBPACK_IMPORTED_MODULE_0__dashboard_components_submenu_Blank___default.a
+    }
+}, {
+    path: '/chat',
+    name: 'chat',
+    components: {
+        default: __WEBPACK_IMPORTED_MODULE_1__dashboard_components_chat_ChatView___default.a,
+        title: { template: '<h1>Chat</h1>' },
+        submenu: __WEBPACK_IMPORTED_MODULE_0__dashboard_components_submenu_Blank___default.a
+    }
+}]);
+
+/***/ }),
+/* 122 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__(123)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/dashboard/components/submenu/Blank.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1478e558", Component.options)
+  } else {
+    hotAPI.reload("data-v-1478e558", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -71714,44 +72379,608 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-f986a68a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1478e558", module.exports)
   }
 }
 
 /***/ }),
-/* 154 */
+/* 124 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(125)
+/* template */
+var __vue_template__ = __webpack_require__(126)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/dashboard/components/chat/ChatView.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d5283cb0", Component.options)
+  } else {
+    hotAPI.reload("data-v-d5283cb0", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 125 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            messages: []
+        };
+    },
+
+    computed: {
+        messageLimit: function messageLimit() {
+            var height = this.messagesView.clientHeight;
+            var messageHeight = 55;
+            return Math.round(height / messageHeight);
+        },
+        currentUser: function currentUser() {
+            return this.$store.getters['userManagement/currentUserLogin'];
+        },
+        messagesView: function messagesView() {
+            return document.getElementById('messages');
+        },
+        messageInput: function messageInput() {
+            return document.getElementById('message');
+        }
+    },
+    methods: {
+        getMessages: function getMessages() {
+            var _this = this;
+
+            axios({
+                method: 'get',
+                url: '/api/chat/' + this.messages.length + '/' + this.messageLimit
+            }).then(function (response) {
+                _this.messages = response.data.messages.reverse().concat(_this.messages);
+                setTimeout(function (object, currentMax) {
+                    object.scrollTo(object.messagesView.scrollTopMax - currentMax);
+                }, 100, _this, _this.messagesView.scrollTopMax);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        sendMessage: function sendMessage() {
+            var _this2 = this;
+
+            axios({
+                method: 'post',
+                url: '/api/chat',
+                data: {
+                    author: this.currentUser,
+                    content: this.messageInput.innerText
+                }
+            }).then(function (response) {
+                _this2.scrollToNew();
+                _this2.messageInput.innerText = '';
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        previousMessage: function previousMessage(currentMessage) {
+            var index = this.messages.indexOf(currentMessage) - 1;
+            if (index < 0) return {};
+            return this.messages[index];
+        },
+        messageClass: function messageClass(currentMessage) {
+            var cssClass = this.previousMessage(currentMessage).author === currentMessage.author ? 'no-space ' : '';
+            cssClass += this.currentUser === currentMessage.author ? 'rcms-left' : 'rcms-right';
+            return cssClass;
+        },
+        scrollToNew: function scrollToNew() {
+            this.messagesView.scrollTop = this.messagesView.scrollTopMax;
+        },
+        scrollTo: function scrollTo(number) {
+            this.messagesView.scrollTop = number;
+        }
+    },
+    created: function created() {
+        var pusher = this.$store.getters['main/pusher'];
+        var handler = function handler(object) {
+            return function (data) {
+                var messages = Array(data.message);
+                object.messages = object.messages.concat(messages);
+            };
+        };
+        var channel = pusher.subscribe('chat-channel');
+        channel.bind('message-sent-event', handler(this));
+    },
+    mounted: function mounted() {
+        this.getMessages();
+
+        var keyHandler = function keyHandler(object) {
+            return function (event) {
+                if (event.defaultPrevented) return;
+
+                if (event.key === 'Enter') {
+                    object.sendMessage();
+                    object.message = '';
+                    event.preventDefault();
+                }
+            };
+        };
+        var scrollHandler = function scrollHandler(object) {
+            var timeout = void 0;
+            return function (event) {
+                if (event.defaultPrevented) return;
+
+                if (event.currentTarget.scrollTop <= 2) {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(function (object) {
+                        object.getMessages();
+                    }, 100, object);
+                }
+                if (event.currentTarget.scrollTop >= 50) clearTimeout(timeout);
+            };
+        };
+        document.getElementById('message').addEventListener("keydown", keyHandler(this), true);
+        this.messagesView.addEventListener("scroll", scrollHandler(this), true);
+    }
+});
+
+/***/ }),
+/* 126 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    { staticClass: "rcms-chat-view" },
+    [
+      _c(
+        "transition-group",
+        {
+          staticClass: "rcms-messages",
+          attrs: { id: "messages", tag: "div", name: "fade" }
+        },
+        _vm._l(_vm.messages, function(message) {
+          return _c(
+            "div",
+            {
+              key: message.content + message.created_at,
+              staticClass: "rcms-message",
+              class: _vm.messageClass(message),
+              attrs: {
+                "data-toggle": "tooltip",
+                title: "Received on " + message.created_at
+              }
+            },
+            [
+              _vm.previousMessage(message).author !== message.author
+                ? _c("span", { staticClass: "rcms-author" }, [
+                    _vm._v(_vm._s(message.author))
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("p", { staticClass: "rcms-content" }, [
+                _vm._v(_vm._s(message.content))
+              ])
+            ]
+          )
+        })
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "rcms-chat-input-wrapper" }, [
+        _c("div", {
+          staticClass: "rcms-chat-input",
+          attrs: { id: "message", contenteditable: "true" }
+        }),
+        _vm._v(" "),
+        _c("a", {
+          staticClass: "rcms-send-message fa fa-paper-plane",
+          attrs: { type: "submit", "aria-hidden": "true" },
+          on: { click: _vm.sendMessage }
+        })
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d5283cb0", module.exports)
+  }
+}
+
+/***/ }),
+/* 127 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 128 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 129 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 131 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     namespaced: true,
     state: {
-        pages: null
+        menu: []
     },
     mutations: {
-        savePageData: function savePageData(state, data) {
-            state.autosavedPageData = data;
-        },
-        requestList: function requestList(state) {
+        requestEntries: function requestEntries(state) {
+            var _this = this;
+
             axios({
                 method: 'get',
-                url: '/api/page'
+                url: '/api/menu'
             }).then(function (response) {
-                if (response.data) state.pages = response.data;
+                if (response.data && response.data.menu) state.menu = response.data.menu;
             }).catch(function (error) {
-                console.log(error);
+                handleErrors(error, _this.$store);
+            });
+        },
+        requestRemoval: function requestRemoval(state, id) {
+            var _this2 = this;
+
+            axios({
+                method: 'delete',
+                url: '/api/menu/' + id
+            }).then(function (response) {
+                if (response.data && response.data.id) {
+                    var page = state.menu.find(function (el) {
+                        return el.id === response.data.id;
+                    });
+                    var index = state.menu.indexOf(page);
+                    if (index > -1) state.menu.splice(index, 1);
+                }
+            }).catch(function (error) {
+                handleErrors(error, _this2.$store);
             });
         }
     },
     getters: {
-        pageData: function pageData(state) {
-            return state.autosavedPageData;
-        },
-        pages: function pages(state) {
-            return state.pages;
+        menu: function menu(state) {
+            return state.menu;
         }
     }
 });
+
+/***/ }),
+/* 148 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_components_menu_MenuView__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_components_menu_MenuView___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__dashboard_components_menu_MenuView__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_components_submenu_Back__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_components_submenu_Back___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__dashboard_components_submenu_Back__);
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ([{
+    path: '/menu',
+    name: 'menu',
+    components: {
+        default: __WEBPACK_IMPORTED_MODULE_0__dashboard_components_menu_MenuView___default.a,
+        title: { template: '<h1>Menu entries</h1>' },
+        submenu: __WEBPACK_IMPORTED_MODULE_1__dashboard_components_submenu_Back___default.a
+    }
+}]);
+
+/***/ }),
+/* 149 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(150)
+/* template */
+var __vue_template__ = __webpack_require__(151)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/dashboard/components/menu/MenuView.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-139cae08", Component.options)
+  } else {
+    hotAPI.reload("data-v-139cae08", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 150 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    computed: {
+        menu: function menu() {
+            return this.$store.getters['menuManagement/menu'];
+        }
+    },
+    methods: {
+        remove: function remove(id) {
+            this.$store.commit('menuManagement/requestRemoval', id);
+        }
+    },
+    created: function created() {
+        this.$store.commit('menuManagement/requestEntries');
+    }
+});
+
+/***/ }),
+/* 151 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "table",
+    { staticClass: "rcms-table rcms-page-table" },
+    [
+      _vm._m(0, false, false),
+      _vm._v(" "),
+      _c(
+        "transition-group",
+        {
+          staticClass: "rcms-table-body",
+          attrs: { name: "fade", tag: "tbody" }
+        },
+        _vm._l(_vm.menu, function(entry) {
+          return _c(
+            "tr",
+            {
+              key: entry.id,
+              staticClass: "rcms-row",
+              model: {
+                value: _vm.menu,
+                callback: function($$v) {
+                  _vm.menu = $$v
+                },
+                expression: "menu"
+              }
+            },
+            [
+              _c("td", { staticClass: "rcms-cell" }, [
+                _vm._v(
+                  "\n                " + _vm._s(entry.entry) + "\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "rcms-cell" }, [
+                _vm._v(
+                  "\n                " + _vm._s(entry.page) + "\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "rcms-cell" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "rcms-button",
+                    attrs: { title: "Remove entry" },
+                    on: {
+                      click: function($event) {
+                        _vm.remove(entry.id)
+                      }
+                    }
+                  },
+                  [_c("span", { staticClass: "fa fa-remove" })]
+                )
+              ])
+            ]
+          )
+        })
+      ),
+      _vm._v(" "),
+      _c("tfoot", { staticClass: "rcms-table-footer" }, [
+        _c("tr", { staticClass: "rcms-row" }, [
+          _c(
+            "td",
+            { staticClass: "rcms-cell", attrs: { colspan: "3" } },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "rcms-button",
+                  attrs: { to: { name: "addMenu" } }
+                },
+                [_c("span", { staticClass: "fa fa-plus" })]
+              )
+            ],
+            1
+          )
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "rcms-table-header" }, [
+      _c("tr", { staticClass: "rcms-row" }, [
+        _c("td", { staticClass: "rcms-cell" }, [_vm._v("Entry name")]),
+        _vm._v(" "),
+        _c("td", { staticClass: "rcms-cell" }, [_vm._v("Page")]),
+        _vm._v(" "),
+        _c("td", { staticClass: "rcms-cell" }, [_vm._v("Actions")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-139cae08", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

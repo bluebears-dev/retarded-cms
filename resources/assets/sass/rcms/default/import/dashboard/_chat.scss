@@ -1,0 +1,94 @@
+.rcms-chat-view {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.rcms-messages {
+  flex: 0 1 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+
+  .rcms-message {
+    display: flex;
+    position: relative;
+    margin-top: 35px;
+
+    .rcms-author {
+      height: 25px;
+      position: absolute;
+      top: -25px;
+      padding: 5px 25px;
+      @include centering;
+      @include message-bubble($rcms_primary, $rcms_white, 0.9rem);
+    }
+
+    .rcms-content {
+      margin: 0;
+      word-break: break-all;
+      padding: 15px 20px;
+      @include message-bubble($rcms_white, $rcms_main, 1rem);
+    }
+
+    &.no-space {
+      margin-top: 2px;
+    }
+  }
+
+  .rcms-message.rcms-left {
+    margin-right: 20%;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .rcms-author, .rcms-content {
+      left: 0;
+      border-radius: 0 30px 30px 0;
+    }
+  }
+
+  .rcms-message.rcms-right {
+    margin-left: 20%;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .rcms-author, .rcms-content {
+      right: 0;
+      border-radius: 30px 0 0 30px;
+    }
+  }
+
+}
+
+.rcms-chat-input-wrapper {
+  display: flex;
+  border-top: 3px solid $rcms_main;
+  background: $rcms_white;
+
+  .rcms-chat-input {
+    padding: 5px 15px;
+    width: 100%;
+    min-height: 50px;
+    max-height: 250px;
+    overflow-y: auto;
+    line-height: 2.4rem;
+    background: transparent;
+    border: 0;
+    word-break: break-all;
+  }
+
+  .rcms-send-message {
+    background: transparent;
+    @include centering;
+    padding: 10px;
+
+    &.fa {
+      color: $rcms_main;
+    }
+
+    &.fa:hover {
+      color: $rcms_detail;
+    }
+  }
+}

@@ -10,4 +10,9 @@
   .rcms-cell:nth-child(5), .rcms-cell:nth-child(6), .rcms-cell:nth-child(7) {
     width: 50px;
   }
+
+  .rcms-disabled, .rcms-disabled .fa {
+    color: $rcms_main !important;
+  }
 }
+

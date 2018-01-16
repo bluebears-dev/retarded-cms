@@ -3,12 +3,20 @@ export default {
     state: {
         menuEntries: [
             {
-                button: 'User Management',
+                button: 'User management',
                 routeName: 'users',
             },
             {
                 button: 'Pages',
                 routeName: 'pages',
+            },
+            {
+                button: 'Chat',
+                routeName: 'chat',
+            },
+            {
+                button: 'Menu management',
+                routeName: 'menu',
             }
         ],
         topbarEntries: [

@@ -5,5 +5,7 @@
  * Time: 20:13
  */
 ?>
+@extends('rcms.main.scripts')
+
 @push('scripts')
 @endpush

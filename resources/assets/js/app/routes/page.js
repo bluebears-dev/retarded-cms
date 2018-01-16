@@ -1,6 +1,7 @@
 import PageAddView from "../../dashboard/components/page/PageAdd"
-import PageList from "../../dashboard/components/page/PageList"
-import PageSubmenu from "../../dashboard/components/submenu/Page"
+import PageEditView from "../../dashboard/components/page/PageEdit"
+import PageList from "../../dashboard/components/page/PageView"
+import PageSubmenu from "../../dashboard/components/submenu/PageManagement"
 import BackSubmenu from "../../dashboard/components/submenu/Back"
 
 export default [
@@ -21,5 +22,19 @@ export default [
             title: { template: '<h1>Create page</h1>' },
             submenu: BackSubmenu
         }
+    },
+    {
+        path: '/pages/edit/:page',
+        name: 'editPage',
+        components: {
+            default: PageEditView,
+            title: { template: '<h1>Edit page</h1>' },
+            submenu: BackSubmenu
+        },
+        props: {
+            default: true,
+            title: false,
+            submenu: false
+        },
     }
 ]

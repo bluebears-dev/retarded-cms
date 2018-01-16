@@ -11,12 +11,17 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/dashboard.js', 'public/js')
-    .js('resources/assets/js/app/bootstrap.js', 'public/js')
-    .js('resources/assets/js/login.js', 'public/js')
+mix.js('resources/assets/js/dashboard.js', 'public/js/rcms')
+    .js('resources/assets/js/app/bootstrap.js', 'public/js/rcms')
+    .js('resources/assets/js/login.js', 'public/js/rcms')
     .sass('resources/assets/sass/app.scss', 'public/css')
-    .sass('resources/assets/sass/rcms/default/login.scss', 'public/css/default')
-    .sass('resources/assets/sass/rcms/default/dashboard.scss', 'public/css/default')
-    .sass('resources/assets/sass/rcms/frozen/login.scss', 'public/css/frozen')
-    .sass('resources/assets/sass/rcms/frozen/dashboard.scss', 'public/css/frozen');
-mix.browserSync({proxy: 'localhost:80'});
+    .sass('resources/assets/sass/rcms/default/login.scss', 'public/css/rcms/default')
+    .sass('resources/assets/sass/rcms/default/dashboard.scss', 'public/css/rcms/default')
+    .sass('resources/assets/sass/rcms/frozen/login.scss', 'public/css/rcms/frozen')
+    .sass('resources/assets/sass/rcms/frozen/dashboard.scss', 'public/css/rcms/frozen')
+    .sass('resources/views/templates/default/style/style.scss', 'public/css/site');
+
+mix.browserSync({
+    proxy: 'localhost:80',
+    open: false
+});

@@ -1,5 +1,5 @@
-import UsersTable from "../../dashboard/components/user/UsersTable"
-import AddUserView from "../../dashboard/components/user/AddUser"
+import UsersTable from "../../dashboard/components/user/UserView"
+import AddUserView from "../../dashboard/components/user/UserAdd"
 import BackSubmenu from "../../dashboard/components/submenu/Back"
 import UserManagementSubmenu from "../../dashboard/components/submenu/UserManagement"
 

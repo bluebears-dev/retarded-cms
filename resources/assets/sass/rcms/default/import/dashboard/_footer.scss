@@ -1,0 +1,23 @@
+.rcms-footer {
+  background: $rcms_main;
+  border-top: 1px solid $rcms_secondary;
+  color: $rcms_secondary;
+  font-size: 0.8rem;
+  box-sizing: padding-box;
+
+  .rcms-version, .rcms-date {
+    padding: 2px 20px;
+  }
+
+  .rcms-author {
+    position: absolute;
+    right: 20px;
+    color: $rcms_secondary;
+    text-decoration: none;
+
+    &:hover {
+      color: $rcms_secondary;
+      text-decoration: none;
+    }
+  }
+}

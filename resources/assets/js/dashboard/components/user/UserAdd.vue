@@ -60,7 +60,6 @@
                             _token: this.token
                         }
                     }).then(response => {
-                        console.log(response);
                         this.$router.push({ name: 'users'})
                     }).catch(error => {
                         console.log(error)

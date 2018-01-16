@@ -9,11 +9,14 @@
 @import "import/dashboard/options/theme";
 @import "import/dashboard/pages/pageadd";
 @import "import/dashboard/pages/pagelist";
+@import "import/dashboard/chat";
+@import "import/dashboard/footer";
 
 .rcms-body {
   display: flex;
   flex-direction: row;
   height: 100%;
+  padding-bottom: 20px;
 }
 
 .rcms-screen {
@@ -31,22 +34,24 @@
 
 .carousel {
   &-enter-active, &-leave-active {
-    transform: translateX(100%);
     transition: transform 0.8s ease;
   }
-  &-enter-to {
-    transform: translateX(0px);
+  &-enter {
+    transform: translateY(0px);
   }
   &-leave-to {
     position: absolute;
-    transform: translateX(-100%);
+    transform: translateY(-100%);
   }
 }
 
 .fade {
   &-enter-active, &-leave-active {
+    transition: opacity 1s ease;
+  }
+  &-enter, &-leave-to {
+    position: absolute;
     opacity: 0;
-    transition: opacity 0.8s $rcms_easing;
   }
 }
 

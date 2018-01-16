@@ -8,5 +8,6 @@
 @extends('rcms.main.scripts')
 
 @push('scripts')
-    <script src={{ url('/js/dashboard.js') }}></script>
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+    <script src={{ url('/js/rcms/dashboard.js') }}></script>
 @endpush

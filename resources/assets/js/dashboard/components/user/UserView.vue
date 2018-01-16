@@ -53,14 +53,14 @@
 <script>
     export default {
         computed: {
-            users: function () {
+            users() {
                 return this.$store.getters['userManagement/users'];
             },
-            roles: function () {
+            roles() {
                 return this.$store.getters['userManagement/roles'];
             },
-            canModify: function () {
-                return this.$store.getters['userManagement/userRole'] === 1;
+            canModify() {
+                return this.$store.getters['userManagement/currentUserRole'] === 1;
             }
         },
         methods: {
@@ -78,8 +78,17 @@
                     this.$store.commit('userManagement/unstageChange', user);
             }
         },
-        created () {
+        created() {
             this.$store.commit('userManagement/requestList');
+
+            let pusher = this.$store.getters['main/pusher'];
+            let handler = (object) => {
+                return () => {
+                    object.$store.commit('userManagement/requestList');
+                }
+            };
+            let channel = pusher.subscribe('user-management-channel');
+            channel.bind('user-change-event', handler(this));
         }
     };
 </script>

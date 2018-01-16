@@ -15,7 +15,8 @@ class Page extends Model
      */
 
     protected $attributes = array(
-        'template' => 'default'
+        'template' => 'default',
+        'published' => true
     );
 
     /**
@@ -24,7 +25,7 @@ class Page extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'parent_page', 'content', 'active'
+        'name', 'parent_page', 'content', 'published'
     ];
 
     protected $table = 'pages';

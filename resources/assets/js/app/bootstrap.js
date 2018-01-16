@@ -20,6 +20,23 @@ try {
  */
 
 window.axios = require('axios');
+window.handleErrors = (error, store) => {
+    console.log(error);
+    switch (error.response.status) {
+        case 401:
+            store.dispatch('popup/initialize', {
+                title: 'Unauthorized attempt',
+                message: 'You are not authorized to perform this action',
+                buttons: {
+                    ok: 'Confirm'
+                },
+                actions: {
+                    ok: () => {document.location.reload();}
+                }
+            });
+            $('#popup').modal('show')
+    }
+};
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

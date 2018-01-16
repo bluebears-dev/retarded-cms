@@ -35,7 +35,6 @@
                 .then(response => {
                     if (response.status === 200)
                         document.location.reload();
-                    console.log(response)
                 })
                 .catch(error => {
                     console.log(error)

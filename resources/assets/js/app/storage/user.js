@@ -47,7 +47,6 @@ export default {
                         role: state.updatedUsers[login][0]
                     }
                 }).then(response => {
-                    console.log(response)
                 }).catch(error => {
                     console.log(error)
                 })
@@ -98,14 +97,14 @@ export default {
             }
             return state.roles;
         },
-        username(state) {
+        currentUserLogin(state) {
             return state.currentUser.login
         },
-        userRole(state) {
+        currentUserRole(state) {
             if (state.currentUser.roles)
                 return state.currentUser.roles[0].id
         },
-        userTheme(state) {
+        currentUserTheme(state) {
             return state.currentUser.theme
         },
     }

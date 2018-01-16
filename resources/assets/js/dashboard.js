@@ -22,7 +22,14 @@ let store = new Vuex.Store({
 });
 
 let router = new VueRouter({
-    routes: router_module
+    routes: router_module,
+});
+
+router.beforeEach((to, from, next) => {
+    let view = document.getElementById('content');
+    if (view)
+        view.scrollTop = 0;
+    next();
 });
 
 const app = new Vue({

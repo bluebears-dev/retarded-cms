@@ -2,6 +2,7 @@
   background: $rcms_white;
   padding: 15px 20px;
   box-sizing: content-box;
+  border-bottom: 1px solid $rcms_main;
 
   .rcms-title {
     @include centering;
@@ -15,6 +16,8 @@
     position: absolute;
     right: 0;
     margin-right: 20px;
+    top: 0;
+    bottom: 0;
   }
 
   .nav-link {

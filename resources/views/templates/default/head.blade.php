@@ -5,5 +5,8 @@
  * Time: 20:13
  */
 ?>
+@extends('rcms.main.head')
+
 @push('css')
+    <link rel="stylesheet" href="{{ asset('/css/site/style.css') }}">
 @endpush
